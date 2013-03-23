@@ -1,8 +1,7 @@
+import javax.swing.JPanel;
 
-public class Buyer {
+
+public class Buyer extends JPanel{
 	
-	public static void main(String s){
-		
-	}
 
 }

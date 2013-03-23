@@ -1,5 +1,4 @@
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -91,10 +90,10 @@ public class TableDemo extends JFrame {
    	    Border raisedBorder = BorderFactory.createRaisedBevelBorder();
    	    setLayout(new GridLayout(0, 1));
    	    setDefaultCloseOperation(EXIT_ON_CLOSE);
-   	    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-   	    int x = (int) ((dimension.getWidth() - getWidth()) / 2);
-   	    int y = (int) ((dimension.getHeight() - getHeight()) / 2);
-   	    setLocation(x, y);
+//   	    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+//   	    int x = (int) ((dimension.getWidth() - getWidth()) / 2);
+//   	    int y = (int) ((dimension.getHeight() - getHeight()) / 2);
+//   	    setLocation(x, y);
     	    
    	    JPanel buyerView = new JPanel();
     	        	    
@@ -102,11 +101,13 @@ public class TableDemo extends JFrame {
 
    	    //tabel
    	    DefaultTableModel dm = new DefaultTableModel();    	    
-   	    Object[][] corp = {{ "Aparat Foto", "inactiv","Nikon","No offer","button", "in progress..." },
-       	                   { "Camera Foto", "inactiv","Canon","No offer","button", "in progress..." }};
-   	    Object[] cap = { "Produs/Serviciu", "Status" ,"Furnizori/Pret", "Status licitatie", "Actiuni", "Progress Bar"};
+   	    Object[][] corp = {{ "Aparat Foto", "Nikon","Inactiv ", "500",  "in progress..." },
+       	                   { "Camera Foto", "Canon","Inactiv", "400", "in progress..." },
+       	                   { "Mouse", "LogiTech", "Inactiv", "50","in progress..." },
+       	                   { "Tastatura", "A4Tech", "Inactiv", "15","in progress..." }};
+   	    Object[] cap = { "Produs/Serviciu", "Status" ,"Furnizori", "Pret", "Progress Bar"};
     	    
-   	    dm.setDataVector(corp,cap);
+   	    dm.setDataVector(corp, cap);
 
    	    final JTable table = new JTable(dm);  
    	       	    
@@ -168,7 +169,7 @@ public class TableDemo extends JFrame {
         	}
         });
    	    
-   	    table.getColumn("Actiuni").setCellRenderer(new ButtonRenderer());
+//   	    table.getColumn("Actiuni").setCellRenderer(new ButtonRenderer());
    	    //table.getColumn("Actiuni").setCellEditor(new ButtonEditor(new JCheckBox()));
    	    table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
    	    JScrollPane scroll = new JScrollPane(table);
@@ -189,7 +190,7 @@ public class TableDemo extends JFrame {
             
         getContentPane().add(buyerView);
     	    
-  	    setSize(700, 200);
+  	    setSize(500, 200);
    	    setVisible(true);
    	  }
 
