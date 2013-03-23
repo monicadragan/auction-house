@@ -22,7 +22,9 @@ public class MainWindow extends JFrame{
 
    	    setLayout(new BorderLayout());
    	    setDefaultCloseOperation(EXIT_ON_CLOSE);
-   	    this.add(new TableView("Username"), BorderLayout.CENTER);
+   	    
+   	    //la click pe butonul login
+   	    this.add(new TableView("Username", UserType.BUYER), BorderLayout.CENTER);
   	    setSize(600, 200);
    	    setVisible(true);
 

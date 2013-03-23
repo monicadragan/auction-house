@@ -1,19 +1,13 @@
-import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.border.Border;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -23,7 +17,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -96,38 +89,99 @@ public class TableView extends JPanel {
 
 	JTable table;  
 	   	    
-	JPopupMenu popupMenu;
+	JPopupMenu popupMenuProductsList;//nefolosit in cazul furnizorilor
+	JPopupMenu popupMenuUsersList;
 
-	public TableView(String username)//TODO: datele vin ca parametri in constructor! 
+	public TableView(String username, UserType type)//TODO: datele vin ca parametri in constructor! 
 	{
 		super();
-		init(username);
+		init(username, type);
 	}
    	  
-   	 public void init(String username)
+   	 public void init(String username, UserType type)
    	 {
     	this.setLayout(new BorderLayout());
-   	    JPanel buyerView = new JPanel(new GridLayout(1, 0));
+   	    JPanel tablePanel = new JPanel(new GridLayout(1, 0));
    	    dm.setDataVector(corp, cap);
 
    	    table = new JTable(dm);
-        table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());   	    
-   	    popupMenu = new CustomPopupMenu("Title", table);
+        table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
 
-   	    table.setComponentPopupMenu(popupMenu);    //adaugare popupMenu
-
-   	    table.addMouseListener(new MouseAdapter() {
-        	public void mouseClicked(MouseEvent e) {
-        		System.out.println("Click");         		
+        //adaugare popupMenu la right-click pe coloana produs sau user
+        switch(type)
+        {
+        	case BUYER:
+        	{
+           	    popupMenuProductsList = new CustomPopupMenu(
+           	    		"Launch Offer request",
+           	    		"Drop Offer request",
+           	    		table);
+           	    popupMenuUsersList = new CustomPopupMenu(
+        	    		"Accept Offer",
+        	    		"Refuse Offer",
+        	    		table);
+           	    break;
         	}
-        });
+        	case SELLER:
+        	{ 
+        		popupMenuUsersList = new CustomPopupMenu(
+    	    		"Make offer",
+    	    		"Drop auction",
+    	    		table);
+        		break;
+        	}
+        }
+   	    table.addMouseListener(new TableMouseSelect(type, table));
 
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setPreferredSize(new Dimension(500, 100));
+		tablePanel.add(scroll);
+		this.add(new Label(username), BorderLayout.SOUTH);
+		this.add(tablePanel, BorderLayout.CENTER);
+	}
 
-        JScrollPane scroll = new JScrollPane(table);
-        scroll.setPreferredSize(new Dimension(500, 100));
- 		buyerView.add(scroll);
-  	    this.add(new Label(username), BorderLayout.SOUTH);
-   	    this.add(buyerView, BorderLayout.CENTER);
-   	  }
-
+     private class TableMouseSelect extends MouseAdapter {
+    	 UserType type;
+    	 JTable table;
+    	 public TableMouseSelect(UserType type, JTable table) {
+			this.type = type;
+			this.table = table;
+		}
+		public void mouseReleased(MouseEvent evt) {  
+			if(evt.getSource() == table) {  
+				selectTableRow(evt,table, type);  
+			}  
+		}  
+		public void mousePressed(MouseEvent evt) {  
+			if(evt.getSource() == table) {  
+				selectTableRow(evt,table, type);  
+			}  
+		}  
+		public void mouseClicked(MouseEvent evt) {  
+			if(evt.getSource() == table) {  
+				selectTableRow(evt,table, type);
+			}  
+		}  
+	}    
+     
+	private void selectTableRow(MouseEvent evt, JTable table, UserType type)
+	{
+		if (SwingUtilities.isRightMouseButton(evt))
+		{
+			Point p = evt.getPoint();
+			int row = table.rowAtPoint(p);  
+			int col = table.columnAtPoint(p);  
+			table.setRowSelectionInterval(row, row);
+			table.setColumnSelectionInterval(col,col);
+			
+			//coloana produs/serviciu
+			if(col == 0 && type.equals(UserType.BUYER))
+				popupMenuProductsList.show(table, p.x, p.y);
+			//coloana useri (furnizori/cumparatori)
+			else if(col == 2)
+				popupMenuUsersList.show(table, p.x, p.y);
+	
+		}  
+	}
+	
 }
