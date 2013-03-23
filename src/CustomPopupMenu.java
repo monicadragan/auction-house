@@ -42,34 +42,5 @@ public class CustomPopupMenu extends JPopupMenu{
 			}
 		});	    
 	    this.add(menuItem2); 
-	    
-	    
-//	    this.addPopupMenuListener(new PopupMenuListener() {
-//			
-//			@Override
-//			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-//				System.out.println("popup");
-//				
-//        		Point p = getLocation();
-//        		int row = table.rowAtPoint(p);
-//        		int col = table.columnAtPoint(p);
-//        		System.out.println(row+" "+col);
-//        		
-//        		table.addRowSelectionInterval(row,row);
-//        		
-//				if(table.getSelectedRow() == -1){
-//				
-//				}
-//			}
-//			
-//			@Override
-//			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-//
-//			}
-//			
-//			@Override
-//			public void popupMenuCanceled(PopupMenuEvent e) {				
-//			}
-//		});
 	}
 }

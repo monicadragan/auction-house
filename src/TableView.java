@@ -79,12 +79,8 @@ class ButtonEditor extends DefaultCellEditor {
 
 public class TableView extends JPanel {
 
-	private DefaultTableModel dm = new DefaultTableModel();		//model tabel
-    private Object[][] corp = {{ "Aparat Foto", "Inactiv", "Nikon", "500",  "in progress..." },
-	                   { "Camera Foto", "Inactiv", "Canon", "400", "in progress..." },
-	                   { "Mouse", "Inactiv","Logitech", "50","in progress..." },
-	                   { "Tastatura","Inactiv", "A4Tech", "15","in progress..." },
-	                   { "Tastatura","Inactiv", "Logitech", "59","in progress..." }};
+	private DefaultTableModel model = new DefaultTableModel();		//model tabel
+    private Object[][] bodyTable;
 	private Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "Pret", "Progress Bar"};
 
 	private JTable table;  
@@ -94,9 +90,11 @@ public class TableView extends JPanel {
 
 	private JButton bLogout = new JButton("Logout");
 	
-	public TableView(String username, UserType type, String usersNameList)//TODO: datele vin ca parametri in constructor! 
+	public TableView(String username, UserType type,
+			String usersNameList, Object[][] body)//TODO: datele vin ca parametri in constructor! 
 	{
 		super();
+		this.bodyTable = body;
 		headTable[2] = usersNameList;
 		init(username, type);
 	}
@@ -106,9 +104,9 @@ public class TableView extends JPanel {
     	this.setLayout(new BorderLayout());
    	    JPanel tablePanel = new JPanel(new GridLayout(1, 0));
    	    JPanel bottomPanel = new JPanel(new GridLayout(0, 6));
-   	    dm.setDataVector(corp, headTable);
+   	    model.setDataVector(bodyTable, headTable);
 
-   	    table = new JTable(dm);
+   	    table = new JTable(model);
         table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
 
         //adaugare popupMenu la right-click pe coloana produs sau user

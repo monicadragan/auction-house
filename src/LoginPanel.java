@@ -28,7 +28,7 @@ import javax.swing.event.ChangeListener;
 
 public class LoginPanel extends JPanel{
 	
-	private IMediator med;
+	private ActionsController med;
 	private JLabel lUsername = new JLabel("Username");		// username label
 	private JTextField	tUsername = new JTextField(10);		// username field
 	private JLabel lPassword = new JLabel("Password");		// password label
@@ -37,7 +37,7 @@ public class LoginPanel extends JPanel{
 	private static final String userTypeOptions[] = { "Seller", "Buyer"};
 	private JPanel userTypePanel;
 	
-	public LoginPanel(IMediator med)
+	public LoginPanel(ActionsController med)
 	{
 		this.med = med;
 		init();

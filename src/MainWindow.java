@@ -30,17 +30,9 @@ public class MainWindow extends JFrame{
 	    
 	    actionCtrl = new ActionsController(this);
 	    setContentPane(new LoginPanel(actionCtrl));
-	    //la click pe butonul login
-//	    changeContentPane(new TableView("Username", UserType.BUYER));
-//   	    this.add(new TableView("Username", UserType.BUYER), BorderLayout.CENTER);
   	    setSize(300, 300);
    	    setVisible(true);
 
-	}
-	
-	public void changeContentPane(Container content)
-	{
-		this.setContentPane(content);
 	}
 		
 	public static void main(String[] args)

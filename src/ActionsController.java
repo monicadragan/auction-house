@@ -1,6 +1,11 @@
 import java.awt.Dimension;
 
-public class ActionsController implements IMediator{
+/**
+ * Controller pentru actiunile care se fac in interfata grafica (Viewer)
+ * @author silvia
+ *
+ */
+public class ActionsController{
 
 	MainWindow mainWindow;
 	
