@@ -1,6 +1,6 @@
 
 public interface IMediator {
 
-	void initGUI();
-	void view();
+//	void initGUI();
+//	void view();
 }

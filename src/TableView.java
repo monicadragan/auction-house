@@ -85,16 +85,19 @@ public class TableView extends JPanel {
 	                   { "Mouse", "Inactiv","Logitech", "50","in progress..." },
 	                   { "Tastatura","Inactiv", "A4Tech", "15","in progress..." },
 	                   { "Tastatura","Inactiv", "Logitech", "59","in progress..." }};
-	private Object[] cap = { "Produs/Serviciu", "Status" ,"Furnizori", "Pret", "Progress Bar"};
+	private Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "Pret", "Progress Bar"};
 
-	JTable table;  
+	private JTable table;  
 	   	    
-	JPopupMenu popupMenuProductsList;//nefolosit in cazul furnizorilor
-	JPopupMenu popupMenuUsersList;
+	private JPopupMenu popupMenuProductsList;//nefolosit in cazul furnizorilor
+	private JPopupMenu popupMenuUsersList;
 
-	public TableView(String username, UserType type)//TODO: datele vin ca parametri in constructor! 
+	private JButton bLogout = new JButton("Logout");
+	
+	public TableView(String username, UserType type, String usersNameList)//TODO: datele vin ca parametri in constructor! 
 	{
 		super();
+		headTable[2] = usersNameList;
 		init(username, type);
 	}
    	  
@@ -102,7 +105,8 @@ public class TableView extends JPanel {
    	 {
     	this.setLayout(new BorderLayout());
    	    JPanel tablePanel = new JPanel(new GridLayout(1, 0));
-   	    dm.setDataVector(corp, cap);
+   	    JPanel bottomPanel = new JPanel(new GridLayout(0, 6));
+   	    dm.setDataVector(corp, headTable);
 
    	    table = new JTable(dm);
         table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
@@ -136,7 +140,12 @@ public class TableView extends JPanel {
 		JScrollPane scroll = new JScrollPane(table);
 		scroll.setPreferredSize(new Dimension(500, 100));
 		tablePanel.add(scroll);
-		this.add(new Label(username), BorderLayout.SOUTH);
+		//dummy panels
+		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
+		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
+		bottomPanel.add(new Label(username));
+		bottomPanel.add(bLogout);
+		this.add(bottomPanel, BorderLayout.SOUTH);
 		this.add(tablePanel, BorderLayout.CENTER);
 	}
 
