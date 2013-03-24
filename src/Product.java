@@ -7,6 +7,7 @@ public class Product {
 	String name; //nume produs/serviciu	
 	String status; //statusul produsului: Active/Inactive
 	Status statusLicitatie = Status.INACTIVE;
+	String user = "";
 	int pret = 0;
 	JProgressBar progressBar;//progresul transferului
 	

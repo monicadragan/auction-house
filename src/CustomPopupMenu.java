@@ -7,8 +7,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
 /**
  * Clasa ce implementeaza un popup menu cu 2 itemi
@@ -21,11 +19,11 @@ public class CustomPopupMenu extends JPopupMenu{
 	int tableRow;
 	int tableColumn;
 	
-	public CustomPopupMenu(String item1, String item2, final TableView panel) {
+	public CustomPopupMenu(String item1, String item2, TableView pan) {
 		
 		super();
-		this.table = panel.table;
-		this.panel = panel;
+		this.table = pan.table;
+		this.panel = pan;
 
    	    // Item 1
 	    JMenuItem menuItem1 = new JMenuItem(item1);
@@ -35,8 +33,8 @@ public class CustomPopupMenu extends JPopupMenu{
 				JMenuItem it = (JMenuItem)arg0.getSource();
 				panel.mainFrame.mediator.sendRequest(
 						it.getText(),
-						table.getModel().getValueAt(tableRow, tableColumn).toString(),						
-						panel.userInfo.username,
+						tableRow, 
+						tableColumn,
 						panel);
 			}
 		});
@@ -51,8 +49,8 @@ public class CustomPopupMenu extends JPopupMenu{
 				System.out.println(it.getText());		
 				panel.mainFrame.mediator.sendRequest(
 						it.getText(),
-						table.getModel().getValueAt(tableRow, tableColumn).toString(),
-						panel.userInfo.username,
+						tableRow, 
+						tableColumn,
 						panel);
 			}
 		});	    
@@ -65,6 +63,5 @@ public class CustomPopupMenu extends JPopupMenu{
 		Point p = new Point(x, y);
 		tableRow = table.rowAtPoint(p);  
 		tableColumn = table.columnAtPoint(p); 
-		System.out.println("Row: " + tableRow + "; Col: " + tableColumn);
 	}
 }

@@ -220,4 +220,15 @@ public class TableView extends JPanel {
 		}  
 	}
 	
+	public DefaultTableModel getModel()
+	{
+		return model;
+	}
+	
+	public void setModel(DefaultTableModel mdl)
+	{
+		this.model = mdl;
+	}
+	
+	
 }

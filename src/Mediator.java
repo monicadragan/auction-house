@@ -6,29 +6,16 @@ import javax.swing.JTable;
 
 public class Mediator {
 	
-	static ArrayList<UserThread> users = new ArrayList<UserThread>(); 
+	StateManager stateManager;
+	ArrayList<UserThread> users = new ArrayList<UserThread>(); 
 	
-	Mediator(){		
+	Mediator(){
+		stateManager = new StateManager( this);
 	}
 	
-	void sendRequest(String msg, String product, String client, TableView userPanel){
+	void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){
 		
-		System.out.println("!! "+msg+" "+product);
-		
-		if(msg.equals("Launch Offer request")){
-			for(int i=0;i<users.size();i++){
-				MainWindow user = users.get(i).gui; 
-				if(user.uType == UserType.SELLER){
-					//parcurg tabela
-					JTable table = user.tableView.table;
-					for(int j=0;j<table.getRowCount();j++){
-						if(table.getModel().getValueAt(j, 0).toString().equals(product)){
-							table.getModel().setValueAt(client,j, 2);//!! hardcodat 
-						}
-					}
-				}
-			}
-		}
+		stateManager.processRequest(msg, tableRow, tableCol, userPanel);
 		
 	}
 	
@@ -47,7 +34,7 @@ public class Mediator {
 			if(input.equals("l")){
 				UserThread t = new UserThread(mediator);
 			    t.start();
-			    users.add(t);
+			    mediator.users.add(t);
 			}
 		}
 	}

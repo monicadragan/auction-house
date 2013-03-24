@@ -1,7 +1,7 @@
 class UserThread extends Thread{
 	
 	Mediator mediator;
-	MainWindow gui; 
+	MainWindow gui;
 	
 	UserThread(Mediator mediator){
 		this.mediator = mediator;
