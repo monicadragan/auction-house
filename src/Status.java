@@ -7,6 +7,12 @@
  *
  */
 public enum Status {
+	INACTIVE {
+		@Override
+		public String getName() {
+			return "Inactive";
+		}
+	},
 	NO_OFFER {
 		@Override
 		public String getName() {

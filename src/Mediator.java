@@ -44,12 +44,17 @@ public class Mediator {
 			if(input.equals("exit")){
 				System.exit(1);
 			}
-			if(input.equals("launch")){
+			if(input.equals("l")){
 				UserThread t = new UserThread(mediator);
 			    t.start();
 			    users.add(t);
 			}
 		}
+	}
+
+	public User readUserInformation(String username, String password, UserType uType)
+	{	
+		return InputParser.readInfoAboutUser(username, password, uType);
 	}
 
 }

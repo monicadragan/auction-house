@@ -83,7 +83,7 @@ public class TableView extends JPanel {
 
 	private DefaultTableModel model = new DefaultTableModel();		//model tabel
     ArrayList<Object[]> bodyTable;
-	private Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "Pret", "Progress Bar"};
+	private Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "Progress Bar"};
 
 	public JTable table;  
 	MainWindow mainFrame;
@@ -100,20 +100,18 @@ public class TableView extends JPanel {
 		this.userInfo = userInfo;
 		headTable[2] = usersNameColumn;
 		
-		//calculam nr produse din tabel
-		int noProducts = 0;
-		for(int i=0;i<userInfo.products.size();i++){
+		bodyTable = new ArrayList<Object[]>();
+		System.out.println(userInfo.products.size());
+		for(int i=0; i<userInfo.products.size(); i++) {
 			Product product = userInfo.products.get(i);
-			int noUsers = 1;
-			if(noUsers == 0)
-				noUsers = 1;
-			for(int k=0;k<noUsers;k++){
-				Object [] o = new Object[headTable.length];
-				o[0] = product.name;
-				o[1] = product.statusLicitatie;
-				o[2] = "ana";
-				bodyTable.add(o);
-			}
+			ArrayList<Object> objects = new ArrayList<Object>();
+			objects.add(product.name);
+			objects.add(product.status);
+			objects.add("");//user
+			objects.add(product.statusLicitatie.getName());
+			objects.add(product.pret);
+			objects.add(product.progressBar);
+			bodyTable.add(objects.toArray());
 		}
 		
 		init(userInfo.username, userInfo.uType);
@@ -124,7 +122,9 @@ public class TableView extends JPanel {
     	this.setLayout(new BorderLayout());
    	    JPanel tablePanel = new JPanel(new GridLayout(1, 0));
    	    JPanel bottomPanel = new JPanel(new GridLayout(0, 6));
-   	    model.setDataVector((Object[][]) bodyTable.toArray(), headTable);
+   	    Object[][] body = new Object[bodyTable.size()][];
+   	    bodyTable.toArray(body);
+   	    model.setDataVector(body, headTable);
 
    	    table = new JTable(model);
         table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
@@ -157,6 +157,7 @@ public class TableView extends JPanel {
    	    
    	    bLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//TODO - de verificat daca este furnizor si este intr-o licitatie NU are voie
 				System.exit(1);
 			}
 		});

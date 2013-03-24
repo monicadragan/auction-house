@@ -34,7 +34,10 @@ public class CustomPopupMenu extends JPopupMenu{
 			public void actionPerformed(ActionEvent arg0) {
 				JMenuItem it = (JMenuItem)arg0.getSource();
 				System.out.println(it.getText());
-				panel.mainFrame.mediator.sendRequest(it.getText(),table.getModel().getValueAt(tableRow, tableColumn).toString(),panel.userInfo.username);
+				panel.mainFrame.mediator.sendRequest(
+						it.getText(),
+						table.getModel().getValueAt(tableRow, tableColumn).toString(),
+						panel.userInfo.username);
 			}
 		});
 	    this.add(menuItem1);
@@ -57,6 +60,7 @@ public class CustomPopupMenu extends JPopupMenu{
 
 		Point p = new Point(x, y);
 		tableRow = table.rowAtPoint(p);  
-		tableColumn = table.columnAtPoint(p);  
+		tableColumn = table.columnAtPoint(p); 
+		System.out.println("Row: " + tableRow + "; Col: " + tableColumn);
 	}
 }

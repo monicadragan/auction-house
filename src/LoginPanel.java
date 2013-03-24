@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -53,19 +54,31 @@ public class LoginPanel extends JPanel{
 		userTypePanel = createRadioButtonGrouping(userTypeOptions, "User Type");
 		JPanel loginPanel = new JPanel(new GridLayout(1, 0));
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setLayout(new GridLayout(10, 3));
+//				(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(userTypePanel);
+		this.add(new JPanel());
+		
 		this.add(userPanel);
+		this.add(new JPanel());
+		
 		this.add(passwdPanel);
+		this.add(new JPanel());
+		
+		
 		this.add(loginPanel);
+		this.add(new JPanel()); this.add(new JPanel());this.add(new JPanel());
+		this.add(new JPanel()); this.add(new JPanel());this.add(new JPanel());
 		
 		// bottom panel: name field, add button, remove button
 		userPanel.add(lUsername);
 		userPanel.add(tUsername);
 		passwdPanel.add(lPassword);
 		passwdPanel.add(tPassword);
-        		
+
+		loginPanel.add(new JPanel());
 		loginPanel.add(bLogin);
+
 		bLogin.addActionListener(new LoginActionListener());
 	}
 
@@ -121,7 +134,6 @@ public class LoginPanel extends JPanel{
 	}
 	
 	 private String getSelectedElement(Container container) {
-//		    ArrayList<String> selections = new ArrayList<String>();
 		    Component components[] = container.getComponents();
 		    for (int i = 0, n = components.length; i < n; i++) {
 		      if (components[i] instanceof AbstractButton) {

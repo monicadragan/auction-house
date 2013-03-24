@@ -6,6 +6,7 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 public class MainWindow extends JFrame{
 
@@ -21,7 +22,7 @@ public class MainWindow extends JFrame{
 		
  	    setLayout(new BorderLayout());
   	    setDefaultCloseOperation(EXIT_ON_CLOSE);
-	    setTitle("Login");  	
+	    setTitle("Login");
 	    
   	    setSize(500, 300);
 	    
@@ -29,7 +30,6 @@ public class MainWindow extends JFrame{
 	    setLocation((dim.width-getWidth())/2, (dim.height-getHeight())/2);
 	    
 	    LoginPanel login = new LoginPanel(this);
-	    
 	    setContentPane(login);
    	    setVisible(true);
 
@@ -38,20 +38,19 @@ public class MainWindow extends JFrame{
 	public void loginRequest(String username, String password, UserType uType)
 	{
 		//TODO se verifica daca credentialele sunt valide (exista in DB)		
-		
 		this.uType = uType;
-		
+		User userInfo = mediator.readUserInformation(username, password, uType);
 		switch(uType)
 		{			
 			case BUYER:
 			{
-				tableView = new BuyerTableView(username, uType, this);
+				tableView = new BuyerTableView(userInfo, this);
 				setTitle("Buyer Products/Services List");
 				break;
 			}
 			case SELLER:
 			{			
-				tableView = new SellerTableView(username, uType, this);
+				tableView = new SellerTableView(userInfo, this);
 				setTitle("Seller Products/Services List");
 				break;
 			}

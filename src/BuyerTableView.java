@@ -1,16 +1,10 @@
-import javax.swing.JPanel;
 
-
-public class BuyerTableView extends TableView{
-	static Object[][] body = {{ "Aparat Foto", "Inactiv", "", "",  "in progress..." },
-		        { "Camera Foto", "Inactiv", "", "", "in progress..." },
-		        { "Mouse", "Inactiv","", "","in progress..." },
-		        { "Tastatura","Inactiv", "", "","in progress..." },
-		        { "Tastatura","Inactiv", "", "","in progress..." }};
+public class BuyerTableView extends TableView {
 	
-//	public BuyerTableView(String username, UserType type, MainWindow frame) {
-//		super(username, type, "Furnizori", body, frame);
-//	}
+	public BuyerTableView(User userInfo, MainWindow frame) {
+		super(userInfo, "Furnizori", frame);
+	}
+
 	
 
 }
