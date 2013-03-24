@@ -8,9 +8,9 @@ public class BuyerTableView extends TableView{
 		        { "Tastatura","Inactiv", "", "","in progress..." },
 		        { "Tastatura","Inactiv", "", "","in progress..." }};
 	
-	public BuyerTableView(String username, UserType type) {
-		super(username, type, "Furnizori", body);
-	}
+//	public BuyerTableView(String username, UserType type, MainWindow frame) {
+//		super(username, type, "Furnizori", body, frame);
+//	}
 	
 
 }

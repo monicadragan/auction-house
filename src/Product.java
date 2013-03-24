@@ -4,8 +4,9 @@ import javax.swing.JProgressBar;
 
 public class Product {
 
-	private String name; //nume produs/serviciu
-	private ArrayList<String> users; //nume utilizatori ce ofera/doresc acest serviciu
-	Status status; //statusul produsului
+	public String name; //nume produs/serviciu	
+	String status; //statusul produsului
+	Status statusLicitatie;
+	int pret;
 	JProgressBar progressBar;//progresul transferului
 }

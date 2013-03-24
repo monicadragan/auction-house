@@ -7,8 +7,12 @@ public class SellerTableView extends TableView{
 				        { "Tastatura","Inactiv", "", "","in progress..." },
 				        { "Tastatura","Inactiv", "", "","in progress..." }};
 		
-	public SellerTableView(String username, UserType type) {
-		super(username, type, "Cumparatori", body);
+	public SellerTableView(String username, UserType utype, MainWindow frame) {
+		User userInfo = new User();
+		userInfo.username = username;
+		userInfo.uType = utype;
+		userInfo.password = "dkjugecf";
+		super(userInfo, "Cumparatori", frame);
 	}
 
 }

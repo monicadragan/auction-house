@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -28,7 +29,8 @@ import javax.swing.event.ChangeListener;
 
 public class LoginPanel extends JPanel{
 	
-	private ActionsController med;
+	MainWindow mainFrame;
+	
 	private JLabel lUsername = new JLabel("Username");		// username label
 	private JTextField	tUsername = new JTextField(10);		// username field
 	private JLabel lPassword = new JLabel("Password");		// password label
@@ -37,20 +39,21 @@ public class LoginPanel extends JPanel{
 	private static final String userTypeOptions[] = { "Seller", "Buyer"};
 	private JPanel userTypePanel;
 	
-	public LoginPanel(ActionsController med)
+	public LoginPanel(MainWindow frame)
 	{
-		this.med = med;
+		this.mainFrame = frame;
 		init();
 	}
 	
 	public void init() {
 		
 		// main panel: top panel, bottom panel
-		JPanel userPanel = new JPanel(new GridLayout(1, 2)); // 1 row, any number of columns
+		JPanel userPanel = new JPanel(new GridLayout(1, 2)); 
 		JPanel passwdPanel = new JPanel(new GridLayout(1, 2));
 		userTypePanel = createRadioButtonGrouping(userTypeOptions, "User Type");
 		JPanel loginPanel = new JPanel(new GridLayout(1, 0));
-//		this.setLayout(new BorderLayout());
+		
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(userTypePanel);
 		this.add(userPanel);
 		this.add(passwdPanel);
@@ -61,7 +64,7 @@ public class LoginPanel extends JPanel{
 		userPanel.add(tUsername);
 		passwdPanel.add(lPassword);
 		passwdPanel.add(tPassword);
-                
+        		
 		loginPanel.add(bLogin);
 		bLogin.addActionListener(new LoginActionListener());
 	}
@@ -77,23 +80,27 @@ public class LoginPanel extends JPanel{
 			if(username == null)
 			{
 				System.err.println("Invalid username");
+				JOptionPane.showMessageDialog(null, "Invalid username");
 				return;
 			}
 			if(passwd == null)
 			{
 				System.err.println("Invalid password");
+				JOptionPane.showMessageDialog(null, "Invalid password");
 				return;
 			}
 			if(selectedType == null)
 			{
 				System.err.println("You must choose a type!");
+				JOptionPane.showMessageDialog(null, "You must choose a type!");
 				return;
 			}
 			System.out.println("Login " + username + "::" + selectedType);
 			if(selectedType.equals("Seller"))
 				uType = UserType.SELLER;
 			else uType = UserType.BUYER;
-			((ActionsController)med).loginRequest(username, passwd, uType);
+			
+			mainFrame.loginRequest(username, passwd, uType);
 		}
 		
 	}
@@ -131,7 +138,7 @@ public class LoginPanel extends JPanel{
 	
 	public static void buildGUI() {
 		JFrame frame = new JFrame("Login"); // title
-		frame.setContentPane(new LoginPanel(new ActionsController(new MainWindow()))); // content: the JPanel above
+		//frame.setContentPane(new LoginPanel(new ActionsController(new MainWindow(null)))); // content: the JPanel above
         frame.setLocationRelativeTo(null);
 		frame.setSize(300, 300); // width / height
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit application when window is closed

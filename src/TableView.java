@@ -1,3 +1,4 @@
+import javax.naming.NoPermissionException;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -23,6 +24,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 class ProgressBarRenderer extends JProgressBar implements TableCellRenderer {
 
@@ -80,23 +82,41 @@ class ButtonEditor extends DefaultCellEditor {
 public class TableView extends JPanel {
 
 	private DefaultTableModel model = new DefaultTableModel();		//model tabel
-    private Object[][] bodyTable;
+    ArrayList<Object[]> bodyTable;
 	private Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "Pret", "Progress Bar"};
 
-	private JTable table;  
+	public JTable table;  
+	MainWindow mainFrame;
+	User userInfo;
 	   	    
 	private JPopupMenu popupMenuProductsList;//nefolosit in cazul furnizorilor
 	private JPopupMenu popupMenuUsersList;
 
 	private JButton bLogout = new JButton("Logout");
 	
-	public TableView(String username, UserType type,
-			String usersNameList, Object[][] body)//TODO: datele vin ca parametri in constructor! 
+	public TableView(User userInfo, String usersNameColumn, MainWindow frame)//TODO: datele vin ca parametri in constructor! 
 	{
 		super();
-		this.bodyTable = body;
-		headTable[2] = usersNameList;
-		init(username, type);
+		this.userInfo = userInfo;
+		headTable[2] = usersNameColumn;
+		
+		//calculam nr produse din tabel
+		int noProducts = 0;
+		for(int i=0;i<userInfo.products.size();i++){
+			Product product = userInfo.products.get(i);
+			int noUsers = 1;
+			if(noUsers == 0)
+				noUsers = 1;
+			for(int k=0;k<noUsers;k++){
+				Object [] o = new Object[headTable.length];
+				o[0] = product.name;
+				o[1] = product.statusLicitatie;
+				o[2] = "ana";
+				bodyTable.add(o);
+			}
+		}
+		
+		init(userInfo.username, userInfo.uType);
 	}
    	  
    	 public void init(String username, UserType type)
@@ -104,7 +124,7 @@ public class TableView extends JPanel {
     	this.setLayout(new BorderLayout());
    	    JPanel tablePanel = new JPanel(new GridLayout(1, 0));
    	    JPanel bottomPanel = new JPanel(new GridLayout(0, 6));
-   	    model.setDataVector(bodyTable, headTable);
+   	    model.setDataVector((Object[][]) bodyTable.toArray(), headTable);
 
    	    table = new JTable(model);
         table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
@@ -117,11 +137,11 @@ public class TableView extends JPanel {
            	    popupMenuProductsList = new CustomPopupMenu(
            	    		"Launch Offer request",
            	    		"Drop Offer request",
-           	    		table);
+           	    		this);
            	    popupMenuUsersList = new CustomPopupMenu(
         	    		"Accept Offer",
         	    		"Refuse Offer",
-        	    		table);
+        	    		this);
            	    break;
         	}
         	case SELLER:
@@ -129,11 +149,17 @@ public class TableView extends JPanel {
         		popupMenuUsersList = new CustomPopupMenu(
     	    		"Make offer",
     	    		"Drop auction",
-    	    		table);
+    	    		this);
         		break;
         	}
         }
    	    table.addMouseListener(new TableMouseSelect(type, table));
+   	    
+   	    bLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(1);
+			}
+		});
 
 		JScrollPane scroll = new JScrollPane(table);
 		scroll.setPreferredSize(new Dimension(500, 100));
@@ -182,12 +208,13 @@ public class TableView extends JPanel {
 			table.setColumnSelectionInterval(col,col);
 			
 			//coloana produs/serviciu
-			if(col == 0 && type.equals(UserType.BUYER))
-				popupMenuProductsList.show(table, p.x, p.y);
+			if(col == 0 && type.equals(UserType.BUYER)){
+				popupMenuProductsList.show(table, p.x, p.y);				
+			}
 			//coloana useri (furnizori/cumparatori)
-			else if(col == 2)
-				popupMenuUsersList.show(table, p.x, p.y);
-	
+			else if(col == 2){
+				popupMenuUsersList.show(table, p.x, p.y);				
+			}	
 		}  
 	}
 	
