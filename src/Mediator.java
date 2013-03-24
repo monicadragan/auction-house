@@ -23,7 +23,7 @@ public class Mediator {
 					JTable table = user.tableView.table;
 					for(int j=0;j<table.getRowCount();j++){
 						if(table.getModel().getValueAt(j, 0).toString().equals(product)){
-							table.getModel().setValueAt(client,j, 2); 
+							table.getModel().setValueAt(client,j, 2);//!! hardcodat 
 						}
 					}
 				}
