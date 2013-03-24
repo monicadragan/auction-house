@@ -98,6 +98,7 @@ public class TableView extends JPanel {
 	{
 		super();
 		this.userInfo = userInfo;
+		this.mainFrame = frame;
 		headTable[2] = usersNameColumn;
 		
 		bodyTable = new ArrayList<Object[]>();

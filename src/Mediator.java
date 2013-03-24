@@ -11,7 +11,7 @@ public class Mediator {
 	Mediator(){		
 	}
 	
-	void sendRequest(String msg, String product, String client){
+	void sendRequest(String msg, String product, String client, TableView userPanel){
 		
 		System.out.println("!! "+msg+" "+product);
 		
