@@ -48,7 +48,7 @@ public class LaunchRequest implements Command {
 						rowDataSeller[2] = username;
 						rowDataSeller[3] = Status.NO_OFFER.getName();
 						rowDataSeller[4] = price;//pret
-						rowDataSeller[5] = "";//progress bar !!
+						rowDataSeller[5] = 0;//progress bar !!
 						sellerModel.addRow(rowDataSeller);//adaug noi linii	
 						
 						rowData[0] = prodName;
@@ -56,7 +56,7 @@ public class LaunchRequest implements Command {
 						rowData[2] = sellerName;
 						rowData[3] = Status.NO_OFFER.getName();
 						rowData[4] = "";//pret
-						rowData[5] = "";//progress bar !!
+						rowData[5] = 0;//progress bar !!
 						userReqModel.addRow(rowData);//adaug noi linii
 						receiveResponse = true;
 						break;

@@ -41,6 +41,7 @@ public class AcceptOffer implements Command{
 								&& sellerModel.getValueAt(j, 2).toString().equals(username))
 						{
 							sellerModel.setValueAt(Status.OFFER_ACCEPTED.getName(), j, 3);
+							med.sendFile(user.tableView, userPanel,j,tableRow);
 							break;
 						}
 				}

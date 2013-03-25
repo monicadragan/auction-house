@@ -8,9 +8,15 @@ public class Mediator {
 	
 	StatusManager statManager = new StatusManager();
 	ArrayList<UserThread> users = new ArrayList<UserThread>(); 
+	Network networkManager;
+
 	
 	Mediator(){
-		
+		networkManager = new Network();
+	}
+	
+	void sendFile(TableView source, TableView destination, int sourceRow, int destRow){
+		networkManager.transferFile(source, destination, sourceRow, destRow);
 	}
 	
 	void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){

@@ -1,17 +1,22 @@
-import javax.naming.NoPermissionException;
+import javax.naming.ldap.SortKey;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -21,29 +26,85 @@ import java.awt.Label;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-class ProgressBarRenderer extends JProgressBar implements TableCellRenderer {
+class ProgressBarRenderer extends DefaultTableCellRenderer {
 
-	  public ProgressBarRenderer() {
-	    super();
+    private final JProgressBar b = new JProgressBar(0, 100);
+
+    public ProgressBarRenderer() {
+        super();
+        setOpaque(true);
+        b.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        Integer i = (Integer) value;
+        String text = "100%";
+        if (i < 0) {
+            text = "Error";
+        } else if (i < 100) {
+            b.setValue(i);
+            return b;
+        }
+        super.getTableCellRendererComponent(table, text, isSelected, hasFocus, row, column);
+        return this;
+    }
+}
+ 
+class ButtonRenderer extends JButton implements TableCellRenderer {
+
+	  public ButtonRenderer() {
+	    setOpaque(true);
 	  }
 
 	  public Component getTableCellRendererComponent(JTable table, Object value,
 	      boolean isSelected, boolean hasFocus, int row, int column) {
-		  setValue(50);
-		  setStringPainted(true);
-		  return this;
+	    if (isSelected) {
+	      setForeground(table.getSelectionForeground());
+	      setBackground(table.getSelectionBackground());
+	    } else {
+	      setForeground(table.getForeground());
+	      setBackground(UIManager.getColor("Button.background"));
+	    }
+	    setText((value == null) ? "" : value.toString());
+	    return this;
 	  }
+}
+
+class ButtonEditor extends DefaultCellEditor {
+	  protected JButton button;
+
+	  private String label;
+
+	  private boolean isPushed;
+
+	  public ButtonEditor(JCheckBox checkBox) {
+	    super(checkBox);
+	    button = new JButton();
+	    button.setOpaque(true);
+	    button.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent e) {
+	        fireEditingStopped();
+	      }
+	    });
+	  }
+}
+
+class MyTableRowSorter extends TableRowSorter{
+
+
+	
 }
 
 public class TableView extends JPanel {
 
-	private DefaultTableModel model;		//model tabel
+	private DefaultTableModel model = new DefaultTableModel();		//model tabel
     ArrayList<Object[]> bodyTable;
 	private Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "Progress Bar"};
 
@@ -56,7 +117,7 @@ public class TableView extends JPanel {
 
 	private JButton bLogout = new JButton("Logout");
 	
-	public TableView(User userInfo, String usersNameColumn, MainWindow frame) 
+	public TableView(User userInfo, String usersNameColumn, MainWindow frame)//TODO: datele vin ca parametri in constructor! 
 	{
 		super();
 		this.userInfo = userInfo;
@@ -72,7 +133,7 @@ public class TableView extends JPanel {
 			objects.add("");//user
 			objects.add(product.statusLicitatie.getName());
 			objects.add(product.pret);
-			objects.add(product.progressBar);
+			objects.add(0);
 			bodyTable.add(objects.toArray());
 		}
 		
@@ -83,16 +144,21 @@ public class TableView extends JPanel {
    	 {
     	this.setLayout(new BorderLayout());
    	    JPanel tablePanel = new JPanel(new GridLayout(1, 0));
-   	    JPanel bottomPanel = new JPanel(new GridLayout(0, 5));
+   	    JPanel bottomPanel = new JPanel(new GridLayout(0, 6));
    	    Object[][] body = new Object[bodyTable.size()][];
    	    bodyTable.toArray(body);
+   	    model.setDataVector(body, headTable);
 
-   	    model = new DefaultTableModel(body, headTable);
-//   	    model = new SortedTableModel(new DefaultTableModel(), 0);
-   	    
    	    table = new JTable(model);
-        table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
-
+        //table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
+   	    /*table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
+   	    RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+        table.setRowSorter(sorter);
+        
+        ArrayList sortKeys = new ArrayList();
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);*/
+        
         //adaugare popupMenu la right-click pe coloana produs sau user
         switch(type)
         {
@@ -121,31 +187,8 @@ public class TableView extends JPanel {
    	    
    	    bLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//de verificat daca este furnizor si este intr-o licitatie NU are voie
-				boolean exit = true;
-				if(userInfo.uType.equals(UserType.SELLER))
-				{
-					for(int i = 0; i < model.getRowCount(); ++i)
-						if(model.getValueAt(i, 3).toString().equals(Status.OFFER_MADE.getName()))
-							exit = false;
-				}
-				if(exit)
-				{
-					ArrayList<UserThread> allThreads = mainFrame.mediator.users;
-					for(int i = 0; i < allThreads.size(); ++i)
-						if(allThreads.get(i).gui.tableView.userInfo.username.equals(userInfo.username))
-						{
-							System.out.println("Logout");
-							allThreads.get(i).cancel();
-							mainFrame.setVisible(false);
-							allThreads.remove(i);
-							break;
-						}
-				}
-				else //nu are voie sa dea logout
-				{
-					JOptionPane.showMessageDialog(null, "Logout is forbidden in the mid of an auction.");
-				}
+				//TODO - de verificat daca este furnizor si este intr-o licitatie NU are voie
+				System.exit(1);
 			}
 		});
 
@@ -153,7 +196,8 @@ public class TableView extends JPanel {
 		scroll.setPreferredSize(new Dimension(500, 100));
 		tablePanel.add(scroll);
 		//dummy panels
-		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
+		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
+		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
 		bottomPanel.add(new Label(username));
 		bottomPanel.add(bLogout);
 		this.add(bottomPanel, BorderLayout.SOUTH);

@@ -52,7 +52,7 @@ public class DropRequest implements Command {
 					rowData[2] = "";
 					rowData[3] = Status.INACTIVE.getName();
 					rowData[4] = "";//pret
-					rowData[5] = "";//progress bar 
+					rowData[5] = 0;//progress bar 
 					sellerModel.addRow(rowData);//adaug noi linii
 				}
 			}
@@ -69,7 +69,7 @@ public class DropRequest implements Command {
 		rowData[2] = "";
 		rowData[3] = Status.INACTIVE.getName();
 		rowData[4] = "";//pret
-		rowData[5] = "";//progress bar 
+		rowData[5] = 0;//progress bar 
 		userReqModel.addRow(rowData);//adaug noi linii
 
 		userPanel.setModel(userReqModel); //updatez modelul
