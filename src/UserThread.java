@@ -7,8 +7,13 @@ class UserThread extends Thread{
 		this.mediator = mediator;
 	}
 
-	public void run(){
+	public void run()
+	{
 		gui = new MainWindow(mediator);
+	}
+	public void cancel()
+	{
+		interrupt();
 	}
 	
 }

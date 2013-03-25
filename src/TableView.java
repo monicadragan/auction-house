@@ -2,6 +2,7 @@ import javax.naming.NoPermissionException;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
@@ -39,49 +40,10 @@ class ProgressBarRenderer extends JProgressBar implements TableCellRenderer {
 		  return this;
 	  }
 }
- 
-class ButtonRenderer extends JButton implements TableCellRenderer {
-
-	  public ButtonRenderer() {
-	    setOpaque(true);
-	  }
-
-	  public Component getTableCellRendererComponent(JTable table, Object value,
-	      boolean isSelected, boolean hasFocus, int row, int column) {
-	    if (isSelected) {
-	      setForeground(table.getSelectionForeground());
-	      setBackground(table.getSelectionBackground());
-	    } else {
-	      setForeground(table.getForeground());
-	      setBackground(UIManager.getColor("Button.background"));
-	    }
-	    setText((value == null) ? "" : value.toString());
-	    return this;
-	  }
-}
-
-class ButtonEditor extends DefaultCellEditor {
-	  protected JButton button;
-
-	  private String label;
-
-	  private boolean isPushed;
-
-	  public ButtonEditor(JCheckBox checkBox) {
-	    super(checkBox);
-	    button = new JButton();
-	    button.setOpaque(true);
-	    button.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
-	        fireEditingStopped();
-	      }
-	    });
-	  }
-}
 
 public class TableView extends JPanel {
 
-	private DefaultTableModel model = new DefaultTableModel();		//model tabel
+	private DefaultTableModel model;		//model tabel
     ArrayList<Object[]> bodyTable;
 	private Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "Progress Bar"};
 
@@ -94,7 +56,7 @@ public class TableView extends JPanel {
 
 	private JButton bLogout = new JButton("Logout");
 	
-	public TableView(User userInfo, String usersNameColumn, MainWindow frame)//TODO: datele vin ca parametri in constructor! 
+	public TableView(User userInfo, String usersNameColumn, MainWindow frame) 
 	{
 		super();
 		this.userInfo = userInfo;
@@ -121,11 +83,13 @@ public class TableView extends JPanel {
    	 {
     	this.setLayout(new BorderLayout());
    	    JPanel tablePanel = new JPanel(new GridLayout(1, 0));
-   	    JPanel bottomPanel = new JPanel(new GridLayout(0, 6));
+   	    JPanel bottomPanel = new JPanel(new GridLayout(0, 5));
    	    Object[][] body = new Object[bodyTable.size()][];
    	    bodyTable.toArray(body);
-   	    model.setDataVector(body, headTable);
 
+   	    model = new DefaultTableModel(body, headTable);
+//   	    model = new SortedTableModel(new DefaultTableModel(), 0);
+   	    
    	    table = new JTable(model);
         table.getColumn("Progress Bar").setCellRenderer(new ProgressBarRenderer());
 
@@ -157,8 +121,31 @@ public class TableView extends JPanel {
    	    
    	    bLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO - de verificat daca este furnizor si este intr-o licitatie NU are voie
-				System.exit(1);
+				//de verificat daca este furnizor si este intr-o licitatie NU are voie
+				boolean exit = true;
+				if(userInfo.uType.equals(UserType.SELLER))
+				{
+					for(int i = 0; i < model.getRowCount(); ++i)
+						if(model.getValueAt(i, 3).toString().equals(Status.OFFER_MADE.getName()))
+							exit = false;
+				}
+				if(exit)
+				{
+					ArrayList<UserThread> allThreads = mainFrame.mediator.users;
+					for(int i = 0; i < allThreads.size(); ++i)
+						if(allThreads.get(i).gui.tableView.userInfo.username.equals(userInfo.username))
+						{
+							System.out.println("Logout");
+							allThreads.get(i).cancel();
+							mainFrame.setVisible(false);
+							allThreads.remove(i);
+							break;
+						}
+				}
+				else //nu are voie sa dea logout
+				{
+					JOptionPane.showMessageDialog(null, "Logout is forbidden in the mid of an auction.");
+				}
 			}
 		});
 
@@ -166,8 +153,7 @@ public class TableView extends JPanel {
 		scroll.setPreferredSize(new Dimension(500, 100));
 		tablePanel.add(scroll);
 		//dummy panels
-		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
-		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
+		bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel()); bottomPanel.add(new JPanel());
 		bottomPanel.add(new Label(username));
 		bottomPanel.add(bLogout);
 		this.add(bottomPanel, BorderLayout.SOUTH);

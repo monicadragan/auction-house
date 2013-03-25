@@ -6,16 +6,30 @@ import javax.swing.JTable;
 
 public class Mediator {
 	
-	StateManager stateManager;
+	StatusManager statManager = new StatusManager();
 	ArrayList<UserThread> users = new ArrayList<UserThread>(); 
 	
 	Mediator(){
-		stateManager = new StateManager( this);
+		
 	}
 	
 	void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){
+		Command cmd = new LaunchRequest(this);
 		
-		stateManager.processRequest(msg, tableRow, tableCol, userPanel);
+		if(msg.equals("Launch Offer request"))
+			cmd = new LaunchRequest(this);
+		else if(msg.equals("Drop Offer request"))
+			cmd = new DropRequest(this);
+		else if(msg.equals("Make offer"))
+			cmd = new MakeOffer(this);
+		else if(msg.equals("Drop auction"))
+			cmd = new DropAuction(this);
+		else if(msg.equals("Accept Offer"))
+			cmd = new AcceptOffer(this);
+		else if(msg.equals("Refuse Offer"))
+			cmd = new RefuseOffer(this);
+
+		statManager.processRequest(cmd, tableRow, tableCol, userPanel);
 		
 	}
 	

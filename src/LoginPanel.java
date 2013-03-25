@@ -48,7 +48,6 @@ public class LoginPanel extends JPanel{
 	
 	public void init() {
 		
-		// main panel: top panel, bottom panel
 		JPanel userPanel = new JPanel(new GridLayout(1, 2)); 
 		JPanel passwdPanel = new JPanel(new GridLayout(1, 2));
 		userTypePanel = createRadioButtonGrouping(userTypeOptions, "User Type");
@@ -114,11 +113,9 @@ public class LoginPanel extends JPanel{
 
 	public JPanel createRadioButtonGrouping(String elements[], String title) {
 		    JPanel panel = new JPanel(new GridLayout(1, 2));
-		    //   Create group
 		    ButtonGroup group = new ButtonGroup();
 		    JRadioButton aRadioButton;
-		    //   For each String passed in:
-		    //   Create button, add to panel, and add to group
+
 		    for (int i = 0, n = elements.length; i < n; i++) {
 		      aRadioButton = new JRadioButton(elements[i]);
 		      panel.add(aRadioButton);
@@ -128,37 +125,16 @@ public class LoginPanel extends JPanel{
 	}
 	
 	 private String getSelectedElement(Container container) {
-		    Component components[] = container.getComponents();
-		    for (int i = 0, n = components.length; i < n; i++) {
-		      if (components[i] instanceof AbstractButton) {
-		        AbstractButton button = (AbstractButton) components[i];
-		        if (button.isSelected()) {
-		          return button.getText();
-		        }
-		      }
-		    }
-		    return null;
-		  }
-
-	 
-	
-	public static void buildGUI() {
-		JFrame frame = new JFrame("Login"); // title
-		//frame.setContentPane(new LoginPanel(new ActionsController(new MainWindow(null)))); // content: the JPanel above
-        frame.setLocationRelativeTo(null);
-		frame.setSize(300, 300); // width / height
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit application when window is closed
-		frame.setVisible(true); // show it!
+	    Component components[] = container.getComponents();
+	    for (int i = 0, n = components.length; i < n; i++) {
+	      if (components[i] instanceof AbstractButton) {
+	        AbstractButton button = (AbstractButton) components[i];
+	        if (button.isSelected()) {
+	          return button.getText();
+	        }
+	      }
+	    }
+	    return null;
 	}
-
-	public static void main(String[] args) {
-		// run on EDT (event-dispatching thread), not on main thread!
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				buildGUI();
-			}
-		});
-
-	}	
 
 }
