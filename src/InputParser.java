@@ -18,7 +18,12 @@ public class InputParser {
 			String line = "";
 			while((line = br.readLine()) != null)
 			{
-				products.add(new Product(line));
+				Product p;
+				StringTokenizer st = new StringTokenizer(line, ",");
+				p = new Product(st.nextToken());
+				if(uType.equals(UserType.SELLER))
+					p.pret = Integer.parseInt(st.nextToken());
+				products.add(p);
 			}
 			br.close();
 		} catch (IOException e) {

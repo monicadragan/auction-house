@@ -102,7 +102,6 @@ public class TableView extends JPanel {
 		headTable[2] = usersNameColumn;
 		
 		bodyTable = new ArrayList<Object[]>();
-		System.out.println(userInfo.products.size());
 		for(int i=0; i<userInfo.products.size(); i++) {
 			Product product = userInfo.products.get(i);
 			ArrayList<Object> objects = new ArrayList<Object>();

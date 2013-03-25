@@ -96,12 +96,6 @@ public class LoginPanel extends JPanel{
 				JOptionPane.showMessageDialog(null, "Invalid username");
 				return;
 			}
-			if(passwd == null)
-			{
-				System.err.println("Invalid password");
-				JOptionPane.showMessageDialog(null, "Invalid password");
-				return;
-			}
 			if(selectedType == null)
 			{
 				System.err.println("You must choose a type!");
