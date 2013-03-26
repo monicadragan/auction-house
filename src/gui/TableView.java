@@ -1,18 +1,14 @@
 package gui;
 
-import javax.naming.ldap.SortKey;
+
 import javax.swing.BorderFactory;
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -39,8 +35,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 class ProgressBarRenderer extends DefaultTableCellRenderer {
 
@@ -71,7 +65,7 @@ public class TableView extends JPanel {
 
 	protected DefaultTableModel model = new DefaultTableModel();		//model tabel
     ArrayList<Object[]> bodyTable;
-	protected Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "Progress Bar"};
+	protected Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "TranferProgress"};
 
 	public JTable table;  
 	MainWindow mainFrame;
@@ -168,7 +162,7 @@ public class TableView extends JPanel {
 	}
    	 
    	 public void logout(){
-   		 //verifica daca este furnizor si este intr-o licitatie NU are voie
+   		 //verifica daca este furnizor si este intr-o licitatie NU are voie sa faca logout
 
    		boolean exit = true;
 		if(userInfo.uType.equals(UserType.SELLER))
@@ -183,7 +177,6 @@ public class TableView extends JPanel {
 			for(int i = 0; i < allThreads.size(); ++i)
 				if(allThreads.get(i).gui.tableView.userInfo.username.equals(userInfo.username))
 				{
-					System.out.println("Logout");
 					allThreads.get(i).cancel();
 					mainFrame.setVisible(false);
 					

@@ -53,7 +53,7 @@ public class LaunchRequest implements Command {
 						}
 						
 						rowDataSeller[0] = prodName;
-						rowDataSeller[1] = "Active";// ar trebui sa folosesc clasele state?
+						rowDataSeller[1] = "Active";
 						rowDataSeller[2] = username;
 						rowDataSeller[3] = Status.NO_OFFER.getName();
 						rowDataSeller[4] = price;//pret
@@ -61,7 +61,7 @@ public class LaunchRequest implements Command {
 						sellerModel.addRow(rowDataSeller);//adaug noi linii	
 						
 						rowData[0] = prodName;
-						rowData[1] = "Active";// ar trebui sa folosesc clasele state?
+						rowData[1] = "Active";
 						rowData[2] = sellerName;
 						rowData[3] = Status.NO_OFFER.getName();
 						rowData[4] = "";//pret
@@ -75,7 +75,6 @@ public class LaunchRequest implements Command {
 		}
 		if(receiveResponse)//exista cel putin un furnizor
 			userReqModel.removeRow(tableRow);//sterg linia pentru ca coloana furnizor era goala
-//			userPanel.setModel(userReqModel); //updatez modelul
 
 	}
 	

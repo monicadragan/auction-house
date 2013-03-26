@@ -50,12 +50,14 @@ public class LoginPanel extends JPanel{
 		init();
 	}
 	
+	/**
+	 * Constructor folosit in simulare
+	 */
 	public LoginPanel(MainWindow frame, String user, String passwd, String type)
 	{
 		this.mainFrame = frame;
 		tUsername.setText(user);
 		tPassword.setText(passwd);
-		
 		init();
 	}
 	
@@ -68,7 +70,6 @@ public class LoginPanel extends JPanel{
 		JPanel loginPanel = new JPanel(new GridLayout(1, 0));
 		
 		this.setLayout(new GridLayout(10, 3));
-//				(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(userTypePanel);
 		this.add(new JPanel());
 		
@@ -149,18 +150,5 @@ public class LoginPanel extends JPanel{
 	    }
 	    return null;
 	}
-	 
-	 public String setSelectedElement(Container container) {
-		    Component components[] = container.getComponents();
-		    for (int i = 0, n = components.length; i < n; i++) {
-		      if (components[i] instanceof AbstractButton) {
-		        AbstractButton button = (AbstractButton) components[i];
-		        if (button.isSelected()) {
-		          return button.getText();
-		        }
-		      }
-		    }
-		    return null;
-		}
 
 }

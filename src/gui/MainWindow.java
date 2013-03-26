@@ -23,7 +23,7 @@ public class MainWindow extends JFrame{
 	public TableView tableView;
 	
 	public MainWindow(Mediator mediator){
-				
+		
  	    super("Zanko Auction House");
  	    		
 		this.mediator = mediator;

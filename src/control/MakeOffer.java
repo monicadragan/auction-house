@@ -37,10 +37,12 @@ public class MakeOffer implements Command{
 			JOptionPane.showMessageDialog(null, "An offer was already made.");
 			return;
 		}
-		if(prodStatusLicitatie.equals(Status.OFFER_MADE.getName())
-				|| prodStatusLicitatie.equals(Status.NO_OFFER.getName()))
+		if(prodStatusLicitatie.equals(Status.OFFER_EXCEEDED.getName())
+				|| prodStatusLicitatie.equals(Status.NO_OFFER.getName())
+				|| prodStatusLicitatie.equals(Status.OFFER_REFUSED.getName()))
 		{
 			String price = userPanel.getModel().getValueAt(tableRow, 4).toString();
+			boolean hasBiggerPrice = false;
 			//anunt cumparatorul caruia i s-a oferit acest produs
 			for(int i = 0; i < med.users.size(); i++)
 			{
@@ -71,17 +73,22 @@ public class MakeOffer implements Command{
 							&& sellerModel.getValueAt(j, 2).toString().equals(buyerName))//coloana cumparator	
 						{
 							int actualPrice = Integer.parseInt(sellerModel.getValueAt(j, 4).toString());
-							if(actualPrice > Integer.parseInt(price))//are un pret mai mare
+							if(actualPrice > Integer.parseInt(price))//acest seller are un pret mai mare
 							{
 								sellerModel.setValueAt(Status.OFFER_EXCEEDED.getName(), j, 3);
 							}
+							if(actualPrice < Integer.parseInt(price))//user-ul curent ofera un pret mai mare
+								hasBiggerPrice = true;
 						}
 						
 					}	
 				}
 			}
 			
-			userReqModel.setValueAt(Status.OFFER_MADE.getName(), tableRow, 3);
+			Status newStatus = Status.OFFER_MADE;
+			if(hasBiggerPrice)
+				newStatus = Status.OFFER_EXCEEDED;
+			userReqModel.setValueAt(newStatus.getName(), tableRow, 3);
 			userReqModel.setValueAt(price, tableRow, 4);//schimba pretul eventual
 			userPanel.setModel(userReqModel); //updatez modelul
 		}

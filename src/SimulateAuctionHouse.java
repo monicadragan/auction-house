@@ -24,6 +24,7 @@ public class SimulateAuctionHouse {
 	    Thread.sleep(2000);
 		UserThread buyer2 = loginUser("user4", "pass4", UserType.BUYER);
 	    Thread.sleep(2000);
+	    System.out.println(mediator.users.size());
 	    
 //	    se lanseaza o cerere de oferta,
 		JOptionPane.showMessageDialog(null, "user3 Launch Offer request for "
@@ -54,14 +55,12 @@ public class SimulateAuctionHouse {
 			{
 				JOptionPane.showMessageDialog(null, "user1 Make offer to user3");
 				mediator.sendRequest("Make offer", j, 2, seller1.gui.tableView);				
-				break;
 			}
 			if(sellerModel.getValueAt(j, 0).equals(prodName2)
 					&& sellerModel.getValueAt(j, 2).equals(buyer2.gui.tableView.userInfo.username))
 			{
 				JOptionPane.showMessageDialog(null, "user3 Make offer to user4");
 				mediator.sendRequest("Make offer", j, 2, seller1.gui.tableView);				
-				break;
 			}
 		}
 	    DefaultTableModel sellerModel2 = seller2.gui.tableView.getModel();
@@ -72,22 +71,21 @@ public class SimulateAuctionHouse {
 			{
 				JOptionPane.showMessageDialog(null, "user5 Make offer to user3");
 				mediator.sendRequest("Make offer", j, 2, seller2.gui.tableView);				
-				break;
 			}
 			if(sellerModel2.getValueAt(j, 0).equals(prodName2) 
 					&& sellerModel.getValueAt(j, 2).equals(buyer2.gui.tableView.userInfo.username))
 			{
 				JOptionPane.showMessageDialog(null, "user5 Make offer to user4");
 				mediator.sendRequest("Make offer", j, 2, seller2.gui.tableView);				
-				break;
 			}
 		}
 
 //	    oferta este acceptata/depasita/refuzata,
-		JOptionPane.showMessageDialog(null, "user3 Offer accepted");
+		JOptionPane.showMessageDialog(null, "user3 Accept Offer  from user user1");
 		mediator.sendRequest("Accept Offer", buyerProductRow1, 2, buyer1.gui.tableView);
 
-		JOptionPane.showMessageDialog(null, "user4 Offer refused");
+		System.out.println(buyerProductRow2);
+		JOptionPane.showMessageDialog(null, "user4 Refuse Offer from user3");
 		mediator.sendRequest("Refuse Offer", buyerProductRow2, 2, buyer2.gui.tableView);
 
 //		logout

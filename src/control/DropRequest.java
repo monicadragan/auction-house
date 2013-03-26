@@ -35,6 +35,7 @@ public class DropRequest implements Command {
 		for(int i = 0; i < med.users.size(); i++)
 		{
 			MainWindow user = med.users.get(i).gui;
+			String price = "";
 			if(user.uType.equals(UserType.SELLER))
 			{
 				int thisProdRows = 0;//numarul de linii pentru acest produs care raman in tabela
@@ -49,6 +50,7 @@ public class DropRequest implements Command {
 						if(sellerModel.getValueAt(j, 2).toString().equals(username))	
 						{
 							sellerModel.removeRow(j);
+							price = sellerModel.getValueAt(j, 4).toString();
 							thisProdRows--;
 						}
 					}
@@ -57,10 +59,10 @@ public class DropRequest implements Command {
 				{
 					Object[] rowData = new Object[sellerModel.getColumnCount()];
 					rowData[0] = prodName;
-					rowData[1] = "Inactive";// ar trebui sa folosesc clasele state?
+					rowData[1] = "Inactive";
 					rowData[2] = "";
 					rowData[3] = Status.INACTIVE.getName();
-					rowData[4] = "";//pret
+					rowData[4] = price;//pret
 					rowData[5] = 0;//progress bar 
 					sellerModel.addRow(rowData);//adaug noi linii
 				}
@@ -69,12 +71,17 @@ public class DropRequest implements Command {
 		}
 		//sterg toate liniile cu acest produs
 		for(int j = 0; j < userReqModel.getRowCount(); j++)
+		{
 			if(userReqModel.getValueAt(j, 0).toString().equals(prodName))
-					userReqModel.removeRow(j);
+			{
+				userReqModel.removeRow(j);
+				j--;
+			}
+		}
 		
 		Object[] rowData = new Object[userReqModel.getColumnCount()];
 		rowData[0] = prodName;
-		rowData[1] = "Inactive";// ar trebui sa folosesc clasele state?
+		rowData[1] = "Inactive";
 		rowData[2] = "";
 		rowData[3] = Status.INACTIVE.getName();
 		rowData[4] = "";//pret
