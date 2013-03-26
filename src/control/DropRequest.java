@@ -1,5 +1,5 @@
 package control;
-import gui.MainWindow;
+import gui.IMainWindow;
 import gui.TableView;
 
 import javax.swing.JOptionPane;
@@ -8,11 +8,12 @@ import javax.swing.table.DefaultTableModel;
 import types.Status;
 import types.UserType;
 
+import mediator.IGUIMediator;
 import mediator.Mediator;
 
 public class DropRequest implements Command {
 
-	public Mediator med;
+	public IGUIMediator med;
 	
 	public DropRequest(Mediator med) {
 		this.med = med;
@@ -32,15 +33,15 @@ public class DropRequest implements Command {
 		}
 
 		//anunt sellerii care ii oferisera acest produs
-		for(int i = 0; i < med.users.size(); i++)
+		for(int i = 0; i < med.getUsers().size(); i++)
 		{
-			MainWindow user = med.users.get(i).gui;
+			IMainWindow user = med.getUsers().get(i).gui;
 			String price = "";
-			if(user.uType.equals(UserType.SELLER))
+			if(user.getUType().equals(UserType.SELLER))
 			{
 				int thisProdRows = 0;//numarul de linii pentru acest produs care raman in tabela
 				//parcurg tabela
-				DefaultTableModel sellerModel = user.tableView.getModel();
+				DefaultTableModel sellerModel = user.getTableView().getModel();
 				for(int j = 0; j < sellerModel.getRowCount(); j++)
 				{
 					//sterg linia cu produsul si cu username-ul

@@ -1,6 +1,7 @@
 package control;
 
 import types.Status;
+import mediator.IGUIMediator;
 import mediator.Mediator;
 import gui.TableView;
 
@@ -8,7 +9,7 @@ public class TransferProgress implements Command{
 	
 	public int value;
 
-	public Mediator med;
+	public IGUIMediator med;
 	
 	public TransferProgress(Mediator med) {
 		this.med = med;
@@ -18,7 +19,7 @@ public class TransferProgress implements Command{
 	public void execute(int tableRow, int tableCol, TableView userPanel)
 	{
 		switch(value){
-			case -1:
+			case -1://s-a oprit transferul din cauza buyer-ului care s-a delogat
 				userPanel.getModel().setValueAt(
 						Status.TRANSFER_FAILED.getName(),
 						tableRow,

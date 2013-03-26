@@ -7,12 +7,13 @@ import javax.swing.table.DefaultTableModel;
 import types.Status;
 
 
+import mediator.IGUIMediator;
 import mediator.Mediator;
 
 
 public class DropAuction implements Command{
 
-	protected Mediator med;
+	public IGUIMediator med;
 	
 	public DropAuction(Mediator med) {
 		this.med = med;

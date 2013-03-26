@@ -1,4 +1,5 @@
 package control;
+import gui.IMainWindow;
 import gui.MainWindow;
 import gui.TableView;
 
@@ -8,11 +9,12 @@ import javax.swing.table.DefaultTableModel;
 import types.Status;
 import types.UserType;
 
+import mediator.IGUIMediator;
 import mediator.Mediator;
 
 public class LaunchRequest implements Command {
 
-	public Mediator med;
+	public IGUIMediator med;
 	
 	public LaunchRequest(Mediator med) {
 		this.med = med;
@@ -33,17 +35,17 @@ public class LaunchRequest implements Command {
 		}
 		
 		//anunt sellerii care au acest produs si-i adaug in tabela cumparatorului cu No offer
-		for(int i = 0; i < med.users.size(); i++)
+		for(int i = 0; i < med.getUsers().size(); i++)
 		{
-			MainWindow user = med.users.get(i).gui; 
-			if(user.uType == UserType.SELLER){
-				DefaultTableModel sellerModel = user.tableView.getModel();
+			IMainWindow user = med.getUsers().get(i).gui; 
+			if(user.getUType() == UserType.SELLER){
+				DefaultTableModel sellerModel = user.getTableView().getModel();
 				//parcurg tabela					
 				for(int j = 0; j < sellerModel.getRowCount(); j++)
 				{
 					if(sellerModel.getValueAt(j, 0).toString().equals(prodName))
 					{
-						String sellerName = user.username;							
+						String sellerName = user.getUsername();							
 						
 						Object[] rowData = new Object[userReqModel.getColumnCount()];
 						Object[] rowDataSeller = new Object[userReqModel.getColumnCount()];

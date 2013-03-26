@@ -1,6 +1,5 @@
 package control;
-import gui.MainWindow;
-import gui.TableView;
+import gui.*;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,12 +7,13 @@ import javax.swing.table.DefaultTableModel;
 import types.Status;
 import types.UserType;
 
+import mediator.IGUIMediator;
 import mediator.Mediator;
 
 
 public class AcceptOffer implements Command{
 
-	public Mediator med;
+	public IGUIMediator med;
 	
 	public AcceptOffer(Mediator med) {
 		this.med = med;
@@ -38,19 +38,19 @@ public class AcceptOffer implements Command{
 			if(userReqModel.getValueAt(j, 0).toString().equals(prodName) && j != tableRow)
 				userReqModel.setValueAt(Status.OFFER_REFUSED.getName(), j, 3);
 		String sellerName = userReqModel.getValueAt(tableRow, tableCol).toString();
-		for(int i = 0; i < med.users.size(); i++)
+		for(int i = 0; i < med.getUsers().size(); i++)
 		{
-			MainWindow user = med.users.get(i).gui;
-			DefaultTableModel sellerModel = user.tableView.getModel();
-			if(user.uType.equals(UserType.SELLER))
-				if (user.username.equals(sellerName))
+			IMainWindow user = med.getUsers().get(i).gui;
+			DefaultTableModel sellerModel = user.getTableView().getModel();
+			if(user.getUType().equals(UserType.SELLER))
+				if (user.getUsername().equals(sellerName))
 				{
 					for(int j = 0; j < sellerModel.getRowCount(); j++)
 						if(sellerModel.getValueAt(j, 0).toString().equals(prodName)
 								&& sellerModel.getValueAt(j, 2).toString().equals(username))
 						{
 							sellerModel.setValueAt(Status.OFFER_ACCEPTED.getName(), j, 3);
-							med.sendFile(user.tableView.mainFrame, userPanel.mainFrame, j, tableRow);
+							med.sendFile(user.getTableView().mainFrame, userPanel.mainFrame, j, tableRow);
 							break;
 						}
 				}

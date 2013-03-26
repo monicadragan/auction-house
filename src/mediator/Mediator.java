@@ -5,31 +5,22 @@ import gui.TableView;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.JTable;
-
+import network.INetwork;
 import network.Network;
 
 import types.User;
 import types.UserType;
+import wsc.IWebServiceClient;
 import wsc.WebServiceClient;
 
-import control.AcceptOffer;
-import control.Command;
-import control.DropAuction;
-import control.DropRequest;
-import control.LaunchRequest;
-import control.MakeOffer;
-import control.RefuseOffer;
-import control.StatusManager;
-import control.TransferProgress;
+import control.*;
 
-
-public class Mediator {
+public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	
 	StatusManager statManager;
 	public ArrayList<UserThread> users; 
-	Network networkManager;
-	WebServiceClient wsClient;
+	INetwork networkManager;
+	IWebServiceClient wsClient;
 	
 	public Mediator(){
 		statManager = new StatusManager();
@@ -45,7 +36,7 @@ public class Mediator {
 	public boolean findUser(String name)
 	{
 		for(int i = 0; i < users.size(); ++i)
-			if(name.equals(users.get(i).gui.username))
+			if(name.equals(users.get(i).gui.getUsername()))
 				return true;
 		return false;
 	}
@@ -53,17 +44,17 @@ public class Mediator {
 	public void changeTransferProgress(Integer val)
 	{
 		//anunt interfata grafica sa modifice progress-barul
-		networkManager.source.changeProgresBar(val, networkManager.sourceRow, 5);
+		networkManager.getSource().changeProgresBar(val, networkManager.getSourceRow(), 5);
 		//trebuie modificat si statusul!
-		if(!findUser(networkManager.dest.username))
+		if(!findUser(networkManager.getDest().getUsername()))
 		{
-			this.sendRequest(-1 + "", networkManager.sourceRow, 3, networkManager.source.tableView);
+			this.sendRequest(-1 + "", networkManager.getSourceRow(), 3, networkManager.getSource().getTableView());
 			return;
 		}
-		this.sendRequest(val + "", networkManager.sourceRow, 3, networkManager.source.tableView);
+		this.sendRequest(val + "", networkManager.getSourceRow(), 3, networkManager.getSource().getTableView());
 
-		networkManager.dest.changeProgresBar(val, networkManager.destRow, 5);
-		this.sendRequest(val + "", networkManager.destRow, 3, networkManager.dest.tableView);
+		networkManager.getDest().changeProgresBar(val, networkManager.getDestRow(), 5);
+		this.sendRequest(val + "", networkManager.getDestRow(), 3, networkManager.getDest().getTableView());
 	}
 	
 	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){
@@ -94,6 +85,16 @@ public class Mediator {
 	public User readUserInformation(String username, String password, UserType uType)
 	{	
 		return wsClient.readInfoAboutUser(username, password, uType);
+	}
+	
+	public ArrayList<UserThread> getUsers()
+	{
+		return users;
+	}
+	
+	public void setUsers(ArrayList<UserThread> users)
+	{
+		this.users = users;
 	}
 	
 	public static void main(String[] args)

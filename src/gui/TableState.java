@@ -12,31 +12,31 @@ public class TableState implements StateView{
 	{
 		//preluarea datelor (modelului) de la mediator
 		User userInfo = mainFrame.mediator.readUserInformation(
-							mainFrame.username,
+							mainFrame.getUsername(),
 							mainFrame.password,
-							mainFrame.uType);
+							mainFrame.getUType());
 		if(userInfo == null)
 		{
 			JOptionPane.showMessageDialog(null, "This user is invalid");
 			return;
 		}
-		switch(mainFrame.uType)
+		switch(mainFrame.getUType())
 		{			
 			case BUYER:
 			{
-				mainFrame.tableView = new BuyerTableView(userInfo, mainFrame);
+				mainFrame.setTableView(new BuyerTableView(userInfo, mainFrame));
 				mainFrame.setTitle("Buyer Products/Services List");
 				break;
 			}
 			case SELLER:
 			{			
-				mainFrame.tableView = new SellerTableView(userInfo, mainFrame);
+				mainFrame.setTableView(new SellerTableView(userInfo, mainFrame));
 				mainFrame.setTitle("Seller Products/Services List");
 				break;
 			}
 		}
 
-		mainFrame.setContentPane(mainFrame.tableView);
+		mainFrame.setContentPane(mainFrame.getTableView());
 
 	}
 

@@ -1,6 +1,5 @@
 package control;
-import gui.MainWindow;
-import gui.TableView;
+import gui.*;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,12 +7,13 @@ import javax.swing.table.DefaultTableModel;
 import types.Status;
 import types.UserType;
 
+import mediator.IGUIMediator;
 import mediator.Mediator;
 
 
 public class RefuseOffer implements Command{
 
-	public Mediator med;
+	public IGUIMediator med;
 	
 	public RefuseOffer(Mediator med) {
 		this.med = med;
@@ -36,14 +36,14 @@ public class RefuseOffer implements Command{
 		
 		//anunt si seller-ul
 		String sellerName = userReqModel.getValueAt(tableRow, tableCol).toString();
-		for(int i = 0; i < med.users.size(); i++)
+		for(int i = 0; i < med.getUsers().size(); i++)
 		{
-			MainWindow user = med.users.get(i).gui;
-			if(user.uType.equals(UserType.SELLER)
-					&& user.username.equals(sellerName))
+			IMainWindow user = med.getUsers().get(i).gui;
+			if(user.getUType().equals(UserType.SELLER)
+					&& user.getUsername().equals(sellerName))
 			{
 				//parcurg tabela
-				DefaultTableModel sellerModel = user.tableView.getModel();
+				DefaultTableModel sellerModel = user.getTableView().getModel();
 				for(int j = 0; j < sellerModel.getRowCount(); j++)
 				{
 					if(sellerModel.getValueAt(j, 0).toString().equals(prodName)

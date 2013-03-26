@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.SwingWorker;
-import javax.swing.table.DefaultTableModel;
 
+import mediator.INetMediator;
 import mediator.Mediator;
 
 
 public class Network implements INetwork{
 	
-	Mediator med;
-	public int sourceRow;
-	public int destRow;
-	public MainWindow source;
-	public MainWindow dest;
+	INetMediator med;
+	private int sourceRow;
+	private int destRow;
+	private MainWindow source;
+	private MainWindow dest;
 	
 	public Network(Mediator med){
 		this.med = med;
@@ -25,9 +25,9 @@ public class Network implements INetwork{
 	
 	public void transferFile(MainWindow source, MainWindow destination, int srcRow, int dstRow){
 		System.out.println("Transfer");
-		this.sourceRow = srcRow;
-		this.destRow = dstRow;
-		this.source = source;
+		this.setSourceRow(srcRow);
+		this.setDestRow(dstRow);
+		this.setSource(source);
 		this.dest = destination;
 				
         SwingWorker<Integer, Integer> worker = new SwingWorker<Integer, Integer>() {
@@ -47,7 +47,7 @@ public class Network implements INetwork{
                         break;
                     }
                     publish(100 * current / lengthOfTask);
-                    if(!med.findUser(dest.username))
+                    if(!med.findUser(dest.getUsername()))
                     	cancel(true);
                 }
                 return sleepDummy * lengthOfTask;
@@ -55,8 +55,6 @@ public class Network implements INetwork{
             @Override
             protected void process(List<Integer> c) {
             	med.changeTransferProgress(c.get(c.size() - 1));
-//                modelBuyer.setValueAt(c.get(c.size() - 1), destRow, 5);
-//                modelSeller.setValueAt(c.get(c.size() - 1), sourceRow, 5);
             }
 
             @Override
@@ -80,5 +78,38 @@ public class Network implements INetwork{
         
         worker.execute();
 	}
+
+	public void setSourceRow(int sourceRow) {
+		this.sourceRow = sourceRow;
+	}
+
+	public int getSourceRow() {
+		return sourceRow;
+	}
+
+	public void setDestRow(int destRow) {
+		this.destRow = destRow;
+	}
+
+	public int getDestRow() {
+		return destRow;
+	}
+
+	public void setSource(MainWindow source) {
+		this.source = source;
+	}
+
+	public MainWindow getSource() {
+		return source;
+	}
+
+	public void setDest(MainWindow dest) {
+		this.dest = dest;
+	}
+
+	public MainWindow getDest() {
+		return dest;
+	}
+
 
 }

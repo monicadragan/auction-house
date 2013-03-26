@@ -1,10 +1,10 @@
 package mediator;
-import gui.MainWindow;
+import gui.*;
 
 public class UserThread extends Thread{
 	
 	Mediator mediator;
-	public MainWindow gui;
+	public IMainWindow gui;
 	
 	public UserThread(Mediator mediator){
 		this.mediator = mediator;

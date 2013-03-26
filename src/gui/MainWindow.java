@@ -8,15 +8,16 @@ import javax.swing.table.DefaultTableModel;
 
 import types.UserType;
 
+import mediator.IGUIMediator;
 import mediator.Mediator;
 
 public class MainWindow extends JFrame implements IMainWindow {
 
-	Mediator mediator;
-	public UserType uType;
-	public String username;
+	IGUIMediator mediator;
+	private UserType uType;
+	private String username;
 	public String password;
-	public TableView tableView;
+	private TableView tableView;
 	public ConcreteUserView userView;
 	
 	public MainWindow(Mediator mediator){
@@ -45,8 +46,8 @@ public class MainWindow extends JFrame implements IMainWindow {
 	
 	public void loginRequest(String username, String password, UserType uType)
 	{
-		this.uType = uType;
-		this.username = username;
+		this.setUType(uType);
+		this.setUsername(username);
 		this.password = password;
 	    userView.setStateView(this);
 		setVisible(true);
@@ -57,4 +58,29 @@ public class MainWindow extends JFrame implements IMainWindow {
 		DefaultTableModel model = this.tableView.getModel();
 		model.setValueAt(value, row, column);
 	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setTableView(TableView tableView) {
+		this.tableView = tableView;
+	}
+
+	public TableView getTableView() {
+		return tableView;
+	}
+
+	public void setUType(UserType uType) {
+		this.uType = uType;
+	}
+
+	public UserType getUType() {
+		return uType;
+	}
+
 }

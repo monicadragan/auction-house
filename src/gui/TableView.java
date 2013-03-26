@@ -10,12 +10,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 import mediator.UserThread;
 
@@ -177,9 +173,9 @@ public class TableView extends JPanel {
 		}
 		if(exit)
 		{
-			ArrayList<UserThread> allThreads = mainFrame.mediator.users;
+			ArrayList<UserThread> allThreads = mainFrame.mediator.getUsers();
 			for(int i = 0; i < allThreads.size(); ++i)
-				if(allThreads.get(i).gui.username.equals(userInfo.username))
+				if(allThreads.get(i).gui.getUsername().equals(userInfo.username))
 				{
 					allThreads.get(i).cancel();
 					mainFrame.setVisible(false);

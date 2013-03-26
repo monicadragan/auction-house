@@ -1,4 +1,5 @@
 package control;
+import gui.IMainWindow;
 import gui.MainWindow;
 import gui.TableView;
 
@@ -8,12 +9,13 @@ import javax.swing.table.DefaultTableModel;
 import types.Status;
 import types.UserType;
 
+import mediator.IGUIMediator;
 import mediator.Mediator;
 
 
 public class MakeOffer implements Command{
 
-	public Mediator med;
+	public IGUIMediator med;
 	
 	public MakeOffer(Mediator med) {
 		this.med = med;
@@ -44,13 +46,13 @@ public class MakeOffer implements Command{
 			String price = userPanel.getModel().getValueAt(tableRow, 4).toString();
 			boolean hasBiggerPrice = false;
 			//anunt cumparatorul caruia i s-a oferit acest produs
-			for(int i = 0; i < med.users.size(); i++)
+			for(int i = 0; i < med.getUsers().size(); i++)
 			{
-				MainWindow user = med.users.get(i).gui;
-				if(user.uType.equals(UserType.BUYER)//numele buyer-ului din tabela celui care face oferta
-						&& user.username.equals(userPanel.getModel().getValueAt(tableRow, 2).toString()))
+				IMainWindow user = med.getUsers().get(i).gui;
+				if(user.getUType().equals(UserType.BUYER)//numele buyer-ului din tabela celui care face oferta
+						&& user.getUsername().equals(userPanel.getModel().getValueAt(tableRow, 2).toString()))
 				{
-					DefaultTableModel buyerModel = user.tableView.getModel();
+					DefaultTableModel buyerModel = user.getTableView().getModel();
 					for(int j = 0; j < buyerModel.getRowCount(); j++)
 					{
 						if(buyerModel.getValueAt(j, 0).toString().equals(prodName) 
@@ -62,9 +64,9 @@ public class MakeOffer implements Command{
 					}
 				}
 				//se schimba statusul in tabelele seller-ilor care au pret mai mare
-				else if(user.uType.equals(UserType.SELLER))
+				else if(user.getUType().equals(UserType.SELLER))
 				{
-					DefaultTableModel sellerModel = user.tableView.getModel();
+					DefaultTableModel sellerModel = user.getTableView().getModel();
 					for(int j = 0; j < sellerModel.getRowCount(); j++)
 					{
 						if(sellerModel.getValueAt(j, 0).toString().equals(prodName)
