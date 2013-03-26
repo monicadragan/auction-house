@@ -1,0 +1,28 @@
+Tema1 IDP - Auction House
+Echipa Zanko (Dragan Monica 342C3 & Marcu Silvia 343C3)
+
+==Design pattern-uri==
+- State pattern-ul l-am folosit atunci cand se schimba starea view-ului de la
+login-panel la jtable.
+- Command pattern-ul l-am folosit pentru gestiunea status-urilor cand 
+utilizatorii executa diferite comenzi in PopupMenu.
+- MVC - integrat in partea de interfata grafica (afisat componente, controlat
+evenimente, preluat model cerut de la mediator).
+- Mediator - implementat in modului mediator care asigura conectivitatea intre
+toate componentele aplicatiei.
+
+==Compilare si rulare==
+- ant - compileaza proiectul
+- ant run - porneste simulatorul
+- ant Mediator - asteapta o comanda launch pentru porni un thread care
+reprezinta un utilizator/participant la licitatii. 
+
+Fisiere de configurare:
+- credentials.config - contine utilizatorii care se pot loga
+- userX.config - contine produsele unui utilizator (oferite/dorite)
+
+Observatie! Trebuie mutate ferestrele utilizatorilor logati pentru a observa
+ce se intampla in timpul licitatiei.
+
+==Informatii acces proiect git==
+repository: https://bitbucket.org/silviamarcu90/auction-house/

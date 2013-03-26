@@ -170,6 +170,15 @@ public class TableView extends JPanel {
 			for(int i = 0; i < model.getRowCount(); ++i)
 				if(model.getValueAt(i, 3).toString().equals(Status.OFFER_MADE.getName()))
 					exit = false;
+		} else if(userInfo.uType.equals(UserType.BUYER))
+		{
+			for(int i = 0; i < model.getRowCount(); ++i)
+				//trebuie sa refuze toate ofertele care i s-au facut
+				if(model.getValueAt(i, 3).toString().equals(Status.OFFER_MADE.getName()))
+					mainFrame.mediator.sendRequest("Refuse Offer", i, 2, this);
+				//face drop request daca nu primise oferta
+				else if(model.getValueAt(i, 3).toString().equals(Status.NO_OFFER.getName()))
+					mainFrame.mediator.sendRequest("Drop Offer request", i, 0, this);
 		}
 		if(exit)
 		{
