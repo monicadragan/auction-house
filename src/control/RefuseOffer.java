@@ -40,7 +40,7 @@ public class RefuseOffer implements Command{
 		{
 			MainWindow user = med.users.get(i).gui;
 			if(user.uType.equals(UserType.SELLER)
-					&& user.tableView.userInfo.username.equals(sellerName))
+					&& user.username.equals(sellerName))
 			{
 				//parcurg tabela
 				DefaultTableModel sellerModel = user.tableView.getModel();

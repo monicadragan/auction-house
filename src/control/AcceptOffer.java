@@ -43,14 +43,14 @@ public class AcceptOffer implements Command{
 			MainWindow user = med.users.get(i).gui;
 			DefaultTableModel sellerModel = user.tableView.getModel();
 			if(user.uType.equals(UserType.SELLER))
-				if (user.tableView.userInfo.username.equals(sellerName))
+				if (user.username.equals(sellerName))
 				{
 					for(int j = 0; j < sellerModel.getRowCount(); j++)
 						if(sellerModel.getValueAt(j, 0).toString().equals(prodName)
 								&& sellerModel.getValueAt(j, 2).toString().equals(username))
 						{
 							sellerModel.setValueAt(Status.OFFER_ACCEPTED.getName(), j, 3);
-							med.sendFile(user.tableView, userPanel,j,tableRow);
+							med.sendFile(user.tableView.mainFrame, userPanel.mainFrame, j, tableRow);
 							break;
 						}
 				}

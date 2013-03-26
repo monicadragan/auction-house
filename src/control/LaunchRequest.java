@@ -43,7 +43,7 @@ public class LaunchRequest implements Command {
 				{
 					if(sellerModel.getValueAt(j, 0).toString().equals(prodName))
 					{
-						String sellerName = user.tableView.userInfo.username;							
+						String sellerName = user.username;							
 						
 						Object[] rowData = new Object[userReqModel.getColumnCount()];
 						Object[] rowDataSeller = new Object[userReqModel.getColumnCount()];

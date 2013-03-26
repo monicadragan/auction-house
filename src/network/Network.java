@@ -1,34 +1,35 @@
 package network;
+import gui.MainWindow;
 import gui.TableView;
 
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JProgressBar;
-import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 
+import mediator.Mediator;
 
-public class Network {
+
+public class Network implements INetwork{
 	
-	public Network(){
-		
+	Mediator med;
+	public int sourceRow;
+	public int destRow;
+	public MainWindow source;
+	public MainWindow dest;
+	
+	public Network(Mediator med){
+		this.med = med;
 	}
 	
-	public void transferFile(TableView source, TableView destination, final int sourceRow,final int destRow){
-		System.out.println("Transfer ");
-		//System.out.println(((ProgressBarRenderer) source.table.getCellRenderer(tableRow, 5)).getValue());
-		//System.out.println(((ProgressBarRenderer) source.table.getColumn("Progress Bar").getCellRenderer()).getValue());
-		/*((ProgressBarRenderer) source.table.getCellRenderer(tableRow, 5)).setPerCent(70);
-		((ProgressBarRenderer) destination.table.getCellRenderer(tableRow, 5)).setPerCent(70);
-		source.table.updateUI();
-		destination.table.updateUI();	*/		
-		
-		final DefaultTableModel modelSeller = source.getModel();
-		final DefaultTableModel modelBuyer = destination.getModel();
+	public void transferFile(MainWindow source, MainWindow destination, int srcRow, int dstRow){
+		System.out.println("Transfer");
+		this.sourceRow = srcRow;
+		this.destRow = dstRow;
+		this.source = source;
+		this.dest = destination;
 				
-		final int key = 2;
         SwingWorker<Integer, Integer> worker = new SwingWorker<Integer, Integer>() {
 
             protected int sleepDummy = new Random().nextInt(100) + 1;
@@ -46,14 +47,16 @@ public class Network {
                         break;
                     }
                     publish(100 * current / lengthOfTask);
+                    if(!med.findUser(dest.username))
+                    	cancel(true);
                 }
                 return sleepDummy * lengthOfTask;
             }
             @Override
             protected void process(List<Integer> c) {
-                modelBuyer.setValueAt(c.get(c.size() - 1), destRow, 5);
-                modelSeller.setValueAt(c.get(c.size() - 1), sourceRow, 5);
-            	//((JProgressBar) source.table.getCellRenderer(2, 5)).setValue(c.get(c.size() - 1));
+            	med.changeTransferProgress(c.get(c.size() - 1));
+//                modelBuyer.setValueAt(c.get(c.size() - 1), destRow, 5);
+//                modelSeller.setValueAt(c.get(c.size() - 1), sourceRow, 5);
             }
 
             @Override
@@ -71,7 +74,7 @@ public class Network {
                         text = ignore.getMessage();
                     }
                 }
-                System.out.println(key + ":" + text + "(" + i + "ms)");
+                System.out.println(text + "(" + i + "ms)");
             }  
         };
         

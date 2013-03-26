@@ -50,6 +50,7 @@ public class DropRequest implements Command {
 						if(sellerModel.getValueAt(j, 2).toString().equals(username))	
 						{
 							sellerModel.removeRow(j);
+							j--;
 							price = sellerModel.getValueAt(j, 4).toString();
 							thisProdRows--;
 						}

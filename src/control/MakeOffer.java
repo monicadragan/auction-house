@@ -48,8 +48,7 @@ public class MakeOffer implements Command{
 			{
 				MainWindow user = med.users.get(i).gui;
 				if(user.uType.equals(UserType.BUYER)//numele buyer-ului din tabela celui care face oferta
-						&& user.tableView.userInfo.username.equals(
-								userPanel.getModel().getValueAt(tableRow, 2).toString()))
+						&& user.username.equals(userPanel.getModel().getValueAt(tableRow, 2).toString()))
 				{
 					DefaultTableModel buyerModel = user.tableView.getModel();
 					for(int j = 0; j < buyerModel.getRowCount(); j++)

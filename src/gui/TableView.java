@@ -63,12 +63,12 @@ class ProgressBarRenderer extends DefaultTableCellRenderer {
  
 public class TableView extends JPanel {
 
-	protected DefaultTableModel model = new DefaultTableModel();		//model tabel
+	protected DefaultTableModel model = new DefaultTableModel(); //model tabel
     ArrayList<Object[]> bodyTable;
 	protected Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "TranferProgress"};
 
 	public JTable table;  
-	MainWindow mainFrame;
+	public MainWindow mainFrame;
 	public User userInfo;
 	   	    
 	protected JPopupMenu popupMenuProductsList;//nefolosit in cazul furnizorilor
@@ -91,7 +91,10 @@ public class TableView extends JPanel {
 			objects.add(product.status);
 			objects.add("");//user
 			objects.add(product.statusLicitatie.getName());
-			objects.add(product.pret);
+			if(product.pret == 0)
+				objects.add("");
+			else
+				objects.add(product.pret);
 			objects.add(0);
 			bodyTable.add(objects.toArray());
 		}
@@ -110,6 +113,7 @@ public class TableView extends JPanel {
 
    	    table = new JTable(model);
    	    table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
+   	    table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
    	    /*RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
         table.setRowSorter(sorter);
         
@@ -175,7 +179,7 @@ public class TableView extends JPanel {
 		{
 			ArrayList<UserThread> allThreads = mainFrame.mediator.users;
 			for(int i = 0; i < allThreads.size(); ++i)
-				if(allThreads.get(i).gui.tableView.userInfo.username.equals(userInfo.username))
+				if(allThreads.get(i).gui.username.equals(userInfo.username))
 				{
 					allThreads.get(i).cancel();
 					mainFrame.setVisible(false);

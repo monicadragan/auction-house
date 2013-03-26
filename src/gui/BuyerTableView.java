@@ -8,6 +8,4 @@ public class BuyerTableView extends TableView {
 		super(userInfo, "Furnizori", frame);
 	}
 
-	
-
 }

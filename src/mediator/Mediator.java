@@ -1,4 +1,5 @@
 package mediator;
+import gui.MainWindow;
 import gui.TableView;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import control.LaunchRequest;
 import control.MakeOffer;
 import control.RefuseOffer;
 import control.StatusManager;
+import control.TransferProgress;
 
 
 public class Mediator {
@@ -32,12 +34,36 @@ public class Mediator {
 	public Mediator(){
 		statManager = new StatusManager();
 		users = new ArrayList<UserThread>();
-		networkManager = new Network();
+		networkManager = new Network(this);
 		wsClient = new WebServiceClient();
 	}
 	
-	public void sendFile(TableView source, TableView destination, int sourceRow, int destRow){
+	public void sendFile(MainWindow source, MainWindow destination, int sourceRow, int destRow){
 		networkManager.transferFile(source, destination, sourceRow, destRow);
+	}
+
+	public boolean findUser(String name)
+	{
+		for(int i = 0; i < users.size(); ++i)
+			if(name.equals(users.get(i).gui.username))
+				return true;
+		return false;
+	}
+	
+	public void changeTransferProgress(Integer val)
+	{
+		//anunt interfata grafica sa modifice progress-barul
+		networkManager.source.changeProgresBar(val, networkManager.sourceRow, 5);
+		//trebuie modificat si statusul!
+		if(!findUser(networkManager.dest.username))
+		{
+			this.sendRequest(-1 + "", networkManager.sourceRow, 3, networkManager.source.tableView);
+			return;
+		}
+		this.sendRequest(val + "", networkManager.sourceRow, 3, networkManager.source.tableView);
+
+		networkManager.dest.changeProgresBar(val, networkManager.destRow, 5);
+		this.sendRequest(val + "", networkManager.destRow, 3, networkManager.dest.tableView);
 	}
 	
 	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){
@@ -55,7 +81,12 @@ public class Mediator {
 			cmd = new AcceptOffer(this);
 		else if(msg.equals("Refuse Offer"))
 			cmd = new RefuseOffer(this);
-
+		else // este un transfer
+		{
+			cmd = new TransferProgress(this);
+			((TransferProgress)cmd).value = Integer.parseInt(msg);
+		}
+		
 		statManager.processRequest(cmd, tableRow, tableCol, userPanel);
 		
 	}

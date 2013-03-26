@@ -23,16 +23,21 @@ public class DropAuction implements Command{
 	{
 		String prodStatusLicitatie = userPanel.getModel().getValueAt(tableRow, 3).toString();
 		DefaultTableModel userReqModel = userPanel.getModel();		
-
-		//seller-ul poate renunta la licitatie doar daca e exceeded
-		if(prodStatusLicitatie.equals(Status.OFFER_EXCEEDED.getName()))
+		
+		if(prodStatusLicitatie.equals(Status.OFFER_MADE.getName())
+				|| prodStatusLicitatie.equals(Status.OFFER_ACCEPTED.getName()))
 		{
-			userReqModel.setValueAt(Status.NO_OFFER.getName(), tableRow, 3);
-		}
-		else {
 			JOptionPane.showMessageDialog(null, "You can't drop the auction!");
 			return;
 		}
+		//seller-ul poate renunta la licitatie daca e exceeded, refused, transfer failed
+		if(prodStatusLicitatie.equals(Status.OFFER_EXCEEDED.getName())
+				|| prodStatusLicitatie.equals(Status.OFFER_REFUSED.getName())
+				|| prodStatusLicitatie.equals(Status.TRANSFER_FAILED.getName()))
+		{
+			userReqModel.setValueAt(Status.NO_OFFER.getName(), tableRow, 3);
+		}
+		
 		
 	}
 

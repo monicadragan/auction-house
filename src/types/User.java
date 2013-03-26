@@ -10,9 +10,11 @@ public class User {
 	public UserType uType;
 	public ArrayList<Product> products;
 	
-	User() {
+	User()
+	{
 		products = new ArrayList<Product>();
 	}
+	
 	public User(String username, String passwd, UserType uType) {
 		this.username = username;
 		this.password = passwd;

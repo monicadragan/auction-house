@@ -11,7 +11,8 @@ import types.User;
 import types.UserType;
 
 
-public class WebServiceClient {
+public class WebServiceClient implements IWebServiceClient{
+
 	public static final String credentialsConfigFile = "credentials.config";
 	
 	public User readInfoAboutUser(String username, String passwd, UserType uType)

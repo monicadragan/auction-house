@@ -1,5 +1,8 @@
 package gui;
 
-public class StateView {
 
+public interface StateView {
+
+	void setPanel(ConcreteUserView userView, MainWindow mainFrame);
+	
 }
