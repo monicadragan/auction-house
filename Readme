@@ -15,14 +15,19 @@ toate componentele aplicatiei.
 - ant - compileaza proiectul
 - ant run - porneste simulatorul
 - ant Mediator - asteapta o comanda launch pentru porni un thread care
-reprezinta un utilizator/participant la licitatii. 
+reprezinta un utilizator/participant la licitatii.
 
 Fisiere de configurare:
 - credentials.config - contine utilizatorii care se pot loga
 - userX.config - contine produsele unui utilizator (oferite/dorite)
+*Sunt creati 5 utilizatori (userX). Pentru a adauga un nou user trebuie creat un
+fisier de configurare cu produsele acestuia si trebuie adaugate credentialele
+(user parola) in fisierul credentials.config.
 
 Observatie! Trebuie mutate ferestrele utilizatorilor logati pentru a observa
 ce se intampla in timpul licitatiei.
 
 ==Informatii acces proiect git==
 repository: https://bitbucket.org/silviamarcu90/auction-house/
+username: user_IDP
+parola: t3st2013
