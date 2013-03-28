@@ -132,7 +132,12 @@ public class TableView extends JPanel {
     	    		"Make offer",
     	    		"Drop auction",
     	    		this);
+        		popupMenuProductsList = new CustomPopupMenu(
+           	    		"View Best Offer",//pentru a vedea contraoferta
+           	    		null,
+           	    		this);
         		break;
+        		
         	}
         }
    	    table.addMouseListener(new TableMouseSelect(type, table));
@@ -230,7 +235,7 @@ public class TableView extends JPanel {
 			table.setColumnSelectionInterval(col,col);
 			
 			//coloana produs/serviciu
-			if(col == 0 && type.equals(UserType.BUYER)){
+			if(col == 0) {// && type.equals(UserType.BUYER)){
 				popupMenuProductsList.show(table, p.x, p.y);				
 			}
 			//coloana useri (furnizori/cumparatori)

@@ -73,6 +73,8 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 			cmd = new AcceptOffer(this);
 		else if(msg.equals("Refuse Offer"))
 			cmd = new RefuseOffer(this);
+		else if(msg.equals("View Best Offer"))
+			cmd = new ViewBestOffer(this);
 		else // este un transfer
 		{
 			cmd = new TransferProgress(this);

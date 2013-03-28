@@ -26,7 +26,7 @@ public class WorkerSimulator {
 	
         SwingWorker<Integer, Integer> worker = new SwingWorker<Integer, Integer>() {
 
-            protected int sleepDummy = new Random().nextInt(10) + 1;
+            protected int sleepDummy = new Random().nextInt(10) + 10;
             protected int lengthOfTask = 13;
             UserThread seller1, seller2;
             UserThread buyer1, buyer2;

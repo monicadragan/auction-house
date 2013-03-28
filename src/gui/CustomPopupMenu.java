@@ -42,20 +42,21 @@ public class CustomPopupMenu extends JPopupMenu{
 	    this.add(menuItem1);
 
 	    // Item 2
-	    JMenuItem menuItem2 = new JMenuItem(item2);
-	    menuItem2.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				JMenuItem it = (JMenuItem)arg0.getSource();
-				System.out.println(it.getText());		
-				panel.mainFrame.mediator.sendRequest(
-						it.getText(),
-						tableRow, 
-						tableColumn,
-						panel);
-			}
-		});	    
-	    this.add(menuItem2); 
+	    if(item2 != null) {
+		    JMenuItem menuItem2 = new JMenuItem(item2);
+		    menuItem2.addActionListener(new ActionListener() {			
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					JMenuItem it = (JMenuItem)arg0.getSource();
+					panel.mainFrame.mediator.sendRequest(
+							it.getText(),
+							tableRow, 
+							tableColumn,
+							panel);
+				}
+			});	    
+		    this.add(menuItem2); 
+	    }
 	}
 	
 	public void show(Component invoker, int x, int y){
