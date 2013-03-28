@@ -11,9 +11,13 @@ public class SimulateAuctionHouse {
 	
 	Mediator mediator;
 	
-	public SimulateAuctionHouse() throws InterruptedException {
-
+	public SimulateAuctionHouse()
+	{
 		mediator = new Mediator();
+	}
+
+	public void execute() throws InterruptedException 
+	{
 //	    un utilizator face log in 
 		UserThread seller1 = loginUser("user1", "pass1", UserType.SELLER);
 	    Thread.sleep(2000);
@@ -24,7 +28,6 @@ public class SimulateAuctionHouse {
 	    Thread.sleep(2000);
 		UserThread buyer2 = loginUser("user4", "pass4", UserType.BUYER);
 	    Thread.sleep(2000);
-	    System.out.println(mediator.users.size());
 	    
 //	    se lanseaza o cerere de oferta,
 		JOptionPane.showMessageDialog(null, "user3 Launch Offer request for "
@@ -67,13 +70,13 @@ public class SimulateAuctionHouse {
 		for(int j = 0; j < sellerModel2.getRowCount(); j++)
 		{
 			if(sellerModel2.getValueAt(j, 0).equals(prodName)
-				&& sellerModel.getValueAt(j, 2).equals(buyer1.gui.getTableView().userInfo.username))
+				&& sellerModel2.getValueAt(j, 2).equals(buyer1.gui.getTableView().userInfo.username))
 			{
 				JOptionPane.showMessageDialog(null, "user5 Make offer to user3");
 				mediator.sendRequest("Make offer", j, 2, seller2.gui.getTableView());				
 			}
 			if(sellerModel2.getValueAt(j, 0).equals(prodName2) 
-					&& sellerModel.getValueAt(j, 2).equals(buyer2.gui.getTableView().userInfo.username))
+					&& sellerModel2.getValueAt(j, 2).equals(buyer2.gui.getTableView().userInfo.username))
 			{
 				JOptionPane.showMessageDialog(null, "user5 Make offer to user4");
 				mediator.sendRequest("Make offer", j, 2, seller2.gui.getTableView());				
@@ -84,7 +87,6 @@ public class SimulateAuctionHouse {
 		JOptionPane.showMessageDialog(null, "user3 Accept Offer  from user1");
 		mediator.sendRequest("Accept Offer", buyerProductRow1, 2, buyer1.gui.getTableView());
 
-		System.out.println(buyerProductRow2);
 		JOptionPane.showMessageDialog(null, "user4 Refuse Offer from user3");
 		mediator.sendRequest("Refuse Offer", buyerProductRow2, 2, buyer2.gui.getTableView());
 
@@ -95,6 +97,7 @@ public class SimulateAuctionHouse {
 	    buyer1.gui.getTableView().logout();
 	    buyer2.gui.getTableView().logout();
 	    System.exit(1);
+		
 	}
 
 	public UserThread loginUser(String user, String passwd, UserType uType) throws InterruptedException{
@@ -108,6 +111,7 @@ public class SimulateAuctionHouse {
 	
 	public static void main(String s[]) throws InterruptedException{
 		SimulateAuctionHouse sim = new SimulateAuctionHouse();
+		sim.execute();
 	}
 	
 }

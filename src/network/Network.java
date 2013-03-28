@@ -14,21 +14,16 @@ import mediator.Mediator;
 public class Network implements INetwork{
 	
 	INetMediator med;
-	private int sourceRow;
-	private int destRow;
-	private MainWindow source;
-	private MainWindow dest;
 	
 	public Network(Mediator med){
 		this.med = med;
 	}
 	
-	public void transferFile(MainWindow source, MainWindow destination, int srcRow, int dstRow){
-		System.out.println("Transfer");
-		this.setSourceRow(srcRow);
-		this.setDestRow(dstRow);
-		this.setSource(source);
-		this.dest = destination;
+	public void transferFile(MainWindow src, MainWindow destination, int srcRow, int dstRow){
+		final int sourceRow = srcRow;
+		final int destRow = dstRow;
+		final MainWindow source = src;
+		final MainWindow dest = destination;
 				
         SwingWorker<Integer, Integer> worker = new SwingWorker<Integer, Integer>() {
 
@@ -47,14 +42,15 @@ public class Network implements INetwork{
                         break;
                     }
                     publish(100 * current / lengthOfTask);
-                    if(!med.findUser(dest.getUsername()))
+                    
+                    if(!med.findUser(dest.getUsername()))//buyer-ul s-a delogat => Transfer failed
                     	cancel(true);
                 }
                 return sleepDummy * lengthOfTask;
             }
             @Override
             protected void process(List<Integer> c) {
-            	med.changeTransferProgress(c.get(c.size() - 1));
+            	med.changeTransferProgress(c.get(c.size() - 1), source, dest, sourceRow, destRow);
             }
 
             @Override
@@ -77,38 +73,6 @@ public class Network implements INetwork{
         };
         
         worker.execute();
-	}
-
-	public void setSourceRow(int sourceRow) {
-		this.sourceRow = sourceRow;
-	}
-
-	public int getSourceRow() {
-		return sourceRow;
-	}
-
-	public void setDestRow(int destRow) {
-		this.destRow = destRow;
-	}
-
-	public int getDestRow() {
-		return destRow;
-	}
-
-	public void setSource(MainWindow source) {
-		this.source = source;
-	}
-
-	public MainWindow getSource() {
-		return source;
-	}
-
-	public void setDest(MainWindow dest) {
-		this.dest = dest;
-	}
-
-	public MainWindow getDest() {
-		return dest;
 	}
 
 

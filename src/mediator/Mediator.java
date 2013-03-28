@@ -24,7 +24,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	
 	public Mediator(){
 		statManager = new StatusManager();
-		users = new ArrayList<UserThread>();
+		users = new ArrayList<UserThread>();//gui
 		networkManager = new Network(this);
 		wsClient = new WebServiceClient();
 	}
@@ -41,20 +41,21 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		return false;
 	}
 	
-	public void changeTransferProgress(Integer val)
+	public void changeTransferProgress(Integer val, MainWindow srcFrame,
+			MainWindow destFrame, int srcRow, int dstRow)
 	{
 		//anunt interfata grafica sa modifice progress-barul
-		networkManager.getSource().changeProgresBar(val, networkManager.getSourceRow(), 5);
+		srcFrame.changeProgresBar(val, srcRow, 5);
 		//trebuie modificat si statusul!
-		if(!findUser(networkManager.getDest().getUsername()))
+		if(!findUser(destFrame.getUsername()))
 		{
-			this.sendRequest(-1 + "", networkManager.getSourceRow(), 3, networkManager.getSource().getTableView());
+			this.sendRequest(-1 + "", srcRow, 3, srcFrame.getTableView());
 			return;
 		}
-		this.sendRequest(val + "", networkManager.getSourceRow(), 3, networkManager.getSource().getTableView());
+		this.sendRequest(val + "", srcRow, 3, srcFrame.getTableView());
 
-		networkManager.getDest().changeProgresBar(val, networkManager.getDestRow(), 5);
-		this.sendRequest(val + "", networkManager.getDestRow(), 3, networkManager.getDest().getTableView());
+		destFrame.changeProgresBar(val, dstRow, 5);
+		this.sendRequest(val + "", dstRow, 3, destFrame.getTableView());
 	}
 	
 	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){

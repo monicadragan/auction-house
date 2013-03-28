@@ -72,7 +72,7 @@ public class TableView extends JPanel {
 
 	public JButton bLogout = new JButton("Logout");
 	
-	public TableView(User userInfo, String usersNameColumn, MainWindow frame)//TODO: datele vin ca parametri in constructor! 
+	public TableView(User userInfo, String usersNameColumn, MainWindow frame)
 	{
 		super();
 		this.userInfo = userInfo;
@@ -110,12 +110,6 @@ public class TableView extends JPanel {
    	    table = new JTable(model);
    	    table.getColumnModel().getColumn(5).setCellRenderer(new ProgressBarRenderer());
    	    table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-   	    /*RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
-        table.setRowSorter(sorter);
-        
-        ArrayList sortKeys = new ArrayList();
-        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        sorter.setSortKeys(sortKeys);*/
         
         //adaugare popupMenu la right-click pe coloana produs sau user
         switch(type)
@@ -168,7 +162,9 @@ public class TableView extends JPanel {
 		if(userInfo.uType.equals(UserType.SELLER))
 		{
 			for(int i = 0; i < model.getRowCount(); ++i)
-				if(model.getValueAt(i, 3).toString().equals(Status.OFFER_MADE.getName()))
+				if(model.getValueAt(i, 3).toString().equals(Status.OFFER_MADE.getName())
+						|| model.getValueAt(i, 3).toString().equals(Status.TRANSFER_STARTED.getName())
+						|| model.getValueAt(i, 3).toString().equals(Status.TRANSFER_IN_PROGRESS.getName()))
 					exit = false;
 		} else if(userInfo.uType.equals(UserType.BUYER))
 		{
