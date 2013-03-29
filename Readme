@@ -13,9 +13,15 @@ toate componentele aplicatiei.
 
 ==Compilare si rulare==
 - ant - compileaza proiectul
-- ant run - porneste simulatorul
-- ant Mediator - asteapta o comanda launch pentru porni un thread care
+- ant run - porneste simulatorul automat care executa o serie de actiuni
+- ant Mediator - asteapta o comanda "launch" pentru porni un thread care
 reprezinta un utilizator/participant la licitatii.
+- ant WorkerSimulator - porneste un simulator semi-automat in care se pot
+adauga si alti utilizatori introdusi cu comanda "launch" din terminal
+(este citita de la stdin)
+
+Observatie! Trebuie mutate ferestrele utilizatorilor logati pentru a observa
+ce se intampla in timpul licitatiei.
 
 Fisiere de configurare:
 - credentials.config - contine utilizatorii care se pot loga
@@ -23,9 +29,6 @@ Fisiere de configurare:
 *Sunt creati 5 utilizatori (userX). Pentru a adauga un nou user trebuie creat un
 fisier de configurare cu produsele acestuia si trebuie adaugate credentialele
 (user parola) in fisierul credentials.config.
-
-Observatie! Trebuie mutate ferestrele utilizatorilor logati pentru a observa
-ce se intampla in timpul licitatiei.
 
 ==Informatii acces proiect git==
 repository: https://bitbucket.org/silviamarcu90/auction-house/

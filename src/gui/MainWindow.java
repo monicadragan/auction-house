@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import types.UserType;
@@ -46,6 +47,11 @@ public class MainWindow extends JFrame implements IMainWindow {
 	
 	public void loginRequest(String username, String password, UserType uType)
 	{
+		if(this.mediator.findUser(username))//user-ul este deja logat!
+		{
+			JOptionPane.showMessageDialog(null, "This user is already login!");
+			return;
+		}
 		this.setUType(uType);
 		this.setUsername(username);
 		this.password = password;

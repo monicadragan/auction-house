@@ -59,4 +59,9 @@
             <classpath refid="AuctionHouseZanko.classpath"/>
         </java>
     </target>
+    <target name="WorkerSimulator">
+        <java classname="simulator.WorkerSimulator" failonerror="true" fork="yes">
+            <classpath refid="AuctionHouseZanko.classpath"/>
+        </java>
+    </target>
 </project>

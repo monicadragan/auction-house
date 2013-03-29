@@ -17,7 +17,7 @@ public class TableState implements StateView{
 							mainFrame.getUType());
 		if(userInfo == null)
 		{
-			JOptionPane.showMessageDialog(null, "This user is invalid");
+			JOptionPane.showMessageDialog(null, "This user is invalid!");
 			return;
 		}
 		switch(mainFrame.getUType())

@@ -1,33 +1,19 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
-import java.util.ArrayList;
 
 import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
-import javax.swing.event.ChangeListener;
 
 import types.UserType;
 
@@ -38,10 +24,10 @@ public class LoginPanel extends JPanel{
 	
 	protected JLabel lUsername = new JLabel("Username");		// username label
 	protected JTextField	tUsername = new JTextField(10);		// username field
-	protected JLabel lPassword = new JLabel("Password");		// password label
+	protected JLabel lPassword = new JLabel("Parola");		// password label
 	protected JTextField	tPassword = new JTextField(10);		// password field
 	protected JButton	bLogin	= new JButton("Login");		// login button
-	protected static final String userTypeOptions[] = { "Seller", "Buyer"};
+	protected static final String userTypeOptions[] = { "Furnizor", "Cumparator"};
 	protected JPanel userTypePanel;
 	
 	public LoginPanel(MainWindow frame)

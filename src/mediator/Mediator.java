@@ -86,7 +86,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	}
 
 	public User readUserInformation(String username, String password, UserType uType)
-	{	
+	{
 		return wsClient.readInfoAboutUser(username, password, uType);
 	}
 	

@@ -87,7 +87,7 @@ public class SimulateAuctionHouse {
 		JOptionPane.showMessageDialog(null, "user3 Accept Offer  from user1");
 		mediator.sendRequest("Accept Offer", buyerProductRow1, 2, buyer1.gui.getTableView());
 
-		JOptionPane.showMessageDialog(null, "user4 Refuse Offer from user3");
+		JOptionPane.showMessageDialog(null, "user4 Refuse Offer from user1");
 		mediator.sendRequest("Refuse Offer", buyerProductRow2, 2, buyer2.gui.getTableView());
 
 //		logout

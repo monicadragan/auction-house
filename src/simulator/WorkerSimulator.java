@@ -26,7 +26,7 @@ public class WorkerSimulator {
 	
         SwingWorker<Integer, Integer> worker = new SwingWorker<Integer, Integer>() {
 
-            protected int sleepDummy = new Random().nextInt(10) + 10;
+            protected int sleepDummy = new Random().nextInt(10) + 15;
             protected int lengthOfTask = 13;
             UserThread seller1, seller2;
             UserThread buyer1, buyer2;
@@ -52,14 +52,14 @@ public class WorkerSimulator {
             @Override
             protected void process(List<Integer> c) {
             	Integer nr = c.get(c.size() - 1);
-            	System.out.println(nr);
             	switch(nr)
             	{
+//	testare login            	
             	case 1:
-						seller1 = loginUser("user1", "pass1", UserType.SELLER);
+					seller1 = loginUser("user1", "pass1", UserType.SELLER);
 					break;
             	case 2:	
-						seller2 = loginUser("user5", "pass5", UserType.SELLER);
+					seller2 = loginUser("user5", "pass5", UserType.SELLER);
 					break;					
             	case 3:
             		buyer1 = loginUser("user3", "pass3", UserType.BUYER);
@@ -74,7 +74,8 @@ public class WorkerSimulator {
             	    med.sendRequest("Launch Offer request", 1, 0, buyer1.gui.getTableView());
             	    break;
 //            	    se anuleaza o cerere de oferta,
-            	case 6: JOptionPane.showMessageDialog(null, "user3  Drop Offer request for "
+            	case 6:
+            		JOptionPane.showMessageDialog(null, "user3  Drop Offer request for "
             					+buyer1.gui.getTableView().getModel().getValueAt(1, 0));	    
             	    med.sendRequest("Drop Offer request", 1, 0, buyer1.gui.getTableView());
             	    break;
@@ -133,7 +134,7 @@ public class WorkerSimulator {
             		med.sendRequest("Accept Offer", buyerProductRow1, 2, buyer1.gui.getTableView());
             		break;
             	case 12:
-            		JOptionPane.showMessageDialog(null, "user4 Refuse Offer from user3");
+            		JOptionPane.showMessageDialog(null, "user4 Refuse Offer from user1");
             		med.sendRequest("Refuse Offer", buyerProductRow2, 2, buyer2.gui.getTableView());
             		break;
 //            		logout
@@ -165,7 +166,6 @@ public class WorkerSimulator {
        
         
         worker.execute();
-        System.out.println("A terminat!!");
 	}
 	
 

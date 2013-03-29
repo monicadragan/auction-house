@@ -37,6 +37,7 @@ public class DropAuction implements Command{
 				|| prodStatusLicitatie.equals(Status.TRANSFER_FAILED.getName()))
 		{
 			userReqModel.setValueAt(Status.NO_OFFER.getName(), tableRow, 3);
+			userReqModel.setValueAt(0, tableRow, 5);//progress bar
 		}
 		
 		
