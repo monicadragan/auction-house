@@ -10,7 +10,10 @@ import javax.swing.SwingWorker;
 import mediator.INetMediator;
 import mediator.Mediator;
 
-
+/**
+ * Clasa ce defineste modului Network
+ * folosit pentru simularea transferului de produse/servicii
+ */
 public class Network implements INetwork{
 	
 	INetMediator med;

@@ -10,11 +10,17 @@ import types.Product;
 import types.User;
 import types.UserType;
 
-
+/**
+ * Clasa ce simuleaza WebServiceClient-ul citind din fisiere 
+ * de configurare informatiile necesare la logarea unui utilizator
+ */
 public class WebServiceClient implements IWebServiceClient{
 
 	public static final String credentialsConfigFile = "credentials.config";
 	
+	/**
+	 * Metoda folosita pentru a obtine lista de produse a unui utilizator
+	 */
 	public User readInfoAboutUser(String username, String passwd, UserType uType)
 	{
 		if(!checkUserInfo(username, passwd, uType))
@@ -45,6 +51,9 @@ public class WebServiceClient implements IWebServiceClient{
 		return user;
 	}
 	
+	/**
+	 * Metoda ce verifica corectitudinea credentialelor
+	 */
 	public boolean checkUserInfo(String username, String passwd, UserType uType)
 	{
 		BufferedReader br;

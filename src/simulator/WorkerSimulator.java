@@ -13,6 +13,12 @@ import types.UserType;
 import mediator.Mediator;
 import mediator.UserThread;
 
+/**
+ * Clasa ce simuleaza intreaga aplicatie
+ * si permite interactiunea cu utilizatorul;
+ * adaugarea unui nou user in sistem se face
+ * cu comanda "launch"
+ */
 public class WorkerSimulator {
 
 	Mediator med;

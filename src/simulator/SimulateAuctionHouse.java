@@ -6,7 +6,10 @@ import types.UserType;
 import mediator.Mediator;
 import mediator.UserThread;
 
-
+/**
+ * Clasa ce simuleaza intreaga aplicatie
+ * (nu permite interactiunea cu utilizatorul)
+ */
 public class SimulateAuctionHouse {
 	
 	Mediator mediator;

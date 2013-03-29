@@ -1,9 +1,10 @@
 package types;
-import java.util.ArrayList;
 
 import javax.swing.JProgressBar;
 
-
+/**
+ * Clasa ce defineste un produs/serviciu
+ */
 public class Product {
 
 	public String name; //nume produs/serviciu	
