@@ -1,6 +1,9 @@
 package mediator;
 import gui.*;
 
+/**
+ * Clasa ce defineste un utilizator
+ */
 public class UserThread extends Thread{
 	
 	Mediator mediator;

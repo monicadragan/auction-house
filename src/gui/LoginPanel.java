@@ -17,7 +17,11 @@ import javax.swing.JTextField;
 
 import types.UserType;
 
-
+/**
+ * Clasa ce defineste interfata grafica pentru fereastra de login
+ * @author silvia
+ *
+ */
 public class LoginPanel extends JPanel{
 	
 	MainWindow mainFrame;
@@ -66,10 +70,10 @@ public class LoginPanel extends JPanel{
 		this.add(new JPanel());
 				
 		this.add(loginPanel);
+		//dummy panels
 		this.add(new JPanel()); this.add(new JPanel());this.add(new JPanel());
 		this.add(new JPanel()); this.add(new JPanel());this.add(new JPanel());
 		
-		// bottom panel: name field, add button, remove button
 		userPanel.add(lUsername);
 		userPanel.add(tUsername);
 		passwdPanel.add(lPassword);
@@ -81,6 +85,9 @@ public class LoginPanel extends JPanel{
 		bLogin.addActionListener(new LoginActionListener());
 	}
 
+	/**
+	 *	ActionListener pentru butonul de Login
+	 */
 	protected class LoginActionListener implements ActionListener
 	{
 		@Override

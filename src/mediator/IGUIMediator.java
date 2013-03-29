@@ -6,7 +6,10 @@ import types.UserType;
 import gui.MainWindow;
 import gui.TableView;
 
-
+/**
+ * Interfata modului Mediator pentru GUI
+ *
+ */
 public interface IGUIMediator {
 	
 	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel);

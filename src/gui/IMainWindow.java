@@ -2,6 +2,12 @@ package gui;
 
 import types.UserType;
 
+/**
+ * Interfata ce defineste fereastra principala 
+ * a unui utilizator (GUI-ul)
+ * @author silvia
+ *
+ */
 public interface IMainWindow {
 
 	public void initWindow();

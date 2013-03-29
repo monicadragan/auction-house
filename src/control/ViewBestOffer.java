@@ -10,6 +10,13 @@ import mediator.IGUIMediator;
 import mediator.Mediator;
 import types.UserType;
 
+/**
+ * Clasa folosita pentru a face modificarile necesare cand se primeste
+ * comanda "View Best Offer" - folosita de un furnizor pentru 
+ * a vedea cea mai buna contraoferta pentru un anumit produs
+ * @author silvia
+ *
+ */
 public class ViewBestOffer implements Command{
 
 	public IGUIMediator med;

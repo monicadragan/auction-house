@@ -10,7 +10,12 @@ import types.UserType;
 import mediator.IGUIMediator;
 import mediator.Mediator;
 
-
+/**
+ * Clasa folosita pentru a face modificarile necesare cand se primeste
+ * comanda "Refuse Offer"
+ * @author silvia
+ *
+ */
 public class RefuseOffer implements Command{
 
 	public IGUIMediator med;

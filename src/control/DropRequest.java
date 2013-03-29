@@ -11,6 +11,12 @@ import types.UserType;
 import mediator.IGUIMediator;
 import mediator.Mediator;
 
+/**
+ * Clasa folosita pentru a face modificarile necesare cand se primeste
+ * comanda "Drop Request"
+ * @author silvia
+ *
+ */
 public class DropRequest implements Command {
 
 	public IGUIMediator med;

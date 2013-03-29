@@ -15,6 +15,11 @@ import wsc.WebServiceClient;
 
 import control.*;
 
+/**
+ * Clasa ce defineste modulul mediator care face legatura intre 
+ * componentele aplicatiei
+ *
+ */
 public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	
 	StatusManager statManager;
@@ -29,10 +34,16 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		wsClient = new WebServiceClient();
 	}
 	
+	/**
+	 * Metoda ce trimite modulului de network informatii despre transferul unui produs
+	 */
 	public void sendFile(MainWindow source, MainWindow destination, int sourceRow, int destRow){
 		networkManager.transferFile(source, destination, sourceRow, destRow);
 	}
 
+	/**
+	 * Metoda ce verifica daca un user exista deja logat in sistem
+	 */
 	public boolean findUser(String name)
 	{
 		for(int i = 0; i < users.size(); ++i)
@@ -41,12 +52,15 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		return false;
 	}
 	
+	/**
+	 * Metoda ce asigura comunicarea cu interfata grafica
+	 * pentru a efectua modificarile din timpul unui transfer
+	 */
 	public void changeTransferProgress(Integer val, MainWindow srcFrame,
 			MainWindow destFrame, int srcRow, int dstRow)
 	{
 		//anunt interfata grafica sa modifice progress-barul
 		srcFrame.changeProgresBar(val, srcRow, 5);
-		//trebuie modificat si statusul!
 		if(!findUser(destFrame.getUsername()))
 		{
 			this.sendRequest(-1 + "", srcRow, 3, srcFrame.getTableView());
@@ -58,6 +72,9 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		this.sendRequest(val + "", dstRow, 3, destFrame.getTableView());
 	}
 	
+	/**
+	 * Metoda prin care se trimit la executat comenzile primite de la utilizator
+	 */
 	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){
 		Command cmd = new LaunchRequest(this);
 		
@@ -85,6 +102,10 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		
 	}
 
+	/**
+	 * Metoda ce comunica cu web-service-client pentru a verifica/obtine
+	 * informatii despre un utilizator care vrea sa se logheze
+	 */
 	public User readUserInformation(String username, String password, UserType uType)
 	{
 		return wsClient.readInfoAboutUser(username, password, uType);

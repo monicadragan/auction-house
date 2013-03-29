@@ -5,12 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 /**
- * Clasa ce implementeaza un popup menu cu 2 itemi
+ * Clasa ce implementeaza un popup menu cu 2 itemi;
+ * Acesta este utilizata pentru orice tip de utilizator
  * @author silvia
  *
  */

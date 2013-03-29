@@ -10,7 +10,12 @@ import types.UserType;
 import mediator.IGUIMediator;
 import mediator.Mediator;
 
-
+/**
+ * Clasa folosita pentru a face modificarile necesare cand se primeste
+ * comanda "Accept Offer"
+ * @author silvia
+ *
+ */
 public class AcceptOffer implements Command{
 
 	public IGUIMediator med;

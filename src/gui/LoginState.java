@@ -1,6 +1,11 @@
 package gui;
 
-
+/**
+ * Clasa defineste si seteaza starea de vizualizare (panel-ul)
+ * ce apare la login  
+ * @author silvia
+ *
+ */
 public class LoginState implements StateView{
 
 	@Override

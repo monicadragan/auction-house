@@ -1,6 +1,5 @@
 package gui;
 
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -32,6 +31,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/**
+ * Clasa ce creeaza un CellRenderer pentru a putea folosi
+ * un ProgressBar intr-o celula din tabel 
+ */
 class ProgressBarRenderer extends DefaultTableCellRenderer {
 
     protected final JProgressBar b = new JProgressBar(0, 100);
@@ -43,7 +46,8 @@ class ProgressBarRenderer extends DefaultTableCellRenderer {
     }
 
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+    public Component getTableCellRendererComponent(JTable table, Object value, 
+    		boolean isSelected, boolean hasFocus, int row, int column) {
         Integer i = (Integer) value;
         String text = "100%";
         if (i < 0) {
@@ -56,10 +60,22 @@ class ProgressBarRenderer extends DefaultTableCellRenderer {
         return this;
     }
 }
- 
+
+/**
+ * Clasa ce defineste un panel-ul de vizualizare al listei de servicii
+ * pentru un utilizator
+ */
 public class TableView extends JPanel {
 
-	protected DefaultTableModel model = new DefaultTableModel(); //model tabel
+	protected DefaultTableModel model = new DefaultTableModel() //model tabel
+	{
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+	    	if(column == 4)
+	    		return true;
+	        return false;
+	    }
+	};
     ArrayList<Object[]> bodyTable;
 	protected Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "TranferProgress"};
 
@@ -161,17 +177,18 @@ public class TableView extends JPanel {
 	}
    	 
    	 public void logout(){
-   		 //verifica daca este furnizor si este intr-o licitatie NU are voie sa faca logout
 
    		boolean exit = true;
-		if(userInfo.uType.equals(UserType.SELLER))
+  		 //verifica daca este furnizor si este intr-o licitatie NU are voie sa faca logout
+   		if(userInfo.uType.equals(UserType.SELLER))
 		{
 			for(int i = 0; i < model.getRowCount(); ++i)
 				if(model.getValueAt(i, 3).toString().equals(Status.OFFER_MADE.getName())
 						|| model.getValueAt(i, 3).toString().equals(Status.TRANSFER_STARTED.getName())
 						|| model.getValueAt(i, 3).toString().equals(Status.TRANSFER_IN_PROGRESS.getName()))
 					exit = false;
-		} else if(userInfo.uType.equals(UserType.BUYER))
+		} 
+		else if(userInfo.uType.equals(UserType.BUYER))
 		{
 			for(int i = 0; i < model.getRowCount(); ++i)
 				//trebuie sa refuze toate ofertele care i s-au facut
@@ -200,6 +217,9 @@ public class TableView extends JPanel {
 		}
    	 }
 
+   	 /**
+   	  * Creare listener pentru popup-menu
+   	  */
      protected class TableMouseSelect extends MouseAdapter {
     	 UserType type;
     	 JTable table;

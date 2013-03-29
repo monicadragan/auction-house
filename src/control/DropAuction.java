@@ -10,7 +10,12 @@ import types.Status;
 import mediator.IGUIMediator;
 import mediator.Mediator;
 
-
+/**
+ * Clasa folosita pentru a face modificarile necesare cand se primeste
+ * comanda "Drop Auction"
+ * @author silvia
+ *
+ */
 public class DropAuction implements Command{
 
 	public IGUIMediator med;
@@ -37,7 +42,7 @@ public class DropAuction implements Command{
 				|| prodStatusLicitatie.equals(Status.TRANSFER_FAILED.getName()))
 		{
 			userReqModel.setValueAt(Status.NO_OFFER.getName(), tableRow, 3);
-			userReqModel.setValueAt(0, tableRow, 5);//progress bar
+			userReqModel.setValueAt(0, tableRow, 5);//resetare progress bar
 		}
 		
 		

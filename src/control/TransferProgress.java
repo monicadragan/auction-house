@@ -4,7 +4,13 @@ import types.Status;
 import mediator.IGUIMediator;
 import mediator.Mediator;
 import gui.TableView;
-
+/**
+ * Clasa folosita pentru a face modificarile necesare cand s-a terminat
+ * o licitatie si incepe transferul produsului/serviciului, schimband
+ * statusul in functie de valoarea progress bar-ului
+ * @author silvia
+ *
+ */
 public class TransferProgress implements Command{
 	
 	public int value;

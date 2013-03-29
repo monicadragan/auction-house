@@ -4,6 +4,12 @@ import javax.swing.JOptionPane;
 
 import types.User;
 
+/**
+ * Clasa defineste si seteaza starea de vizualizare (panel-ul)
+ * ce apare dupa login (cu lista de servicii)  
+ * @author silvia
+ *
+ */
 public class TableState implements StateView{
 
 	@Override

@@ -12,6 +12,12 @@ import types.UserType;
 import mediator.IGUIMediator;
 import mediator.Mediator;
 
+/**
+ * Clasa ce defineste interfata grafica: fereastra principala
+ * a unui utilizator
+ * @author silvia
+ *
+ */
 public class MainWindow extends JFrame implements IMainWindow {
 
 	IGUIMediator mediator;
@@ -31,6 +37,9 @@ public class MainWindow extends JFrame implements IMainWindow {
 		
 	}
 
+	/**
+	 * Initializarea ferestrei principale
+	 */
 	public void initWindow()
 	{
  	    setLayout(new BorderLayout());
@@ -45,6 +54,10 @@ public class MainWindow extends JFrame implements IMainWindow {
    	    
 	}
 	
+	/**
+	 * Metoda folosita la logarea unui user in vederea afisarii
+	 * listei de produse/servicii daca autentificarea s-a facut cu succes
+	 */
 	public void loginRequest(String username, String password, UserType uType)
 	{
 		if(this.mediator.findUser(username))//user-ul este deja logat!
@@ -59,6 +72,9 @@ public class MainWindow extends JFrame implements IMainWindow {
 		setVisible(true);
 	}	
 	
+	/**
+	 * Metoda ce modifica progressBar-ul
+	 */
 	public void changeProgresBar(Integer value, int row, int column)
 	{
 		DefaultTableModel model = this.tableView.getModel();

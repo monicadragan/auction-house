@@ -1,6 +1,5 @@
 package control;
 import gui.IMainWindow;
-import gui.MainWindow;
 import gui.TableView;
 
 import javax.swing.JOptionPane;
@@ -12,6 +11,12 @@ import types.UserType;
 import mediator.IGUIMediator;
 import mediator.Mediator;
 
+/**
+ * Clasa folosita pentru a face modificarile necesare cand se primeste
+ * comanda "Launch Offer request"
+ * @author silvia
+ *
+ */
 public class LaunchRequest implements Command {
 
 	public IGUIMediator med;
