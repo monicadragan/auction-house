@@ -1,52 +1,62 @@
 Tema1 IDP - Auction House
 Echipa Zanko (Dragan Monica 342C3 & Marcu Silvia 343C3)
 
+==Detalii de utilizare (compilare si rulare)==
+- ant - compileaza proiectul
+- ant run - porneste simulatorul automat
+In timpul simularii se vor lansa 4 utilizatori (2 cumparatori si 2 furnizori, 
+fiecare pe un thread separat, cu interfata lui grafica) care vor comunica 
+intre ei prin cerer/oferte. Inainte de fiecare actiune se va lansa un 
+MessageBox pentru a facilita urmarirea modificarilor care au loc in interfetele
+grafice ale utilizatorilor.
+
+!!Observatie!! La lansarea utilizatorilor trebuie mutate (rapid) ferestrele de logare
+in cele 4 colturi ale ecranului pentru a observa ce se intampla in timpul licitatiei.
+
+- ant Mediator - se asteapta o comanda "launch" (de la stdin) pentru a porni
+ un thread care reprezinta un utilizator/participant la licitatii.
+- ant WorkerSimulator - se porneste un simulator semi-automat in care se pot
+adauga si alti utilizatori introdusi cu comanda "launch" (de la stdin)
+
 ==Detalii implementare==
-Mediatorul este componenta centrala a aplicatie care tine un vector de
-UserThreads care reprezinta utilizatorii logati in sistem si care pot participa
-la licitatii. La aparitia unui nou utilizator, se creeaza o fereastra principala
+Mediatorul este componenta centrala a aplicatiei care creeaza instante utilizator
+si asigura comunicatia intre utilizatori (GUI) si celelalte componente 
+(Network, WebService).
+Mediatorul retine un vector de UserThreads care reprezinta utilizatorii logati 
+in sistem si care pot participa la licitatii. 
+La aparitia unui nou utilizator, se creeaza o fereastra principala
 (GUI) cu panel-ul de login care este inlocuit cu tabela de produse/servicii
 daca credentialele sunt corecte.
-Cand un utilizator executa o actiune din meniul de popup, 
-mediatorul trimite comanda unui obiect de tip StatusManager care face
+Cand un utilizator executa o actiune din meniul de popup, acesta apeleaza  
+mediatorul, care trimite comanda unui obiect de tip StatusManager pentru a face
 modificarile corespunzatoare. 
 Modulul de network este folosit cand s-a incheiat o licitatie 
 (oferta este acceptata) si trebuie transferat produsul/serviciul intre cei 
 doi utilizatori; astfel: mediatorul anunta network-managerul, network-managerul
 incepe transferul si transmite informatii mediatorului, mediatorul anunta
-GUI-ul sa-si actualizeze statusul.
+GUI-ul sa-si actualizeze statusul. Momentan in modulul de network se face
+numai lansarea ProgressBar-ului pentru utilizatorii implicati in tranzactie.
 WebServiceClient-ul este folosit in partea de autentificare pentru verificarea
-credentialelor si obtinerea informatiilor (aici din fisiere de configurare)
+credentialelor si obtinerea informatiilor (momentan din fisiere de configurare)
 corespunzatoare utilizatorului respectiv.
 
 ==Design pattern-uri==
-- State pattern-ul l-am folosit atunci cand se schimba starea view-ului de la
-login-panel la jtable.
-- Command pattern-ul l-am folosit pentru gestiunea status-urilor cand 
+- State pattern: folosit atunci cand se schimba starea view-ului de la
+pannel-ul de Login la cel cu tabela de produse/servicii.
+- Command pattern: folosit pentru gestiunea status-urilor cand 
 utilizatorii executa diferite comenzi in PopupMenu.
-- MVC - integrat in partea de interfata grafica (afisat componente, controlat
-evenimente, preluat model cerut de la mediator).
+- MVC - modelul reprezinta datele care populeaza tabela cu date preluate de la 
+mediator (DefaultTableModel), view-ul este interfeta grafica, iar controller-ul 
+este integrat in partea de interfata grafica (actiune pe diferite componente).
 - Mediator - implementat in modulul mediator care asigura conectivitatea intre
 toate componentele aplicatiei.
-
-==Compilare si rulare==
-- ant - compileaza proiectul
-- ant run - porneste simulatorul automat care executa o serie de actiuni
-- ant Mediator - asteapta o comanda "launch" (de la stdin) pentru porni
- un thread care reprezinta un utilizator/participant la licitatii.
-- ant WorkerSimulator - porneste un simulator semi-automat in care se pot
-adauga si alti utilizatori introdusi cu comanda "launch" din terminal
-(este citita de la stdin)
-
-Observatie! Trebuie mutate (rapid) ferestrele utilizatorilor logati pentru a observa
-ce se intampla in timpul licitatiei.
 
 ==Fisiere de configurare==
 - credentials.config - contine utilizatorii care se pot loga
 - userX.config - contine produsele unui utilizator (oferite/dorite)
-*Sunt creati 5 utilizatori (userX). Pentru a adauga un nou user trebuie creat un
-fisier de configurare cu produsele acestuia si trebuie adaugate credentialele
-(user parola) in fisierul credentials.config.
+*Sunt creati 5 utilizatori (userX.config). Pentru a adauga un nou user trebuie 
+creat un fisier de configurare cu produsele acestuia si trebuie adaugate
+credentialele (user parola) in fisierul credentials.config.
 
 ==Informatii acces proiect git==
 repository: https://bitbucket.org/silviamarcu90/auction-house/
