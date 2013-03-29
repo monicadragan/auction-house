@@ -109,7 +109,7 @@ public class LoginPanel extends JPanel{
 				return;
 			}
 			System.out.println("Login " + username + "::" + selectedType);
-			if(selectedType.equals("Seller"))
+			if(selectedType.equals(userTypeOptions[0]))
 				uType = UserType.SELLER;
 			else uType = UserType.BUYER;
 			
