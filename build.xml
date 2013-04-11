@@ -49,7 +49,7 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="run">
+    <target name="SimulateAuctionHouse">
         <java classname="simulator.SimulateAuctionHouse" failonerror="true" fork="yes">
             <classpath refid="AuctionHouseZanko.classpath"/>
         </java>
@@ -61,6 +61,16 @@
     </target>
     <target name="WorkerSimulator">
         <java classname="simulator.WorkerSimulator" failonerror="true" fork="yes">
+            <classpath refid="AuctionHouseZanko.classpath"/>
+        </java>
+    </target>
+    <target name="Server">
+        <java classname="network.Server" failonerror="true" fork="yes">
+            <classpath refid="AuctionHouseZanko.classpath"/>
+        </java>
+    </target>
+    <target name="UserThread">
+        <java classname="mediator.UserThread" failonerror="true" fork="yes">
             <classpath refid="AuctionHouseZanko.classpath"/>
         </java>
     </target>

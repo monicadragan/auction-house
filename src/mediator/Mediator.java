@@ -133,7 +133,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 				System.exit(1);
 			}
 			if(input.equals("launch")){
-				UserThread t = new UserThread(mediator);
+				UserThread t = new UserThread();
 			    t.start();
 			    mediator.users.add(t);
 			}
