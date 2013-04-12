@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import network.Client;
+
 import types.UserType;
 
 import mediator.IGUIMediator;
@@ -27,7 +29,7 @@ public class MainWindow extends JFrame implements IMainWindow {
 	private TableView tableView;
 	public ConcreteUserView userView;
 	
-	public MainWindow(Mediator mediator){
+	public MainWindow(IGUIMediator mediator){
 		
  	    super("Zanko Auction House");
  	    		

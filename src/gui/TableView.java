@@ -12,8 +12,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import mediator.UserThread;
-
 import types.Product;
 import types.Status;
 import types.User;
@@ -200,16 +198,16 @@ public class TableView extends JPanel {
 		}
 		if(exit)
 		{
-			ArrayList<UserThread> allThreads = mainFrame.mediator.getUsers();
-			for(int i = 0; i < allThreads.size(); ++i)
-				if(allThreads.get(i).gui.getUsername().equals(userInfo.username))
-				{
-					allThreads.get(i).cancel();
-					mainFrame.setVisible(false);
-					
-					allThreads.remove(i);
-					break;
-				}
+//			ArrayList<UserThread> allThreads = mainFrame.mediator.getUsers();
+//			for(int i = 0; i < allThreads.size(); ++i)
+//				if(allThreads.get(i).gui.getUsername().equals(userInfo.username))
+//				{
+//					//allThreads.get(i).cancel();
+//					mainFrame.setVisible(false);
+//					
+//					allThreads.remove(i);
+//					break;
+//				}
 		}
 		else //nu are voie sa dea logout
 		{
@@ -274,6 +272,5 @@ public class TableView extends JPanel {
 	{
 		this.model = mdl;
 	}
-	
 	
 }

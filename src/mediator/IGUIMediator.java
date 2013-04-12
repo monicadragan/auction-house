@@ -17,8 +17,8 @@ public interface IGUIMediator {
 	public boolean findUser(String name);
 	public void sendFile(MainWindow source, MainWindow destination, int sourceRow, int destRow);
 
-	public ArrayList<UserThread> getUsers();
-	public void setUsers(ArrayList<UserThread> users);
+//	public ArrayList<UserThread> getUsers();
+//	public void setUsers(ArrayList<UserThread> users);
 
 
 }
