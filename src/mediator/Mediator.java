@@ -1,4 +1,5 @@
 package mediator;
+import gui.LoginState;
 import gui.MainWindow;
 import gui.TableView;
 
@@ -12,6 +13,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 import network.Client;
 import network.INetwork;
@@ -37,6 +39,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	IWebServiceClient wsClient;
 	Client netClient;
 	MainWindow gui;
+	boolean readyToConnect = false;
 	
 	public Mediator(){
 	
@@ -117,12 +120,21 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	}
 	public void makeGUI()
 	{
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				gui = new MainWindow(Mediator.this);
-			}
-		});
+//		gui = new MainWindow(this);
+		SwingUtilities.invokeLater(new GUIThread(this));
+	}
+	
+	private class GUIThread implements Runnable{
 		
+		Mediator med;
+		
+		public GUIThread(Mediator med) {
+			this.med = med;
+		}
+		
+		public void run() {
+			gui = new MainWindow(med);
+		}
 	}
 
 	/**
@@ -133,12 +145,32 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	{
 		return wsClient.readInfoAboutUser(username, password, uType);
 	}
-	
+		
 	public static void main(String[] args)
 	{
 		Mediator mediator = new Mediator();
 		mediator.makeGUI();
-		mediator.netClient.makeConnection();
+//		if(mediator.gui == null)
+//			System.out.println("is null...");
+//		else System.out.println("is OK...");
+//		while(mediator.gui.userView.stateView instanceof LoginState)
+		while(!mediator.readyToConnect)
+			System.out.println("Waiting...");
+		mediator.netClient.makeConnection();		
+
+	}
+
+	@Override
+	public DefaultTableModel getTableModel() {
+		return gui.getTableView().getModel();		
+	}
+
+	public void setReadyToConnect(boolean readyToConnect) {
+		this.readyToConnect = readyToConnect;
+	}
+
+	public boolean isReadyToConnect() {
+		return readyToConnect;
 	}
 	
 }

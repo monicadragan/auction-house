@@ -8,6 +8,8 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.swing.table.DefaultTableModel;
+
 public class Server {
 	
 	public static final int BUF_SIZE	= 1024;			// buffer size
@@ -30,6 +32,37 @@ public class Server {
 		
 		// display remote client address
 		System.out.println("Connection from: " + socketChannel.socket().getRemoteSocketAddress());
+		
+	}
+	
+	public static void readTable(SelectionKey key)
+	{
+		SocketChannel socketChannel = (SocketChannel) key.channel();
+		//primesc tabela clientului
+		
+		DefaultTableModel model = null;
+	    ByteBuffer buffer = ByteBuffer.allocate(8192);
+
+	    int bytesRead ;//= socketChannel.read(buffer);
+	    try{
+	    	while((bytesRead = socketChannel.read(buffer)) == 0);
+//	    		System.out.println("N-am primit...");
+	    	{
+	    		buffer.flip();
+		        InputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
+		        ObjectInputStream ois = new ObjectInputStream(bais); //Offending line. Produces the StreamCorruptedException.
+		        String s = (String)ois.readObject();
+		        System.out.println("a primit " + s);
+		        model = (DefaultTableModel)ois.readObject();
+//		        System.out.println(model.getValueAt(0, 0));
+		        ois.close();
+	    	}
+	    }
+	    catch(Exception e){
+	    	System.err.println("Exceptie la server read");
+	    	e.printStackTrace();
+	    }
+
 	}
 	
 	public static void read(SelectionKey key) throws IOException {
@@ -54,23 +87,7 @@ public class Server {
 				Channels.newChannel(System.out).write(buf);
 
 				System.out.println();
-				
-	//			if(msg.equals("Launch Offer request"))
-	//				cmd = new LaunchRequest(this);
-	//			else if(msg.equals("Drop Offer request"))
-	//				cmd = new DropRequest(this);
-	//			else if(msg.equals("Make offer"))
-	//				cmd = new MakeOffer(this);
-	//			else if(msg.equals("Drop auction"))
-	//				cmd = new DropAuction(this);
-	//			else if(msg.equals("Accept Offer"))
-	//				cmd = new AcceptOffer(this);
-	//			else if(msg.equals("Refuse Offer"))
-	//				cmd = new RefuseOffer(this);
-	//			else if(msg.equals("View Best Offer"))
-	//				cmd = new ViewBestOffer(this);
-	//			else // este un transfer
-				
+
 				//intorc raspunsul
 				key.interestOps(SelectionKey.OP_WRITE);
 				
@@ -103,7 +120,8 @@ public class Server {
 		
 		Selector selector						= null;
 		ServerSocketChannel serverSocketChannel	= null;
-		
+		//TODO - first pt fiecare client conectat
+		boolean first = true;
 		try {
 			selector = Selector.open();
 			
@@ -127,7 +145,14 @@ public class Server {
 					if (key.isAcceptable())
 						accept(key);
 					else if (key.isReadable())
-						read(key);
+					{
+						if(first)
+						{
+							first = false;
+							readTable(key);
+						}
+						else read(key);
+					}
 					else if (key.isWritable())
 						write(key);
 				}

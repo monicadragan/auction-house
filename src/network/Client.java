@@ -1,6 +1,8 @@
 package network;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
@@ -52,8 +54,6 @@ public class Client {
 					this.key = key;
 //					else if (key.isReadable())
 //						read(key);
-//					else if (key.isWritable())
-//						write(key, );
 
 				}
 			}
@@ -86,6 +86,8 @@ public class Client {
 		ByteBuffer buf = ByteBuffer.allocateDirect(Server.BUF_SIZE);
 		socketChannel.register(key.selector(), SelectionKey.OP_WRITE, buf);
 		
+		writeClientTable(key);
+//		write(key, "eu");
 	}
 	
 	public void read(SelectionKey key) {
@@ -143,6 +145,36 @@ public class Client {
 		
 		key.interestOps(SelectionKey.OP_READ);
 		
+	}
+	
+	public void writeClientTable(SelectionKey key)
+	{
+		System.out.println("WRITE- client: ");
+		SocketChannel socketChannel	= (SocketChannel)key.channel();
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos;
+	    try{
+	        oos = new ObjectOutputStream(baos);
+	    }catch(Exception e){
+	        System.err.println("Could not create object output stream. Aborting...");
+	        return;
+	    }
+		ByteBuffer buffer;
+		
+        try{
+            oos.writeObject(mediator.getTableModel());
+            buffer = ByteBuffer.wrap(baos.toByteArray());
+            socketChannel.write(buffer);
+            oos.flush();
+            baos.flush();
+        }catch(Exception e){
+            System.err.println("Could not parse object.");
+            e.printStackTrace();
+        }
+
+		//key.interestOps(SelectionKey.OP_READ);
+			
 	}
 
 

@@ -43,7 +43,9 @@ public class TableState implements StateView{
 		}
 
 		mainFrame.setContentPane(mainFrame.getTableView());
-
+		
+		//anunt mediatorul ca ma pot conecta la server pentru a comunica cu alti utilizatori
+		mainFrame.mediator.setReadyToConnect(true);
 	}
 
 }

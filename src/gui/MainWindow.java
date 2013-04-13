@@ -26,7 +26,7 @@ public class MainWindow extends JFrame implements IMainWindow {
 	private UserType uType;
 	private String username;
 	public String password;
-	private TableView tableView;
+	private TableView tableView = null;
 	public ConcreteUserView userView;
 	
 	public MainWindow(IGUIMediator mediator){
@@ -70,7 +70,7 @@ public class MainWindow extends JFrame implements IMainWindow {
 		this.setUType(uType);
 		this.setUsername(username);
 		this.password = password;
-	    userView.setStateView(this);
+	    userView.setStateView(this);//seteaza tabela in panel
 		setVisible(true);
 	}	
 	

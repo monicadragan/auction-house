@@ -27,15 +27,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Clasa ce creeaza un CellRenderer pentru a putea folosi
  * un ProgressBar intr-o celula din tabel 
  */
-class ProgressBarRenderer extends DefaultTableCellRenderer {
+class ProgressBarRenderer extends DefaultTableCellRenderer implements Serializable {
 
-    protected final JProgressBar b = new JProgressBar(0, 100);
+	private static final long serialVersionUID = 1L;
+	protected final JProgressBar b = new JProgressBar(0, 100);
 
     public ProgressBarRenderer() {
         super();
@@ -65,9 +67,13 @@ class ProgressBarRenderer extends DefaultTableCellRenderer {
  */
 public class TableView extends JPanel {
 
-	protected DefaultTableModel model = new DefaultTableModel() //model tabel
+	private static final long serialVersionUID = 1L;
+	protected DefaultTableModel model = new DefaultTableModelSer() //model tabel
 	{
-	    @Override
+	    
+		private static final long serialVersionUID = 1L;
+
+		@Override
 	    public boolean isCellEditable(int row, int column) {
 	    	if(column == 4)
 	    		return true;
