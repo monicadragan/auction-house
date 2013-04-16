@@ -1,10 +1,10 @@
 package types;
 
 public enum PacketType {
-	VIEW_BEST_OFFER {
+	TRANSFER {
 		@Override
 		public String getName() {
-			return "View Best Offer";
+			return "Transfer";
 		}
 	},
 	REMOVE_ROW {

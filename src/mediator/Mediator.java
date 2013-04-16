@@ -1,17 +1,7 @@
 package mediator;
-import gui.LoginState;
 import gui.IMainWindow;
 import gui.MainWindow;
 import gui.TableView;
-
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
 
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -98,7 +88,11 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	 */
 	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel)
 	{
-		netClient.writeObject(netClient.key, new Packet(msg, tableRow, tableCol));
+		Packet p = new Packet(msg, tableRow, tableCol);
+		if(msg.equals("Make offer"))
+			p.price = userPanel.getModel().getValueAt(tableRow, 4).toString();
+			
+		netClient.writeObject(netClient.key, p);
 	}
 	
 	public void processReplyFromServer(Packet recvPacket)
@@ -153,10 +147,6 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	{
 		Mediator mediator = new Mediator();
 		mediator.makeGUI();
-//		if(mediator.gui == null)
-//			System.out.println("is null...");
-//		else System.out.println("is OK...");
-//		while(mediator.gui.userView.stateView instanceof LoginState)
 		while(!mediator.readyToConnect);
 //			System.out.println("Waiting...");
 		mediator.netClient.makeConnection();		

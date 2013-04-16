@@ -61,6 +61,7 @@ public class Client {
 					else if (key.isReadable())
 					{
 						Packet recvPacket = (Packet)readObject(key);
+						System.out.println(recvPacket.pType.toString());
 						mediator.processReplyFromServer(recvPacket);
 					}
 
@@ -156,8 +157,8 @@ public class Client {
 	        InputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
 	        ObjectInputStream ois = new ObjectInputStream(bais);
 	        Object obj = (Object)ois.readObject();
-	        Packet p = (Packet)obj;
-	        System.out.println("[CLIENT] A primit " + p.pType);
+//	        Packet p = (Packet)obj;
+//	        System.out.println("[CLIENT] A primit " + p.pType);
 	        ois.close();
 	        buffer.clear();
 	        return obj;

@@ -91,7 +91,12 @@ public class LaunchRequest implements Command {
 						toSend = new Packet(PacketType.ADD_ROW, rowData);
 						clientInfo.key.interestOps(SelectionKey.OP_WRITE);
 						server.writeObject(clientInfo.key, toSend);
-						
+						try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						receiveResponse = true;
 						break;
 					}

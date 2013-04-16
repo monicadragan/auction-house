@@ -6,6 +6,13 @@ import javax.swing.table.DefaultTableModel;
 
 import gui.TableView;
 
+class pair{
+	
+	String value;
+	String key;
+	
+}
+
 public class Packet implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -15,6 +22,8 @@ public class Packet implements Serializable{
 	public int tableCol;
 	public Object[] rowData;
 	public Object value;
+	public pair additional_info;
+	public String price;//folosit la Make offer - cand furnizorul a schimbat pretul
 	
 //	public Packet(String msg, int tableRow, int tableCol,
 ////			TableView userPanel, 

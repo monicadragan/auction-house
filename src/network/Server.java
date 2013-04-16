@@ -173,10 +173,9 @@ public class Server {
 		
 	}
 	
-	public void write(SelectionKey key) throws IOException {
+	public void write(SelectionKey key, String s) throws IOException {
 		
 		System.out.println("WRITE: ");
-		String s = "Am primit";
 		SocketChannel socketChannel	= (SocketChannel)key.channel();
 		ByteBuffer buf	= ByteBuffer.allocate(s.length());
 		buf.clear();
@@ -199,7 +198,10 @@ public class Server {
 		else if(msg.equals("Drop Offer request"))
 			cmd = new DropRequest(this);
 		else if(msg.equals("Make offer"))
+		{
+			clInfo.tableModel.setValueAt(packet.price, packet.tableRow, 4);
 			cmd = new MakeOffer(this);
+		}
 		else if(msg.equals("Drop auction"))
 			cmd = new DropAuction(this);
 		else if(msg.equals("Accept Offer"))
@@ -256,6 +258,10 @@ public class Server {
 					        DefaultTableModel model = new DefaultTableModel(data, new Vector(Arrays.asList(headTable)));
 					        server.clientsMap.put(key, new ClientInformation(userInfo, model, key));
 					        System.out.println((ClientInformation)server.clientsMap.get(key));
+//					        server.writeObject(key, "hello1");
+//					        server.writeObject(key, "hello2");
+//					        server.writeObject(key, "hello3");
+
 						}
 						else {
 							Packet packet = (Packet)server.readObject(key);
