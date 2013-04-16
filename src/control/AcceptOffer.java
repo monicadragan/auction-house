@@ -4,6 +4,9 @@ import gui.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import network.ClientInformation;
+import network.Server;
+
 import types.Status;
 import types.UserType;
 
@@ -18,19 +21,19 @@ import mediator.Mediator;
  */
 public class AcceptOffer implements Command{
 
-	public IGUIMediator med;
+	public Server server;
 	
-	public AcceptOffer(Mediator med) {
-		this.med = med;
+	public AcceptOffer(Server server) {
+		this.server = server;
 	}
 
 	@Override
-	public void execute(int tableRow, int tableCol, TableView userPanel)
+	public void execute(int tableRow, int tableCol, ClientInformation clientInfo)
 	{
-		String prodName = userPanel.getModel().getValueAt(tableRow, 0).toString();
-		String username = userPanel.userInfo.username;
-		String prodStatus = userPanel.getModel().getValueAt(tableRow, 3).toString();
-		DefaultTableModel userReqModel = userPanel.getModel();		
+		String prodName = clientInfo.getModel().getValueAt(tableRow, 0).toString();
+		String username = clientInfo.getUsername();
+		String prodStatus = clientInfo.getModel().getValueAt(tableRow, 3).toString();
+		DefaultTableModel userReqModel = clientInfo.getModel();		
 
 		if(!prodStatus.equals(Status.OFFER_MADE.getName())){
 			JOptionPane.showMessageDialog(null, "A seller should make an offer first!");
@@ -42,11 +45,12 @@ public class AcceptOffer implements Command{
 		for(int j = 0; j < userReqModel.getRowCount(); j++)
 			if(userReqModel.getValueAt(j, 0).toString().equals(prodName) && j != tableRow)
 				userReqModel.setValueAt(Status.OFFER_REFUSED.getName(), j, 3);
+		
 		String sellerName = userReqModel.getValueAt(tableRow, tableCol).toString();
-		for(int i = 0; i < med.getUsers().size(); i++)
+		for(int i = 0; i < server.getUsers().size(); i++)
 		{
-			IMainWindow user = med.getUsers().get(i).gui;
-			DefaultTableModel sellerModel = user.getTableView().getModel();
+			ClientInformation user = server.getUsers().get(i);
+			DefaultTableModel sellerModel = user.getModel();
 			if(user.getUType().equals(UserType.SELLER))
 				if (user.getUsername().equals(sellerName))
 				{
@@ -55,7 +59,8 @@ public class AcceptOffer implements Command{
 								&& sellerModel.getValueAt(j, 2).toString().equals(username))
 						{
 							sellerModel.setValueAt(Status.OFFER_ACCEPTED.getName(), j, 3);
-							med.sendFile(user.getTableView().mainFrame, userPanel.mainFrame, j, tableRow);
+							//TODO: Transfer FILE
+//							server.sendFile(user.getTableView().mainFrame, clientInfo.mainFrame, j, tableRow);
 							break;
 						}
 				}

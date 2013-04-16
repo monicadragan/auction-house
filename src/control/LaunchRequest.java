@@ -1,9 +1,11 @@
 package control;
 import gui.IMainWindow;
-import gui.TableView;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import network.ClientInformation;
+import network.Server;
 
 import types.Status;
 import types.UserType;
@@ -19,19 +21,19 @@ import mediator.Mediator;
  */
 public class LaunchRequest implements Command {
 
-	public IGUIMediator med;
+	public Server server;
 	
-	public LaunchRequest(Mediator med) {
-		this.med = med;
+	public LaunchRequest(Server server) {
+		this.server = server;
 	}
 	
 	@Override
-	public void execute(int tableRow, int tableCol, TableView userPanel)
+	public void execute(int tableRow, int tableCol, ClientInformation clientInfo)
 	{
-		String prodName = userPanel.getModel().getValueAt(tableRow, 0).toString();
-		String username = userPanel.userInfo.username;
-		String prodStatus = userPanel.getModel().getValueAt(tableRow, 1).toString();
-		DefaultTableModel userReqModel = userPanel.getModel();		
+		String prodName = clientInfo.getModel().getValueAt(tableRow, 0).toString();
+		String username = clientInfo.getUsername();
+		String prodStatus = clientInfo.getModel().getValueAt(tableRow, 1).toString();
+		DefaultTableModel userReqModel = clientInfo.getModel();		
 		
 		boolean receiveResponse = false;
 		if(prodStatus.equals("Active")){
@@ -40,11 +42,11 @@ public class LaunchRequest implements Command {
 		}
 		
 		//anunt sellerii care au acest produs si-i adaug in tabela cumparatorului cu No offer
-		for(int i = 0; i < med.getUsers().size(); i++)
+		for(int i = 0; i < server.getUsers().size(); i++)
 		{
-			IMainWindow user = med.getUsers().get(i).gui; 
+			ClientInformation user = server.getUsers().get(i);
 			if(user.getUType() == UserType.SELLER){
-				DefaultTableModel sellerModel = user.getTableView().getModel();
+				DefaultTableModel sellerModel = user.getModel();
 				//parcurg tabela					
 				for(int j = 0; j < sellerModel.getRowCount(); j++)
 				{
@@ -81,8 +83,8 @@ public class LaunchRequest implements Command {
 			}
 		}
 		if(receiveResponse)//exista cel putin un furnizor
-			userReqModel.removeRow(tableRow);//sterg linia pentru ca coloana furnizor era goala
-
+			userReqModel.removeRow(tableRow);//sterg linia tableRow pentru ca coloana furnizor era goala
+		System.out.println("Launch Request!");
 	}
 	
 }

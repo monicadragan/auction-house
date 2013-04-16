@@ -20,7 +20,9 @@ import network.INetwork;
 import network.Network;
 import network.Server;
 
+import types.Packet;
 import types.User;
+import types.UserPublicInfo;
 import types.UserType;
 import wsc.IWebServiceClient;
 import wsc.WebServiceClient;
@@ -116,7 +118,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 //		}
 //		
 //		statManager.processRequest(cmd, tableRow, tableCol, userPanel);
-		netClient.write(netClient.key, msg);
+		netClient.writeObject(netClient.key, new Packet(msg, tableRow, tableCol));
 	}
 	public void makeGUI()
 	{
@@ -154,8 +156,8 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 //			System.out.println("is null...");
 //		else System.out.println("is OK...");
 //		while(mediator.gui.userView.stateView instanceof LoginState)
-		while(!mediator.readyToConnect)
-			System.out.println("Waiting...");
+		while(!mediator.readyToConnect);
+//			System.out.println("Waiting...");
 		mediator.netClient.makeConnection();		
 
 	}
@@ -171,6 +173,13 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 
 	public boolean isReadyToConnect() {
 		return readyToConnect;
+	}
+	
+	public UserPublicInfo getClientPublicInfo()
+	{
+		String username = gui.getUsername();
+		UserType uType = gui.getUType();
+		return new UserPublicInfo(username, uType);
 	}
 	
 }

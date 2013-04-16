@@ -11,6 +11,8 @@ import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
+import types.UserPublicInfo;
+
 import mediator.INetMediator;
 
 public class Client {
@@ -86,8 +88,8 @@ public class Client {
 		ByteBuffer buf = ByteBuffer.allocateDirect(Server.BUF_SIZE);
 		socketChannel.register(key.selector(), SelectionKey.OP_WRITE, buf);
 		
-		writeClientTable(key);
-//		write(key, "eu");
+		writeObject(key, mediator.getTableModel().getDataVector());
+		writeObject(key, mediator.getClientPublicInfo());
 	}
 	
 	public void read(SelectionKey key) {
@@ -147,7 +149,13 @@ public class Client {
 		
 	}
 	
-	public void writeClientTable(SelectionKey key)
+	/**
+	 * Trimite informatii necesare pentru o comunicare mai facila
+	 *  la server imediat dupa ce s-a conectat
+	 * 
+	 * @param key
+	 */
+	public void writeObject(SelectionKey key, Object obj)
 	{
 		System.out.println("WRITE- client: ");
 		SocketChannel socketChannel	= (SocketChannel)key.channel();
@@ -163,9 +171,10 @@ public class Client {
 		ByteBuffer buffer;
 		
         try{
-            oos.writeObject(mediator.getTableModel());
+//        	System.out.println(mediator.getTableModel().getDataVector().get(0));
+            oos.writeObject(obj);//mediator.getTableModel().getDataVector());
             buffer = ByteBuffer.wrap(baos.toByteArray());
-            socketChannel.write(buffer);
+            socketChannel.write(buffer); 
             oos.flush();
             baos.flush();
         }catch(Exception e){

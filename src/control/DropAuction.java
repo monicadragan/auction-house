@@ -1,8 +1,10 @@
 package control;
-import gui.TableView;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import network.ClientInformation;
+import network.Server;
 
 import types.Status;
 
@@ -18,17 +20,17 @@ import mediator.Mediator;
  */
 public class DropAuction implements Command{
 
-	public IGUIMediator med;
+	public Server server;
 	
-	public DropAuction(Mediator med) {
-		this.med = med;
+	public DropAuction(Server server) {
+		this.server = server;
 	}
 	
 	@Override
-	public void execute(int tableRow, int tableCol, TableView userPanel)
+	public void execute(int tableRow, int tableCol, ClientInformation clientInfo)
 	{
-		String prodStatusLicitatie = userPanel.getModel().getValueAt(tableRow, 3).toString();
-		DefaultTableModel userReqModel = userPanel.getModel();		
+		String prodStatusLicitatie = clientInfo.getModel().getValueAt(tableRow, 3).toString();
+		DefaultTableModel userReqModel = clientInfo.getModel();		
 		
 		if(prodStatusLicitatie.equals(Status.OFFER_MADE.getName())
 				|| prodStatusLicitatie.equals(Status.OFFER_ACCEPTED.getName()))

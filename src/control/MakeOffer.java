@@ -1,9 +1,11 @@
 package control;
 import gui.IMainWindow;
-import gui.TableView;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import network.ClientInformation;
+import network.Server;
 
 import types.Status;
 import types.UserType;
@@ -19,21 +21,21 @@ import mediator.Mediator;
  */
 public class MakeOffer implements Command{
 
-	public IGUIMediator med;
+	public Server server;
 	
-	public MakeOffer(Mediator med) {
-		this.med = med;
+	public MakeOffer(Server server) {
+		this.server = server;
 	}
 
 	@Override
-	public void execute(int tableRow, int tableCol, TableView userPanel)
+	public void execute(int tableRow, int tableCol, ClientInformation clientInfo)
 	{
-		String prodName = userPanel.getModel().getValueAt(tableRow, 0).toString();
-		String username = userPanel.userInfo.username;
-		String buyerName = userPanel.getModel().getValueAt(tableRow, 2).toString();
-		String prodStatus = userPanel.getModel().getValueAt(tableRow, 1).toString();
-		String prodStatusLicitatie = userPanel.getModel().getValueAt(tableRow, 3).toString();
-		DefaultTableModel userReqModel = userPanel.getModel();		
+		String prodName = clientInfo.getModel().getValueAt(tableRow, 0).toString();
+		String username = clientInfo.getUsername();
+		String buyerName = clientInfo.getModel().getValueAt(tableRow, 2).toString();
+		String prodStatus = clientInfo.getModel().getValueAt(tableRow, 1).toString();
+		String prodStatusLicitatie = clientInfo.getModel().getValueAt(tableRow, 3).toString();
+		DefaultTableModel userReqModel = clientInfo.getModel();		
 
 		if(prodStatus.equals("Inactive")){
 			JOptionPane.showMessageDialog(null, "There was no request made.");
@@ -47,16 +49,16 @@ public class MakeOffer implements Command{
 				|| prodStatusLicitatie.equals(Status.NO_OFFER.getName())
 				|| prodStatusLicitatie.equals(Status.OFFER_REFUSED.getName()))
 		{
-			String price = userPanel.getModel().getValueAt(tableRow, 4).toString();
+			String price = clientInfo.getModel().getValueAt(tableRow, 4).toString();
 			boolean hasBiggerPrice = false;
 			//anunt cumparatorul caruia i s-a oferit acest produs
-			for(int i = 0; i < med.getUsers().size(); i++)
+			for(int i = 0; i < server.getUsers().size(); i++)
 			{
-				IMainWindow user = med.getUsers().get(i).gui;
+				ClientInformation user = server.getUsers().get(i);
 				if(user.getUType().equals(UserType.BUYER)//numele buyer-ului din tabela celui care face oferta
-						&& user.getUsername().equals(userPanel.getModel().getValueAt(tableRow, 2).toString()))
+						&& user.getUsername().equals(clientInfo.getModel().getValueAt(tableRow, 2).toString()))
 				{
-					DefaultTableModel buyerModel = user.getTableView().getModel();
+					DefaultTableModel buyerModel = user.getModel();
 					for(int j = 0; j < buyerModel.getRowCount(); j++)
 					{
 						if(buyerModel.getValueAt(j, 0).toString().equals(prodName) 
@@ -70,7 +72,7 @@ public class MakeOffer implements Command{
 				//se schimba statusul in tabelele seller-ilor care au pret mai mare
 				else if(user.getUType().equals(UserType.SELLER))
 				{
-					DefaultTableModel sellerModel = user.getTableView().getModel();
+					DefaultTableModel sellerModel = user.getModel();
 					for(int j = 0; j < sellerModel.getRowCount(); j++)
 					{
 						if(sellerModel.getValueAt(j, 0).toString().equals(prodName)
@@ -95,7 +97,7 @@ public class MakeOffer implements Command{
 				newStatus = Status.OFFER_EXCEEDED;
 			userReqModel.setValueAt(newStatus.getName(), tableRow, 3);
 			userReqModel.setValueAt(price, tableRow, 4);//schimba pretul eventual
-			userPanel.setModel(userReqModel); //updatez modelul
+//			clientInfo.setModel(userReqModel); //updatez modelul
 		}
 	}
 

@@ -1,10 +1,12 @@
 package control;
 
 import gui.IMainWindow;
-import gui.TableView;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import network.ClientInformation;
+import network.Server;
 
 import mediator.IGUIMediator;
 import mediator.Mediator;
@@ -19,30 +21,30 @@ import types.UserType;
  */
 public class ViewBestOffer implements Command{
 
-	public IGUIMediator med;
+	public Server server;
 	
-	public ViewBestOffer(Mediator med) {
-		this.med = med;
+	public ViewBestOffer(Server server) {
+		this.server = server;
 	}
 	
 	/**
 	 * Metoda ce extrage cea mai buna contraoferta daca exista si afiseaza
 	 */
 	@Override
-	public void execute(int tableRow, int tableCol, TableView userPanel)
+	public void execute(int tableRow, int tableCol, ClientInformation clientInfo)
 	{
-		DefaultTableModel userReqModel = userPanel.getModel();		
-		String prodName = userPanel.getModel().getValueAt(tableRow, 0).toString();
-		String username = userPanel.userInfo.username;
+		DefaultTableModel userReqModel = clientInfo.getModel();		
+		String prodName = clientInfo.getModel().getValueAt(tableRow, 0).toString();
+		String username = clientInfo.getUsername();
 		int myPrice = Integer.parseInt(userReqModel.getValueAt(tableRow, 4).toString());
 		int min = Integer.MAX_VALUE;
 		String bestContraSeller = "";
 		
 		//caut seller-ul cu o oferta mai mica
-		for(int i = 0; i < med.getUsers().size(); i++)
+		for(int i = 0; i < server.getUsers().size(); i++)
 		{
-			IMainWindow user = med.getUsers().get(i).gui;
-			DefaultTableModel sellerModel = user.getTableView().getModel();
+			ClientInformation user = server.getUsers().get(i);
+			DefaultTableModel sellerModel = user.getModel();
 			if(user.getUType().equals(UserType.SELLER))
 					for(int j = 0; j < sellerModel.getRowCount(); j++)
 						if(sellerModel.getValueAt(j, 0).toString().equals(prodName)

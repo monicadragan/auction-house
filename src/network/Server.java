@@ -10,15 +10,20 @@ import java.util.concurrent.Executors;
 
 import javax.swing.table.DefaultTableModel;
 
+import types.Packet;
+import types.UserPublicInfo;
+import control.*;
+
 public class Server {
 	
 	public static final int BUF_SIZE	= 1024;			// buffer size
 	public static final String IP		= "127.0.0.1";	// server IP
 	public static final int PORT		= 30000;		// server port
-	
 	public static ExecutorService pool = Executors.newFixedThreadPool(5);	// thread pool - 5 threads
+	private static Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "TranferProgress"};
+	public HashMap<SelectionKey, ClientInformation> clientsMap = new HashMap<SelectionKey, ClientInformation>(); 
 	
-	public static void accept(SelectionKey key) throws IOException {
+	public void accept(SelectionKey key) throws IOException {
 		
 		System.out.print("ACCEPT: ");
 		
@@ -35,10 +40,15 @@ public class Server {
 		
 	}
 	
-	public static void readTable(SelectionKey key)
+	/**
+	 * primesc informatii suplimentare de la client
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Object readObject(SelectionKey key)
 	{
 		SocketChannel socketChannel = (SocketChannel) key.channel();
-		//primesc tabela clientului
 		
 		DefaultTableModel model = null;
 	    ByteBuffer buffer = ByteBuffer.allocate(8192);
@@ -50,22 +60,22 @@ public class Server {
 	    	{
 	    		buffer.flip();
 		        InputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
-		        ObjectInputStream ois = new ObjectInputStream(bais); //Offending line. Produces the StreamCorruptedException.
-		        String s = (String)ois.readObject();
-		        System.out.println("a primit " + s);
-		        model = (DefaultTableModel)ois.readObject();
-//		        System.out.println(model.getValueAt(0, 0));
+		        ObjectInputStream ois = new ObjectInputStream(bais);
+		        Object obj = (Object)ois.readObject();
 		        ois.close();
+		        buffer.clear();
+		        return obj;
+		        
 	    	}
 	    }
 	    catch(Exception e){
 	    	System.err.println("Exceptie la server read");
 	    	e.printStackTrace();
 	    }
-
+	    return null;
 	}
 	
-	public static void read(SelectionKey key) throws IOException {
+	public void readCommand(SelectionKey key) throws IOException {
 		
 		System.out.print("READ: ");
 		
@@ -85,8 +95,30 @@ public class Server {
 				buf.flip();
 				String msg = "";
 				Channels.newChannel(System.out).write(buf);
-
 				System.out.println();
+				Command cmd = new LaunchRequest(this);
+				
+				if(msg.equals("Launch Offer request"))
+					cmd = new LaunchRequest(this);
+				else if(msg.equals("Drop Offer request"))
+					cmd = new DropRequest(this);
+//				else if(msg.equals("Make offer"))
+//					cmd = new MakeOffer(this);
+//				else if(msg.equals("Drop auction"))
+//					cmd = new DropAuction(this);
+//				else if(msg.equals("Accept Offer"))
+//					cmd = new AcceptOffer(this);
+//				else if(msg.equals("Refuse Offer"))
+//					cmd = new RefuseOffer(this);
+//				else if(msg.equals("View Best Offer"))
+//					cmd = new ViewBestOffer(this);
+//				else // este un transfer
+//				{
+//					cmd = new TransferProgress(this);
+//					((TransferProgress)cmd).value = Integer.parseInt(msg);
+//				}
+//				
+//				statManager.processRequest(cmd, tableRow, tableCol, userPanel);
 
 				//intorc raspunsul
 				key.interestOps(SelectionKey.OP_WRITE);
@@ -100,7 +132,7 @@ public class Server {
 		
 	}
 	
-	public static void write(SelectionKey key) throws IOException {
+	public void write(SelectionKey key) throws IOException {
 		
 		System.out.println("WRITE: ");
 		String s = "Am primit";
@@ -120,12 +152,12 @@ public class Server {
 		
 		Selector selector						= null;
 		ServerSocketChannel serverSocketChannel	= null;
-		//TODO - first pt fiecare client conectat
-		boolean first = true;
+		StatusManager statManager = new StatusManager();
+		Server server = new Server();
+		
 		try {
 			selector = Selector.open();
 			
-			// TODO 2.3: init server socket and register it with the selector
 			serverSocketChannel = ServerSocketChannel.open();
 			serverSocketChannel.configureBlocking(false);
 			serverSocketChannel.socket().bind(new InetSocketAddress(IP, PORT));
@@ -143,18 +175,27 @@ public class Server {
 					it.remove();
 					
 					if (key.isAcceptable())
-						accept(key);
+						server.accept(key);
 					else if (key.isReadable())
 					{
-						if(first)
+						if(!server.clientsMap.containsKey(key)) //client nou (abia s-a conectat)
 						{
-							first = false;
-							readTable(key);
+							Vector data = (Vector)server.readObject(key);
+					        System.out.println(data.get(0));
+					        UserPublicInfo userInfo = (UserPublicInfo)server.readObject(key);
+					        System.out.println("A primit " + userInfo);
+					        DefaultTableModel model = new DefaultTableModel(data, new Vector(Arrays.asList(headTable)));
+					        server.clientsMap.put(key, new ClientInformation(userInfo, model, key));
+					        System.out.println((ClientInformation)server.clientsMap.get(key));
 						}
-						else read(key);
+						else {
+							Packet packet = (Packet)server.readObject(key);
+							ClientInformation clInfo = server.clientsMap.get(key);
+							statManager.processRequest(new LaunchRequest(server), packet.tableRow, packet.tableCol, clInfo);
+						}
 					}
 					else if (key.isWritable())
-						write(key);
+						server.write(key);
 				}
 			}
 			
@@ -175,6 +216,16 @@ public class Server {
 				} catch (IOException e) {}
 		}
 
+	}
+	
+	public ArrayList<ClientInformation> getUsers()
+	{
+		ArrayList<ClientInformation> users = new ArrayList<ClientInformation>();
+		for (Map.Entry<SelectionKey, ClientInformation> entry : clientsMap.entrySet())
+		{
+			users.add(entry.getValue());
+		}
+		return users;
 	}
 
 }

@@ -1,9 +1,11 @@
 package control;
 import gui.IMainWindow;
-import gui.TableView;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import network.ClientInformation;
+import network.Server;
 
 import types.Status;
 import types.UserType;
@@ -19,19 +21,19 @@ import mediator.Mediator;
  */
 public class DropRequest implements Command {
 
-	public IGUIMediator med;
+	public Server server;
 	
-	public DropRequest(Mediator med) {
-		this.med = med;
+	public DropRequest(Server server) {
+		this.server = server;
 	}
 	
 	@Override
-	public void execute(int tableRow, int tableCol, TableView userPanel)
+	public void execute(int tableRow, int tableCol, ClientInformation clientInfo)
 	{
-		String prodName = userPanel.getModel().getValueAt(tableRow, 0).toString();
-		String username = userPanel.userInfo.username;
-		String prodStatus = userPanel.getModel().getValueAt(tableRow, 1).toString();
-		DefaultTableModel userReqModel = userPanel.getModel();		
+		String prodName = clientInfo.getModel().getValueAt(tableRow, 0).toString();
+		String username = clientInfo.getUsername();
+		String prodStatus = clientInfo.getModel().getValueAt(tableRow, 1).toString();
+		DefaultTableModel userReqModel = clientInfo.getModel();		
 	
 		if(prodStatus.equals("Inactive")){
 			JOptionPane.showMessageDialog(null, "There was no request made.");
@@ -39,15 +41,15 @@ public class DropRequest implements Command {
 		}
 
 		//anunt sellerii care ii oferisera acest produs
-		for(int i = 0; i < med.getUsers().size(); i++)
+		for(int i = 0; i < server.getUsers().size(); i++)
 		{
-			IMainWindow user = med.getUsers().get(i).gui;
+			ClientInformation user = server.getUsers().get(i);
 			String price = "";
 			if(user.getUType().equals(UserType.SELLER))
 			{
 				int thisProdRows = 0;//numarul de linii pentru acest produs care raman in tabela
 				//parcurg tabela
-				DefaultTableModel sellerModel = user.getTableView().getModel();
+				DefaultTableModel sellerModel = user.getModel();
 				for(int j = 0; j < sellerModel.getRowCount(); j++)
 				{
 					//sterg linia cu produsul si cu username-ul
@@ -95,8 +97,7 @@ public class DropRequest implements Command {
 		rowData[4] = "";//pret
 		rowData[5] = 0;//progress bar 
 		userReqModel.addRow(rowData);//adaug noi linii
-
-		userPanel.setModel(userReqModel); //updatez modelul
+		System.out.println("Drop Request!");
 
 	}
 		

@@ -1,5 +1,5 @@
 package control;
-import gui.TableView;
+import network.ClientInformation;
 
 /**
  * interfata folosita pentru executia comenzilor primite de la useri
@@ -8,6 +8,6 @@ import gui.TableView;
  */
 public interface Command {
 
-	void execute(int tableRow, int tableCol, TableView userPanel);
+	void execute(int tableRow, int tableCol, ClientInformation clientInfo);
 	
 }

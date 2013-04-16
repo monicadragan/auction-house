@@ -4,6 +4,9 @@ import gui.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import network.ClientInformation;
+import network.Server;
+
 import types.Status;
 import types.UserType;
 
@@ -18,19 +21,19 @@ import mediator.Mediator;
  */
 public class RefuseOffer implements Command{
 
-	public IGUIMediator med;
+	public Server server;
 	
-	public RefuseOffer(Mediator med) {
-		this.med = med;
+	public RefuseOffer(Server server) {
+		this.server = server;
 	}
 
 	@Override
-	public void execute(int tableRow, int tableCol, TableView userPanel) 
+	public void execute(int tableRow, int tableCol, ClientInformation clientInfo) 
 	{
-		String prodName = userPanel.getModel().getValueAt(tableRow, 0).toString();
-		String username = userPanel.userInfo.username;
-		String prodStatus = userPanel.getModel().getValueAt(tableRow, 3).toString();
-		DefaultTableModel userReqModel = userPanel.getModel();		
+		String prodName = clientInfo.getModel().getValueAt(tableRow, 0).toString();
+		String username = clientInfo.getUsername();
+		String prodStatus = clientInfo.getModel().getValueAt(tableRow, 3).toString();
+		DefaultTableModel userReqModel = clientInfo.getModel();		
 
 		if(!prodStatus.equals(Status.OFFER_MADE.getName())){
 			JOptionPane.showMessageDialog(null, "A seller should make an offer first!");
@@ -41,14 +44,14 @@ public class RefuseOffer implements Command{
 		
 		//anunt si seller-ul
 		String sellerName = userReqModel.getValueAt(tableRow, tableCol).toString();
-		for(int i = 0; i < med.getUsers().size(); i++)
+		for(int i = 0; i < server.getUsers().size(); i++)
 		{
-			IMainWindow user = med.getUsers().get(i).gui;
+			ClientInformation user = server.getUsers().get(i);
 			if(user.getUType().equals(UserType.SELLER)
 					&& user.getUsername().equals(sellerName))
 			{
 				//parcurg tabela
-				DefaultTableModel sellerModel = user.getTableView().getModel();
+				DefaultTableModel sellerModel = user.getModel();
 				for(int j = 0; j < sellerModel.getRowCount(); j++)
 				{
 					if(sellerModel.getValueAt(j, 0).toString().equals(prodName)
