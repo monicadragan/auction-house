@@ -1,4 +1,6 @@
 package control;
+import java.nio.channels.SelectionKey;
+
 import gui.*;
 
 import javax.swing.JOptionPane;
@@ -7,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import network.ClientInformation;
 import network.Server;
 
+import types.Packet;
+import types.PacketType;
 import types.Status;
 import types.UserType;
 
@@ -41,6 +45,11 @@ public class AcceptOffer implements Command{
 		}
 		//accepta aceasta oferta
 		userReqModel.setValueAt(Status.OFFER_ACCEPTED.getName(), tableRow, 3);
+		Object[] rowData = Packet.getRowTable(userReqModel, tableRow);
+		Packet toSend = new Packet(PacketType.SET_VALUE_AT, rowData, tableRow);
+		clientInfo.key.interestOps(SelectionKey.OP_WRITE);
+		server.writeObject(clientInfo.key, toSend);
+
 		//refuza restul ofertelor
 		for(int j = 0; j < userReqModel.getRowCount(); j++)
 			if(userReqModel.getValueAt(j, 0).toString().equals(prodName) && j != tableRow)
@@ -59,6 +68,11 @@ public class AcceptOffer implements Command{
 								&& sellerModel.getValueAt(j, 2).toString().equals(username))
 						{
 							sellerModel.setValueAt(Status.OFFER_ACCEPTED.getName(), j, 3);
+							rowData = Packet.getRowTable(sellerModel, j);
+							toSend = new Packet(PacketType.SET_VALUE_AT, rowData, j);
+							user.key.interestOps(SelectionKey.OP_WRITE);
+							server.writeObject(user.key, toSend);
+
 							//TODO: Transfer FILE
 //							server.sendFile(user.getTableView().mainFrame, clientInfo.mainFrame, j, tableRow);
 							break;
@@ -71,6 +85,10 @@ public class AcceptOffer implements Command{
 								&& sellerModel.getValueAt(j, 2).toString().equals(username))
 						{
 							sellerModel.setValueAt(Status.OFFER_REFUSED.getName(), j, 3);
+							rowData = Packet.getRowTable(sellerModel, j);
+							toSend = new Packet(PacketType.SET_VALUE_AT, rowData, j);
+							user.key.interestOps(SelectionKey.OP_WRITE);
+							server.writeObject(user.key, toSend);
 							break;
 						}
 				}

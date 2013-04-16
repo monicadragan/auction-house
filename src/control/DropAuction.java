@@ -1,11 +1,15 @@
 package control;
 
+import java.nio.channels.SelectionKey;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import network.ClientInformation;
 import network.Server;
 
+import types.Packet;
+import types.PacketType;
 import types.Status;
 
 
@@ -45,6 +49,11 @@ public class DropAuction implements Command{
 		{
 			userReqModel.setValueAt(Status.NO_OFFER.getName(), tableRow, 3);
 			userReqModel.setValueAt(0, tableRow, 5);//resetare progress bar
+			Object[] rowData = Packet.getRowTable(userReqModel, tableRow);
+			Packet toSend = new Packet(PacketType.SET_VALUE_AT, rowData, tableRow);
+			clientInfo.key.interestOps(SelectionKey.OP_WRITE);
+			server.writeObject(clientInfo.key, toSend);
+
 		}
 		
 		

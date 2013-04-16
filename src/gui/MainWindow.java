@@ -176,10 +176,22 @@ public class MainWindow extends JFrame implements IMainWindow {
 	public void setValueAt(final Object[] rowData, final int row)
 	{
 		final DefaultTableModel model = this.tableView.getModel();
+		final UserType usertype = uType; 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 		    public void run() {
+				
 				Packet.setRowTable(model, row, rowData);
+				//Status.OFFER_ACCEPTED si e cumparator- trebuie sa refuze restul ofertelor
+				if(rowData[3].toString().equals(Status.OFFER_ACCEPTED)
+						&& usertype.equals(UserType.BUYER)) 
+				{
+					for(int j = 0; j < model.getRowCount(); j++)
+						if(model.getValueAt(j, 0).toString().equals(rowData[0]) && j != row)
+							model.setValueAt(Status.OFFER_REFUSED.getName(), j, 3);
+
+				}
+
 			}
 		});
 	}
