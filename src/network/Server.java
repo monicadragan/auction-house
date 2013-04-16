@@ -19,9 +19,14 @@ public class Server {
 	public static final int BUF_SIZE	= 1024;			// buffer size
 	public static final String IP		= "127.0.0.1";	// server IP
 	public static final int PORT		= 30000;		// server port
+	
 	public static ExecutorService pool = Executors.newFixedThreadPool(5);	// thread pool - 5 threads
+	
 	private static Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "TranferProgress"};
 	public HashMap<SelectionKey, ClientInformation> clientsMap = new HashMap<SelectionKey, ClientInformation>(); 
+	Packet currentPacket; //pachet care urmeaza sa fie trimis unui client
+	public HashMap<SelectionKey, ArrayList<Packet> > packets = new HashMap<SelectionKey, ArrayList<Packet>>();
+	StatusManager statManager = new StatusManager();
 	
 	public void accept(SelectionKey key) throws IOException {
 		
@@ -75,7 +80,43 @@ public class Server {
 	    return null;
 	}
 	
-	public void readCommand(SelectionKey key) throws IOException {
+	/**
+	 * Functie folosita pentru a trimite un obiect @obj
+	 * pe canalul asociat cheii @key
+	 * 
+	 * @param key
+	 */
+	public void writeObject(SelectionKey key, Object obj)
+	{
+		System.out.println("[Server] WRITE- object: ");
+		SocketChannel socketChannel	= (SocketChannel)key.channel();
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos;
+	    try{
+	        oos = new ObjectOutputStream(baos);
+	    }catch(Exception e){
+	        System.err.println("Could not create object output stream. Aborting...");
+	        return;
+	    }
+		ByteBuffer buffer;
+		
+        try{
+            oos.writeObject(obj);
+            buffer = ByteBuffer.wrap(baos.toByteArray());
+            socketChannel.write(buffer); 
+            oos.flush();
+            baos.flush();
+        }catch(Exception e){
+            System.err.println("Could not parse object.");
+            e.printStackTrace();
+        }
+
+		key.interestOps(SelectionKey.OP_READ); //a scris => isi schimba interesul pt citit
+			
+	}
+
+	public void read(SelectionKey key) throws IOException {
 		
 		System.out.print("READ: ");
 		
@@ -96,12 +137,12 @@ public class Server {
 				String msg = "";
 				Channels.newChannel(System.out).write(buf);
 				System.out.println();
-				Command cmd = new LaunchRequest(this);
-				
-				if(msg.equals("Launch Offer request"))
-					cmd = new LaunchRequest(this);
-				else if(msg.equals("Drop Offer request"))
-					cmd = new DropRequest(this);
+//				Command cmd = new LaunchRequest(this);
+//				
+//				if(msg.equals("Launch Offer request"))
+//					cmd = new LaunchRequest(this);
+//				else if(msg.equals("Drop Offer request"))
+//					cmd = new DropRequest(this);
 //				else if(msg.equals("Make offer"))
 //					cmd = new MakeOffer(this);
 //				else if(msg.equals("Drop auction"))
@@ -148,11 +189,39 @@ public class Server {
 		
 	}
 	
+	public void processClientRequest(Packet packet, ClientInformation clInfo)
+	{
+		String msg = packet.msg;
+		Command cmd = new LaunchRequest(this);
+		
+		if(msg.equals("Launch Offer request"))
+			cmd = new LaunchRequest(this);
+		else if(msg.equals("Drop Offer request"))
+			cmd = new DropRequest(this);
+		else if(msg.equals("Make offer"))
+			cmd = new MakeOffer(this);
+		else if(msg.equals("Drop auction"))
+			cmd = new DropAuction(this);
+		else if(msg.equals("Accept Offer"))
+			cmd = new AcceptOffer(this);
+		else if(msg.equals("Refuse Offer"))
+			cmd = new RefuseOffer(this);
+		else if(msg.equals("View Best Offer"))
+			cmd = new ViewBestOffer(this);
+		else // este un transfer
+		{
+			cmd = new TransferProgress(this);
+			((TransferProgress)cmd).value = Integer.parseInt(msg);
+		}
+		statManager.processRequest(cmd, packet.tableRow, packet.tableCol, clInfo);
+
+	}
+	
 	public static void main(String[] args) {
 		
 		Selector selector						= null;
 		ServerSocketChannel serverSocketChannel	= null;
-		StatusManager statManager = new StatusManager();
+
 		Server server = new Server();
 		
 		try {
@@ -191,11 +260,15 @@ public class Server {
 						else {
 							Packet packet = (Packet)server.readObject(key);
 							ClientInformation clInfo = server.clientsMap.get(key);
-							statManager.processRequest(new LaunchRequest(server), packet.tableRow, packet.tableCol, clInfo);
+							System.out.println("[SRV] A primit de  la client  " + clInfo.getUsername());
+							server.processClientRequest(packet, clInfo);
 						}
 					}
-					else if (key.isWritable())
-						server.write(key);
+//					else if (key.isWritable())
+//					{
+//						server.writeObject(key, server.getCurrentPacket(key));
+//					}
+						
 				}
 			}
 			
@@ -228,4 +301,25 @@ public class Server {
 		return users;
 	}
 
+	public void addPacketToSend(SelectionKey key, Packet packet)
+	{
+		ArrayList<Packet> packetList;
+		if( this.packets.containsKey(key) )//mai exista si alte mesaje de trimis catre acest client
+			packetList = this.packets.get(key);
+		else
+			packetList = new ArrayList<Packet>();
+		
+		packetList.add(packet);//adaug la coada
+		this.packets.put(key, packetList);		
+	}
+	
+	public Packet getCurrentPacket(SelectionKey key)
+	{
+		ArrayList<Packet> packetList;
+		packetList = this.packets.get(key);
+		Packet p = packetList.remove(0);//scot primul mesaj din list
+		this.packets.put(key, packetList);
+		
+		return p;
+	}
 }

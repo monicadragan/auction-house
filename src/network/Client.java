@@ -1,7 +1,10 @@
 package network;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -11,6 +14,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
+import types.Packet;
 import types.UserPublicInfo;
 
 import mediator.INetMediator;
@@ -50,12 +54,15 @@ public class Client {
 					// get current event and REMOVE it from the list!!!
 					SelectionKey key = it.next();
 					it.remove();
+					this.key = key;
 					
 					if (key.isConnectable())
 						connect(key);
-					this.key = key;
-//					else if (key.isReadable())
-//						read(key);
+					else if (key.isReadable())
+					{
+						Packet recvPacket = (Packet)readObject(key);
+						mediator.processReplyFromServer(recvPacket);
+					}
 
 				}
 			}
@@ -129,6 +136,41 @@ public class Client {
 		
 	}
 	
+	/**
+	 * Primirea unui obiect de la server
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Object readObject(SelectionKey key)
+	{
+		SocketChannel socketChannel = (SocketChannel) key.channel();
+		
+	    ByteBuffer buffer = ByteBuffer.allocate(8192);
+
+	    int bytesRead ;//= socketChannel.read(buffer);
+	    try{
+	    	while((bytesRead = socketChannel.read(buffer)) == 0);
+
+	    	buffer.flip();
+	        InputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
+	        ObjectInputStream ois = new ObjectInputStream(bais);
+	        Object obj = (Object)ois.readObject();
+	        Packet p = (Packet)obj;
+	        System.out.println("[CLIENT] A primit " + p.pType);
+	        ois.close();
+	        buffer.clear();
+	        return obj;
+		        
+	    }
+	    catch(Exception e){
+	    	System.err.println("[CLIENT] Exceptie in readObject");
+	    	e.printStackTrace();
+	    }
+	    return null;
+	}
+
+	
 	public void write(SelectionKey key, String msg) {
 		
 		System.out.println("WRITE- client: ");
@@ -159,6 +201,8 @@ public class Client {
 	{
 		System.out.println("WRITE- client: ");
 		SocketChannel socketChannel	= (SocketChannel)key.channel();
+
+		key.interestOps(SelectionKey.OP_WRITE);
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ObjectOutputStream oos;
@@ -181,9 +225,8 @@ public class Client {
             System.err.println("Could not parse object.");
             e.printStackTrace();
         }
-
-		//key.interestOps(SelectionKey.OP_READ);
-			
+		key.interestOps(SelectionKey.OP_READ);
+	
 	}
 
 

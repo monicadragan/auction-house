@@ -1,4 +1,6 @@
 package control;
+import java.nio.channels.SelectionKey;
+
 import gui.IMainWindow;
 
 import javax.swing.JOptionPane;
@@ -7,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import network.ClientInformation;
 import network.Server;
 
+import types.Packet;
+import types.PacketType;
 import types.Status;
 import types.UserType;
 
@@ -34,8 +38,9 @@ public class LaunchRequest implements Command {
 		String username = clientInfo.getUsername();
 		String prodStatus = clientInfo.getModel().getValueAt(tableRow, 1).toString();
 		DefaultTableModel userReqModel = clientInfo.getModel();		
-		
+		Packet toSend;
 		boolean receiveResponse = false;
+		
 		if(prodStatus.equals("Active")){
 			JOptionPane.showMessageDialog(null, "Request already launched.");
 			return;
@@ -59,6 +64,10 @@ public class LaunchRequest implements Command {
 						String price = sellerModel.getValueAt(j, 4).toString();
 						if(sellerModel.getValueAt(j, 1).toString().equals("Inactive")){
 							sellerModel.removeRow(j);
+//							toSend = new Packet(PacketType.REMOVE_ROW, j);
+////							server.addPacketToSend(user.key, toSend);
+//							user.key.interestOps(SelectionKey.OP_WRITE);
+//							server.writeObject(user.key, toSend);
 						}
 						
 						rowDataSeller[0] = prodName;
@@ -68,6 +77,9 @@ public class LaunchRequest implements Command {
 						rowDataSeller[4] = price;//pret
 						rowDataSeller[5] = 0;//progress bar !!
 						sellerModel.addRow(rowDataSeller);//adaug noi linii	
+						toSend = new Packet(PacketType.ADD_ROW, rowDataSeller);
+						user.key.interestOps(SelectionKey.OP_WRITE);
+						server.writeObject(user.key, toSend);
 						
 						rowData[0] = prodName;
 						rowData[1] = "Active";
@@ -76,6 +88,10 @@ public class LaunchRequest implements Command {
 						rowData[4] = "";//pret
 						rowData[5] = 0;//progress bar !!
 						userReqModel.addRow(rowData);//adaug noi linii
+						toSend = new Packet(PacketType.ADD_ROW, rowData);
+						clientInfo.key.interestOps(SelectionKey.OP_WRITE);
+						server.writeObject(clientInfo.key, toSend);
+						
 						receiveResponse = true;
 						break;
 					}
@@ -83,7 +99,12 @@ public class LaunchRequest implements Command {
 			}
 		}
 		if(receiveResponse)//exista cel putin un furnizor
+		{
 			userReqModel.removeRow(tableRow);//sterg linia tableRow pentru ca coloana furnizor era goala
+//			toSend = new Packet(PacketType.REMOVE_ROW, tableRow);
+//			clientInfo.key.interestOps(SelectionKey.OP_WRITE);
+//			server.writeObject(clientInfo.key, toSend);
+		}
 		System.out.println("Launch Request!");
 	}
 	

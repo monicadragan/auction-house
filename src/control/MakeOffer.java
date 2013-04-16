@@ -1,5 +1,6 @@
 package control;
-import gui.IMainWindow;
+
+import java.nio.channels.SelectionKey;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -7,11 +8,10 @@ import javax.swing.table.DefaultTableModel;
 import network.ClientInformation;
 import network.Server;
 
+import types.Packet;
+import types.PacketType;
 import types.Status;
 import types.UserType;
-
-import mediator.IGUIMediator;
-import mediator.Mediator;
 
 /**
  * Clasa folosita pentru a face modificarile necesare cand se primeste
@@ -66,6 +66,12 @@ public class MakeOffer implements Command{
 						{
 							buyerModel.setValueAt(Status.OFFER_MADE.getName(), j, 3);
 							buyerModel.setValueAt(price, j, 4);
+							Object[] rowData = Packet.getRowTable(buyerModel, j);
+							System.out.println(rowData);
+							Packet toSend = new Packet(PacketType.SET_VALUE_AT, rowData, j);
+							user.key.interestOps(SelectionKey.OP_WRITE);
+							server.writeObject(user.key, toSend);
+
 						}						
 					}
 				}
@@ -83,6 +89,12 @@ public class MakeOffer implements Command{
 							if(actualPrice > Integer.parseInt(price))//acest seller are un pret mai mare
 							{
 								sellerModel.setValueAt(Status.OFFER_EXCEEDED.getName(), j, 3);
+								Object[] rowData = Packet.getRowTable(sellerModel, j);
+								System.out.println(rowData);
+								Packet toSend = new Packet(PacketType.SET_VALUE_AT, rowData, j);
+								user.key.interestOps(SelectionKey.OP_WRITE);
+								server.writeObject(user.key, toSend);
+
 							}
 							if(actualPrice < Integer.parseInt(price))//user-ul curent ofera un pret mai mare
 								hasBiggerPrice = true;
@@ -97,6 +109,13 @@ public class MakeOffer implements Command{
 				newStatus = Status.OFFER_EXCEEDED;
 			userReqModel.setValueAt(newStatus.getName(), tableRow, 3);
 			userReqModel.setValueAt(price, tableRow, 4);//schimba pretul eventual
+
+			Object[] rowData = Packet.getRowTable(userReqModel, tableRow);
+			System.out.println(tableRow + "::" + rowData);
+			Packet toSend = new Packet(PacketType.SET_VALUE_AT, rowData, tableRow);
+			clientInfo.key.interestOps(SelectionKey.OP_WRITE);
+			server.writeObject(clientInfo.key, toSend);
+
 //			clientInfo.setModel(userReqModel); //updatez modelul
 		}
 	}

@@ -1,4 +1,6 @@
 package control;
+import java.nio.channels.SelectionKey;
+
 import gui.IMainWindow;
 
 import javax.swing.JOptionPane;
@@ -7,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import network.ClientInformation;
 import network.Server;
 
+import types.Packet;
+import types.PacketType;
 import types.Status;
 import types.UserType;
 
@@ -59,6 +63,10 @@ public class DropRequest implements Command {
 						if(sellerModel.getValueAt(j, 2).toString().equals(username))	
 						{
 							sellerModel.removeRow(j);
+							//trimit mesaj sa-si stearga linia corespunzatoare acestui cumparator din tabela
+							Packet toSend = new Packet(PacketType.REMOVE_ROW, j);
+							user.key.interestOps(SelectionKey.OP_WRITE);
+							server.writeObject(user.key, toSend);
 							j--;
 							price = sellerModel.getValueAt(j, 4).toString();
 							thisProdRows--;
@@ -97,6 +105,10 @@ public class DropRequest implements Command {
 		rowData[4] = "";//pret
 		rowData[5] = 0;//progress bar 
 		userReqModel.addRow(rowData);//adaug noi linii
+		Packet toSend = new Packet(PacketType.ADD_ROW, rowData);
+		clientInfo.key.interestOps(SelectionKey.OP_WRITE);
+		server.writeObject(clientInfo.key, toSend);
+
 		System.out.println("Drop Request!");
 
 	}

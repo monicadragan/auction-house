@@ -1,6 +1,7 @@
 package control;
 
 import network.ClientInformation;
+import network.Server;
 import types.Status;
 import mediator.IGUIMediator;
 import mediator.Mediator;
@@ -14,11 +15,10 @@ import mediator.Mediator;
 public class TransferProgress implements Command{
 	
 	public int value;
-
-	public IGUIMediator med;
+	public Server server;
 	
-	public TransferProgress(Mediator med) {
-		this.med = med;
+	public TransferProgress(Server server) {
+		this.server = server;
 	}
 
 	@Override

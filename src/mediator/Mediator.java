@@ -1,5 +1,6 @@
 package mediator;
 import gui.LoginState;
+import gui.IMainWindow;
 import gui.MainWindow;
 import gui.TableView;
 
@@ -21,6 +22,7 @@ import network.Network;
 import network.Server;
 
 import types.Packet;
+import types.PacketType;
 import types.User;
 import types.UserPublicInfo;
 import types.UserType;
@@ -40,7 +42,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	INetwork networkManager;
 	IWebServiceClient wsClient;
 	Client netClient;
-	MainWindow gui;
+	IMainWindow gui;
 	boolean readyToConnect = false;
 	
 	public Mediator(){
@@ -94,32 +96,31 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	/**
 	 * Metoda prin care se trimit la executat comenzile primite de la utilizator
 	 */
-	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel){
-//		Command cmd = new LaunchRequest(this);
-//		
-//		if(msg.equals("Launch Offer request"))
-//			cmd = new LaunchRequest(this);
-//		else if(msg.equals("Drop Offer request"))
-//			cmd = new DropRequest(this);
-//		else if(msg.equals("Make offer"))
-//			cmd = new MakeOffer(this);
-//		else if(msg.equals("Drop auction"))
-//			cmd = new DropAuction(this);
-//		else if(msg.equals("Accept Offer"))
-//			cmd = new AcceptOffer(this);
-//		else if(msg.equals("Refuse Offer"))
-//			cmd = new RefuseOffer(this);
-//		else if(msg.equals("View Best Offer"))
-//			cmd = new ViewBestOffer(this);
-//		else // este un transfer
-//		{
-//			cmd = new TransferProgress(this);
-//			((TransferProgress)cmd).value = Integer.parseInt(msg);
-//		}
-//		
-//		statManager.processRequest(cmd, tableRow, tableCol, userPanel);
+	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel)
+	{
 		netClient.writeObject(netClient.key, new Packet(msg, tableRow, tableCol));
 	}
+	
+	public void processReplyFromServer(Packet recvPacket)
+	{
+		switch(recvPacket.pType)
+		{
+			case ADD_ROW:
+				System.out.println("to add: " + recvPacket.rowData);
+				gui.addRowTable(recvPacket.rowData);
+				break;
+				
+			case REMOVE_ROW:
+				System.out.println("to remove: " + recvPacket.tableRow);
+				gui.removeRowTable(recvPacket.tableRow);
+				break;
+				
+			case SET_VALUE_AT:
+				gui.setValueAt(recvPacket.rowData, recvPacket.tableRow);
+				break;
+		}
+	}
+	
 	public void makeGUI()
 	{
 //		gui = new MainWindow(this);

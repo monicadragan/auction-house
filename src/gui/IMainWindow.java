@@ -19,5 +19,8 @@ public interface IMainWindow {
 	public TableView getTableView();
 	public void setUType(UserType uType);
 	public UserType getUType();
+	public void addRowTable(Object[] rowData);
+	public void removeRowTable(int row);
+	public void setValueAt(Object[] rowData, int row);
 	
 }

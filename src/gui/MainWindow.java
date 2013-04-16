@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import network.Client;
 
+import types.Packet;
+import types.Status;
 import types.UserType;
 
 import mediator.IGUIMediator;
@@ -106,5 +109,90 @@ public class MainWindow extends JFrame implements IMainWindow {
 	public UserType getUType() {
 		return uType;
 	}
+	
+	public void addRowTable(final Object[] rowData)
+	{
+		final DefaultTableModel model = this.tableView.getModel();
+		SwingUtilities.invokeLater(new Runnable() {
 
+		    @Override
+		    public void run() {
+				if(rowData[1].equals("Inactive"))//am primit sa adaug o linie inactiva = DropRequest
+				{
+					String prodName = rowData[0].toString();
+					//sterg toate liniile corespunzatoare acestui produs
+					for(int j = 0; j < model.getRowCount(); j++)
+					{
+						if(model.getValueAt(j, 0).toString().equals(prodName))
+						{
+							model.removeRow(j);
+							j--;
+						}
+					}
+					model.addRow(rowData); //adaug linia cu produsul inactiv
+				} else {  //LaunchRequest
+			    	model.addRow(rowData);
+					for(int j = 0; j < model.getRowCount(); ++j)
+						if(model.getValueAt(j, 0).equals(rowData[0].toString()) &&
+								model.getValueAt(j, 1).toString().equals("Inactive"))
+						{
+							model.removeRow(j);
+							break;
+						}
+				}	
+		    }
+
+		});
+
+	}
+	
+	public void removeRowTable(final int row)
+	{
+		final DefaultTableModel model = this.tableView.getModel();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+		    public void run() {
+				String prodName = model.getValueAt(row, 0).toString();
+				String price = model.getValueAt(row, 4).toString();
+				model.removeRow(row);
+				//verific daca mai exista vreo linie cu acest produs
+				int noLines = 0;
+				for(int j = 0; j < model.getRowCount(); j++)
+					if(model.getValueAt(j, 0).toString().equals(prodName) )
+					{
+						noLines++;
+						break;
+					}
+				if(noLines == 0)
+				{
+					Object[] rowData = createInactiveRowDataTable(model.getColumnCount(), prodName, price, 0);
+					model.addRow(rowData);
+				}
+				
+			}
+		});
+	}
+	
+	public void setValueAt(final Object[] rowData, final int row)
+	{
+		final DefaultTableModel model = this.tableView.getModel();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+		    public void run() {
+				Packet.setRowTable(model, row, rowData);
+			}
+		});
+	}
+	
+	Object[] createInactiveRowDataTable(int colsCount, String prodName, String price, int progressBar)
+	{
+		Object[] rowData = new Object[colsCount];
+		rowData[0] = prodName;
+		rowData[1] = "Inactive";
+		rowData[2] = "";
+		rowData[3] = Status.INACTIVE.getName();
+		rowData[4] = price;//pret
+		rowData[5] = 0;//progress bar 
+		return rowData;
+	}
 }

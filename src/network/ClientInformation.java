@@ -11,7 +11,7 @@ public class ClientInformation {
 	
 	UserPublicInfo userInfo;
 	DefaultTableModel tableModel;
-	SelectionKey key;
+	public SelectionKey key;
 	
 	public ClientInformation(UserPublicInfo userInfo, DefaultTableModel tableModel, SelectionKey key)
 	{
