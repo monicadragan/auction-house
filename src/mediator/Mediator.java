@@ -160,15 +160,18 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 						System.err.println("Too little information!!");
 						e.printStackTrace();
 					}
-					//SwingUtilities.invokeLater(new GUIThread(this));
 				}
 				else if(gui.getUType() == UserType.BUYER) {
 						
 					//creare fisier
 					String filename = recvPacket.from + "." + recvPacket.product.toString()+"_recv";
 					try {
-						//append= true, ca sa adauge la sfarsit
-						FileOutputStream out = new FileOutputStream(new File(filename), true); 
+						
+						FileOutputStream out;
+						if(recvPacket.transferOffset == 0) //deschid fisierul fara append
+							out = new FileOutputStream(new File(filename));
+						else //append= true, ca sa adauge la sfarsit
+							out = new FileOutputStream(new File(filename), true); 
 						out.write(recvPacket.buffer, 0, recvPacket.sizeBuffer);
 						
 						System.out.println("Am primit produs cumparat de la "+ recvPacket.from + " cu offset "
@@ -221,7 +224,6 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		mediator.makeGUI();
 		while(!mediator.readyToConnect);
 //			System.out.println(mediator.readyToConnect);
-//			System.out.println("Waiting...");
 		
 		mediator.netClient.makeConnection();		
 

@@ -45,7 +45,7 @@ public class Server {
 	}
 	
 	/**
-	 * primesc informatii suplimentare de la client
+	 * Primesc informatii de la client
 	 * 
 	 * @param key
 	 * @return
@@ -54,26 +54,27 @@ public class Server {
 	{
 		SocketChannel socketChannel = (SocketChannel) key.channel();
 		
-		DefaultTableModel model = null;
 	    ByteBuffer buffer = ByteBuffer.allocate(8192);
 
-	    int bytesRead ;//= socketChannel.read(buffer);
+	    int bytesRead ;
 	    try{
 	    	while((bytesRead = socketChannel.read(buffer)) == 0);
-//	    		System.out.println("N-am primit...");
-	    	{
-	    		buffer.flip();
-		        InputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
-		        ObjectInputStream ois = new ObjectInputStream(bais);
-		        Object obj = (Object)ois.readObject();
-		        ois.close();
-		        buffer.clear();
-		        return obj;
+    		buffer.flip();
+	        InputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
+	        ObjectInputStream ois = new ObjectInputStream(bais);
+	        Object obj = (Object)ois.readObject();
+	        ois.close();
+	        buffer.clear();
+	        return obj;
 		        
-	    	}
 	    }
 	    catch(Exception e){
 	    	System.err.println("Exceptie la server read");
+	    	try {
+				socketChannel.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 	    	e.printStackTrace();
 	    }
 	    return null;
@@ -87,7 +88,7 @@ public class Server {
 	 */
 	public void writeObject(SelectionKey key, Object obj)
 	{
-		System.out.println("[Server] WRITE- object: ");
+		System.out.println("[Server] WRITE- object: " + obj.toString());
 		SocketChannel socketChannel	= (SocketChannel)key.channel();
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -108,6 +109,11 @@ public class Server {
             baos.flush();
         }catch(Exception e){
             System.err.println("Could not parse object.");
+	    	try {
+				socketChannel.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
             e.printStackTrace();
         }
 
