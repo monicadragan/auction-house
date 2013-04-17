@@ -21,8 +21,5 @@ public interface IGUIMediator {
 
 	public boolean isReadyToConnect();
 	public void setReadyToConnect(boolean readyToConnect);
-//	public ArrayList<UserThread> getUsers();
-//	public void setUsers(ArrayList<UserThread> users);
-
 
 }

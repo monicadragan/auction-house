@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+import control.TransferProgress;
+
 import network.Client;
 
 import types.Packet;
@@ -209,7 +211,9 @@ public class MainWindow extends JFrame implements IMainWindow {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 		    public void run() {
+				TransferProgress transfer = new TransferProgress(value);
 				model.setValueAt(value, row, column);
+				transfer.changeStatus(row, 3, model);
 			}
 		});
 	}

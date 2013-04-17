@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.SelectionKey;
@@ -14,6 +15,14 @@ import gui.TableView;
 
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.log4j.Appender;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.SimpleLayout;
 
 import network.Client;
 import network.INetwork;
@@ -36,6 +45,8 @@ import control.*;
  *
  */
 public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
+	
+	static Logger logger = Logger.getLogger(Mediator.class);
 	
 	StatusManager statManager;
 	INetwork networkManager;
@@ -74,26 +85,6 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	}
 	
 	/**
-	 * Metoda ce asigura comunicarea cu interfata grafica
-	 * pentru a efectua modificarile din timpul unui transfer
-	 */
-	public void changeTransferProgress(Integer val, MainWindow srcFrame,
-			MainWindow destFrame, int srcRow, int dstRow)
-	{
-		//anunt interfata grafica sa modifice progress-barul
-		srcFrame.changeProgresBar(val, srcRow, 5);
-		if(!findUser(destFrame.getUsername()))
-		{
-			this.sendRequest(-1 + "", srcRow, 3, srcFrame.getTableView());
-			return;
-		}
-		this.sendRequest(val + "", srcRow, 3, srcFrame.getTableView());
-
-		destFrame.changeProgresBar(val, dstRow, 5);
-		this.sendRequest(val + "", dstRow, 3, destFrame.getTableView());
-	}
-	
-	/**
 	 * Metoda prin care se trimit la executat comenzile primite de la utilizator
 	 */
 	public void sendRequest(String msg, int tableRow, int tableCol, TableView userPanel)
@@ -107,7 +98,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	
 	public void sendRequest(Packet p)
 	{
-		System.out.println("Trimit un pachet la server: " + p.pType);
+		logger.info("Send packet of type " + p.pType + " to server");
 		
 		netClient.writeObject(netClient.key, p);
 	}
@@ -117,23 +108,24 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		switch(recvPacket.pType)
 		{
 			case ADD_ROW:
-				System.out.println("to add: " + recvPacket.rowData);
+				logger.debug("Received message from server to add row for " + recvPacket.rowData[0]);
 				gui.addRowTable(recvPacket.rowData);
 				break;
 				
 			case REMOVE_ROW:
-				System.out.println("to remove: " + recvPacket.tableRow);
+				logger.debug("Received message from server to remove row " + recvPacket.tableRow);
 				gui.removeRowTable(recvPacket.tableRow);
 				break;
 				
 			case SET_VALUE_AT:
+				logger.debug("Received message from server to modify row " + recvPacket.tableRow);
 				gui.setValueAt(recvPacket.rowData, recvPacket.tableRow);
 				break;
 			case TRANSFER:
-				if(gui.getUType() == UserType.SELLER){
-					System.out.println("Furnizorul a primit cerere de transfer");
+				
+				if(gui.getUType() == UserType.SELLER) {
+					logger.info("Received request from server to transfer " + recvPacket.product.toString());
 					String filename = gui.getUsername()+"."+recvPacket.product.toString();
-					System.out.println("filename = " +filename);
 					
 					try {
 						File fin = new File(filename);
@@ -143,39 +135,42 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 						int len;
 						byte buf[] = new byte[CHUNK_SIZE];
 						int offset = 0;
-						//TODO: de vazut cum functioneaza
 						
 						while( (len = in.read(buf, 0, CHUNK_SIZE))!=-1 ) {
-							System.out.println("A citit : " + len  + " din " + size );
+						
 							sendRequest(new Packet(PacketType.TRANSFER, "Transfer", recvPacket.product, 
 									recvPacket.from, recvPacket.to, buf, len, size, offset, recvPacket.fromRow, recvPacket.toRow));
 							offset += len;
+							logger.debug("Transfering " + offset + " bytes out of " + size);
 							Thread.sleep(500);
-							System.out.println(len + " " + offset);
 							int value = (int) (offset*100/size);
 			            	gui.changeProgresBar(value, recvPacket.fromRow, 5);
 						}
+						logger.debug("Transfer completed");
 						in.close();
 					}catch(Exception e){
-						System.err.println("Too little information!!");
+						logger.error("Too little information!!");
 						e.printStackTrace();
 					}
 				}
 				else if(gui.getUType() == UserType.BUYER) {
 						
 					//creare fisier
-					String filename = recvPacket.from + "." + recvPacket.product.toString()+"_recv";
+
+					String filename = recvPacket.from + "." + recvPacket.product.toString() + "_recv";
 					try {
-						
 						FileOutputStream out;
 						if(recvPacket.transferOffset == 0) //deschid fisierul fara append
+						{
+							logger.info("Starting transfer for " + recvPacket.product.toString() + " from " + recvPacket.from);
 							out = new FileOutputStream(new File(filename));
+						}
 						else //append= true, ca sa adauge la sfarsit
 							out = new FileOutputStream(new File(filename), true); 
 						out.write(recvPacket.buffer, 0, recvPacket.sizeBuffer);
-						
-						System.out.println("Am primit produs cumparat de la "+ recvPacket.from + " cu offset "
-								+ recvPacket.transferOffset + " din " + recvPacket.transferSize);
+						logger.debug("Received the first "
+								+ recvPacket.transferOffset + " bytes from " + recvPacket.transferSize +
+								" for " + recvPacket.product.toString());
 						
 						int value = (int) ( (recvPacket.transferOffset + recvPacket.sizeBuffer)*100/recvPacket.transferSize);
 		            	gui.changeProgresBar(value, recvPacket.toRow, 5);
@@ -220,10 +215,23 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		
 	public static void main(String[] args)
 	{
+		BasicConfigurator.configure();
+		PropertyConfigurator.configure("log4j.properties");
+//		Appender appender = logger.getAppender("FA");
+//		appender.
 		Mediator mediator = new Mediator();
 		mediator.makeGUI();
+		logger.info("Hello ");
 		while(!mediator.readyToConnect);
 //			System.out.println(mediator.readyToConnect);
+		try {
+			FileAppender fileAppender = new FileAppender(new SimpleLayout(), mediator.gui.getUsername());
+			logger.removeAppender("FA");
+			logger.addAppender(fileAppender);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		mediator.netClient.makeConnection();		
 

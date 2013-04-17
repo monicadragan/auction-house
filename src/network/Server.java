@@ -75,7 +75,6 @@ public class Server {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-	    	e.printStackTrace();
 	    }
 	    return null;
 	}
@@ -114,7 +113,6 @@ public class Server {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-            e.printStackTrace();
         }
 
 		key.interestOps(SelectionKey.OP_READ); //a scris => isi schimba interesul pt citit

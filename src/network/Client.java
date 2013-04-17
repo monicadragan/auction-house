@@ -161,7 +161,12 @@ public class Client {
 	    }
 	    catch(Exception e){
 	    	System.err.println("[CLIENT] Exceptie in readObject");
-	    	e.printStackTrace();
+	    	try {
+				socketChannel.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
 	    }
 	    return null;
 	}
@@ -219,7 +224,12 @@ public class Client {
             baos.flush();
         }catch(Exception e){
             System.err.println("Could not parse object.");
-            e.printStackTrace();
+	    	try {
+				socketChannel.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
         }
 		key.interestOps(SelectionKey.OP_READ);
 	

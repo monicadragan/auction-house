@@ -53,7 +53,7 @@ public class Network implements INetwork{
             }
             @Override
             protected void process(List<Integer> c) {
-            	med.changeTransferProgress(c.get(c.size() - 1), source, dest, sourceRow, destRow);
+//            	med.changeTransferProgress(c.get(c.size() - 1), source, dest, sourceRow, destRow);
             }
 
             @Override

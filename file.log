@@ -1,0 +1,184 @@
+0    [main] INFO  mediator.Mediator  - Hello 
+0    [main] INFO  mediator.Mediator  - Hello 
+17488 [main] DEBUG mediator.Mediator  - Received message from server to add row for Tastatura
+25513 [main] DEBUG mediator.Mediator  - Received message from server to add row for Tastatura
+113943 [main] DEBUG mediator.Mediator  - Received message from server to modify row 1
+121976 [main] DEBUG mediator.Mediator  - Received message from server to modify row 3
+124515 [main] DEBUG mediator.Mediator  - Received message from server to modify row 3
+124529 [main] INFO  mediator.Mediator  - Received request from server to transfer Tastatura
+124530 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+124531 [main] DEBUG mediator.Mediator  - Transfering 1024 bytes out of 26656
+116528 [main] DEBUG mediator.Mediator  - Received message from server to modify row 1
+125037 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+117028 [main] DEBUG mediator.Mediator  - Received the first 1024 bytes from 26656 for Tastatura
+125045 [main] DEBUG mediator.Mediator  - Transfering 2048 bytes out of 26656
+125548 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+125549 [main] DEBUG mediator.Mediator  - Transfering 3072 bytes out of 26656
+117541 [main] DEBUG mediator.Mediator  - Received the first 2048 bytes from 26656 for Tastatura
+126052 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+126053 [main] DEBUG mediator.Mediator  - Transfering 4096 bytes out of 26656
+118044 [main] DEBUG mediator.Mediator  - Received the first 3072 bytes from 26656 for Tastatura
+126556 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+126557 [main] DEBUG mediator.Mediator  - Transfering 5120 bytes out of 26656
+118547 [main] DEBUG mediator.Mediator  - Received the first 4096 bytes from 26656 for Tastatura
+127060 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+127061 [main] DEBUG mediator.Mediator  - Transfering 6144 bytes out of 26656
+119054 [main] DEBUG mediator.Mediator  - Received the first 5120 bytes from 26656 for Tastatura
+127564 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+127565 [main] DEBUG mediator.Mediator  - Transfering 7168 bytes out of 26656
+119555 [main] DEBUG mediator.Mediator  - Received the first 6144 bytes from 26656 for Tastatura
+128068 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+128069 [main] DEBUG mediator.Mediator  - Transfering 8192 bytes out of 26656
+120058 [main] DEBUG mediator.Mediator  - Received the first 7168 bytes from 26656 for Tastatura
+128572 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+128573 [main] DEBUG mediator.Mediator  - Transfering 9216 bytes out of 26656
+120562 [main] DEBUG mediator.Mediator  - Received the first 8192 bytes from 26656 for Tastatura
+129076 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+129077 [main] DEBUG mediator.Mediator  - Transfering 10240 bytes out of 26656
+121070 [main] DEBUG mediator.Mediator  - Received the first 9216 bytes from 26656 for Tastatura
+129580 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+129581 [main] DEBUG mediator.Mediator  - Transfering 11264 bytes out of 26656
+121571 [main] DEBUG mediator.Mediator  - Received the first 10240 bytes from 26656 for Tastatura
+130084 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+130085 [main] DEBUG mediator.Mediator  - Transfering 12288 bytes out of 26656
+122076 [main] DEBUG mediator.Mediator  - Received the first 11264 bytes from 26656 for Tastatura
+130588 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+130589 [main] DEBUG mediator.Mediator  - Transfering 13312 bytes out of 26656
+122581 [main] DEBUG mediator.Mediator  - Received the first 12288 bytes from 26656 for Tastatura
+131092 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+131093 [main] DEBUG mediator.Mediator  - Transfering 14336 bytes out of 26656
+123084 [main] DEBUG mediator.Mediator  - Received the first 13312 bytes from 26656 for Tastatura
+131596 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+131597 [main] DEBUG mediator.Mediator  - Transfering 15360 bytes out of 26656
+123589 [main] DEBUG mediator.Mediator  - Received the first 14336 bytes from 26656 for Tastatura
+132101 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+132101 [main] DEBUG mediator.Mediator  - Transfering 16384 bytes out of 26656
+124094 [main] DEBUG mediator.Mediator  - Received the first 15360 bytes from 26656 for Tastatura
+132604 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+132605 [main] DEBUG mediator.Mediator  - Transfering 17408 bytes out of 26656
+124595 [main] DEBUG mediator.Mediator  - Received the first 16384 bytes from 26656 for Tastatura
+133108 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+133109 [main] DEBUG mediator.Mediator  - Transfering 18432 bytes out of 26656
+125100 [main] DEBUG mediator.Mediator  - Received the first 17408 bytes from 26656 for Tastatura
+133612 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+133613 [main] DEBUG mediator.Mediator  - Transfering 19456 bytes out of 26656
+125603 [main] DEBUG mediator.Mediator  - Received the first 18432 bytes from 26656 for Tastatura
+134116 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+134117 [main] DEBUG mediator.Mediator  - Transfering 20480 bytes out of 26656
+126108 [main] DEBUG mediator.Mediator  - Received the first 19456 bytes from 26656 for Tastatura
+134621 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+134621 [main] DEBUG mediator.Mediator  - Transfering 21504 bytes out of 26656
+126612 [main] DEBUG mediator.Mediator  - Received the first 20480 bytes from 26656 for Tastatura
+135128 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+135129 [main] DEBUG mediator.Mediator  - Transfering 22528 bytes out of 26656
+127119 [main] DEBUG mediator.Mediator  - Received the first 21504 bytes from 26656 for Tastatura
+135633 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+135633 [main] DEBUG mediator.Mediator  - Transfering 23552 bytes out of 26656
+127623 [main] DEBUG mediator.Mediator  - Received the first 22528 bytes from 26656 for Tastatura
+136136 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+136137 [main] DEBUG mediator.Mediator  - Transfering 24576 bytes out of 26656
+128126 [main] DEBUG mediator.Mediator  - Received the first 23552 bytes from 26656 for Tastatura
+136641 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+136641 [main] DEBUG mediator.Mediator  - Transfering 25600 bytes out of 26656
+128632 [main] DEBUG mediator.Mediator  - Received the first 24576 bytes from 26656 for Tastatura
+137144 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+137145 [main] DEBUG mediator.Mediator  - Transfering 26624 bytes out of 26656
+129136 [main] DEBUG mediator.Mediator  - Received the first 25600 bytes from 26656 for Tastatura
+137649 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+137649 [main] DEBUG mediator.Mediator  - Transfering 26656 bytes out of 26656
+129639 [main] DEBUG mediator.Mediator  - Received the first 26624 bytes from 26656 for Tastatura
+138153 [main] DEBUG mediator.Mediator  - Transfer completed
+0    [main] INFO  mediator.Mediator  - Hello 
+0    [main] INFO  mediator.Mediator  - Hello 
+0    [main] INFO  mediator.Mediator  - Hello 
+0    [main] INFO  mediator.Mediator  - Hello 
+18039 [main] DEBUG mediator.Mediator  - Received message from server to add row for Tastatura
+20710 [main] DEBUG mediator.Mediator  - Received message from server to add row for Tastatura
+20640 [main] DEBUG mediator.Mediator  - Received message from server to modify row 1
+23316 [main] DEBUG mediator.Mediator  - Received message from server to modify row 3
+25881 [main] DEBUG mediator.Mediator  - Received message from server to modify row 3
+25894 [main] INFO  mediator.Mediator  - Received request from server to transfer Tastatura
+25894 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+25895 [main] DEBUG mediator.Mediator  - Transfering 1024 bytes out of 26656
+23252 [main] DEBUG mediator.Mediator  - Received message from server to modify row 1
+23259 [main] INFO  mediator.Mediator  - Starting transfer for Tastatura from user1
+23260 [main] DEBUG mediator.Mediator  - Received the first 0 bytes from 26656 for Tastatura
+26403 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+23750 [main] DEBUG mediator.Mediator  - Received the first 1024 bytes from 26656 for Tastatura
+26410 [main] DEBUG mediator.Mediator  - Transfering 2048 bytes out of 26656
+26915 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+26915 [main] DEBUG mediator.Mediator  - Transfering 3072 bytes out of 26656
+24266 [main] DEBUG mediator.Mediator  - Received the first 2048 bytes from 26656 for Tastatura
+27419 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+27419 [main] DEBUG mediator.Mediator  - Transfering 4096 bytes out of 26656
+24765 [main] DEBUG mediator.Mediator  - Received the first 3072 bytes from 26656 for Tastatura
+27923 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+27923 [main] DEBUG mediator.Mediator  - Transfering 5120 bytes out of 26656
+25269 [main] DEBUG mediator.Mediator  - Received the first 4096 bytes from 26656 for Tastatura
+28427 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+28427 [main] DEBUG mediator.Mediator  - Transfering 6144 bytes out of 26656
+25774 [main] DEBUG mediator.Mediator  - Received the first 5120 bytes from 26656 for Tastatura
+28931 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+28931 [main] DEBUG mediator.Mediator  - Transfering 7168 bytes out of 26656
+26278 [main] DEBUG mediator.Mediator  - Received the first 6144 bytes from 26656 for Tastatura
+29435 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+29435 [main] DEBUG mediator.Mediator  - Transfering 8192 bytes out of 26656
+26782 [main] DEBUG mediator.Mediator  - Received the first 7168 bytes from 26656 for Tastatura
+29939 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+29939 [main] DEBUG mediator.Mediator  - Transfering 9216 bytes out of 26656
+27286 [main] DEBUG mediator.Mediator  - Received the first 8192 bytes from 26656 for Tastatura
+30443 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+30443 [main] DEBUG mediator.Mediator  - Transfering 10240 bytes out of 26656
+27790 [main] DEBUG mediator.Mediator  - Received the first 9216 bytes from 26656 for Tastatura
+30947 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+30947 [main] DEBUG mediator.Mediator  - Transfering 11264 bytes out of 26656
+28294 [main] DEBUG mediator.Mediator  - Received the first 10240 bytes from 26656 for Tastatura
+31451 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+31451 [main] DEBUG mediator.Mediator  - Transfering 12288 bytes out of 26656
+28798 [main] DEBUG mediator.Mediator  - Received the first 11264 bytes from 26656 for Tastatura
+31959 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+31959 [main] DEBUG mediator.Mediator  - Transfering 13312 bytes out of 26656
+29306 [main] DEBUG mediator.Mediator  - Received the first 12288 bytes from 26656 for Tastatura
+32463 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+32463 [main] DEBUG mediator.Mediator  - Transfering 14336 bytes out of 26656
+29810 [main] DEBUG mediator.Mediator  - Received the first 13312 bytes from 26656 for Tastatura
+32971 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+32971 [main] DEBUG mediator.Mediator  - Transfering 15360 bytes out of 26656
+30319 [main] DEBUG mediator.Mediator  - Received the first 14336 bytes from 26656 for Tastatura
+33475 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+33475 [main] DEBUG mediator.Mediator  - Transfering 16384 bytes out of 26656
+30826 [main] DEBUG mediator.Mediator  - Received the first 15360 bytes from 26656 for Tastatura
+33979 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+33979 [main] DEBUG mediator.Mediator  - Transfering 17408 bytes out of 26656
+31325 [main] DEBUG mediator.Mediator  - Received the first 16384 bytes from 26656 for Tastatura
+34483 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+34483 [main] DEBUG mediator.Mediator  - Transfering 18432 bytes out of 26656
+31830 [main] DEBUG mediator.Mediator  - Received the first 17408 bytes from 26656 for Tastatura
+34987 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+34987 [main] DEBUG mediator.Mediator  - Transfering 19456 bytes out of 26656
+32334 [main] DEBUG mediator.Mediator  - Received the first 18432 bytes from 26656 for Tastatura
+35491 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+35491 [main] DEBUG mediator.Mediator  - Transfering 20480 bytes out of 26656
+32838 [main] DEBUG mediator.Mediator  - Received the first 19456 bytes from 26656 for Tastatura
+35999 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+35999 [main] DEBUG mediator.Mediator  - Transfering 21504 bytes out of 26656
+33347 [main] DEBUG mediator.Mediator  - Received the first 20480 bytes from 26656 for Tastatura
+36507 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+36510 [main] DEBUG mediator.Mediator  - Transfering 22528 bytes out of 26656
+33855 [main] DEBUG mediator.Mediator  - Received the first 21504 bytes from 26656 for Tastatura
+37015 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+37015 [main] DEBUG mediator.Mediator  - Transfering 23552 bytes out of 26656
+34362 [main] DEBUG mediator.Mediator  - Received the first 22528 bytes from 26656 for Tastatura
+37523 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+37523 [main] DEBUG mediator.Mediator  - Transfering 24576 bytes out of 26656
+34870 [main] DEBUG mediator.Mediator  - Received the first 23552 bytes from 26656 for Tastatura
+38031 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+38031 [main] DEBUG mediator.Mediator  - Transfering 25600 bytes out of 26656
+35380 [main] DEBUG mediator.Mediator  - Received the first 24576 bytes from 26656 for Tastatura
+38539 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+38539 [main] DEBUG mediator.Mediator  - Transfering 26624 bytes out of 26656
+35888 [main] DEBUG mediator.Mediator  - Received the first 25600 bytes from 26656 for Tastatura
+39047 [main] INFO  mediator.Mediator  - Send packet of type TRANSFER to server
+39047 [main] DEBUG mediator.Mediator  - Transfering 26656 bytes out of 26656
+36394 [main] DEBUG mediator.Mediator  - Received the first 26624 bytes from 26656 for Tastatura
+39555 [main] DEBUG mediator.Mediator  - Transfer completed
