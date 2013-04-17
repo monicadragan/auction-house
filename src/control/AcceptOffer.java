@@ -74,7 +74,8 @@ public class AcceptOffer implements Command{
 							server.writeObject(user.key, toSend);
 
 							//TODO: Transfer FILE
-//							server.sendFile(user.getTableView().mainFrame, clientInfo.mainFrame, j, tableRow);
+							System.out.println("trimit de la "+ user.getUsername() + " la "+ clientInfo.getUsername()+" produsul "+ rowData[0]);
+							server.sendFileRequest(user.getUsername(), clientInfo.getUsername(), rowData[0], j, tableRow);
 							break;
 						}
 				}
@@ -94,8 +95,6 @@ public class AcceptOffer implements Command{
 				}
 		
 		}
-
-
 	}
 
 }

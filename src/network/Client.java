@@ -64,7 +64,6 @@ public class Client {
 						System.out.println(recvPacket.pType.toString());
 						mediator.processReplyFromServer(recvPacket);
 					}
-
 				}
 			}
 			
@@ -72,8 +71,7 @@ public class Client {
 			e.printStackTrace();
 			
 		} finally {
-			// cleanup
-			
+			// cleanup			
 			if (selector != null)
 				try {
 					selector.close();
@@ -84,7 +82,6 @@ public class Client {
 					socketChannel.close();
 				} catch (IOException e) {}
 		}
-
 	}
 
 	public void connect(SelectionKey key) throws IOException {
@@ -120,7 +117,7 @@ public class Client {
 				buf.flip();
 				Channels.newChannel(System.out).write(buf);
 				
-				//intorc raspunsul
+				//intorc raspuhttp://us-mg4.mail.yahoo.com/neo/launch?.rand=eiq2arl1le508nsul
 				key.interestOps(SelectionKey.OP_WRITE);
 				
 			}
@@ -131,10 +128,8 @@ public class Client {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			
-		}
-		
+			}			
+		}		
 	}
 	
 	/**
@@ -229,6 +224,4 @@ public class Client {
 		key.interestOps(SelectionKey.OP_READ);
 	
 	}
-
-
 }

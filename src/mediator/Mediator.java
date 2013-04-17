@@ -1,4 +1,13 @@
 package mediator;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.nio.channels.SelectionKey;
+import java.util.Scanner;
+
 import gui.IMainWindow;
 import gui.MainWindow;
 import gui.TableView;
@@ -34,11 +43,12 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	Client netClient;
 	IMainWindow gui;
 	boolean readyToConnect = false;
+	final int CHUNK_SIZE = 1024;	
 	
 	public Mediator(){
 	
 		statManager = new StatusManager();
-		networkManager = new Network(this);
+		networkManager = new Network(this);//???? NU mai tb folosit
 		wsClient = new WebServiceClient();
 		netClient = new Client(this, "127.0.0.1", Server.PORT);
 		
@@ -90,8 +100,15 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	{
 		Packet p = new Packet(msg, tableRow, tableCol);
 		if(msg.equals("Make offer"))
-			p.price = userPanel.getModel().getValueAt(tableRow, 4).toString();
-			
+			p.price = userPanel.getModel().getValueAt(tableRow, 4).toString();	
+		
+		netClient.writeObject(netClient.key, p);
+	}
+	
+	public void sendRequest(Packet p)
+	{
+		System.out.println("Trimit un pachet la server: " + p.pType);
+		
 		netClient.writeObject(netClient.key, p);
 	}
 	
@@ -112,12 +129,67 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 			case SET_VALUE_AT:
 				gui.setValueAt(recvPacket.rowData, recvPacket.tableRow);
 				break;
+			case TRANSFER:
+				if(gui.getUType() == UserType.SELLER){
+					System.out.println("Furnizorul a primit cerere de transfer");
+					String filename = gui.getUsername()+"."+recvPacket.product.toString();
+					System.out.println("filename = " +filename);
+					
+					try {
+						File fin = new File(filename);
+						FileInputStream in = new FileInputStream(fin);
+						long size = in.getChannel().size(); 	
+						
+						int len;
+						byte buf[] = new byte[CHUNK_SIZE];
+						int offset = 0;
+						//TODO: de vazut cum functioneaza
+						
+						while( (len = in.read(buf, 0, CHUNK_SIZE))!=-1 ) {
+							System.out.println("A citit : " + len  + " din " + size );
+							sendRequest(new Packet(PacketType.TRANSFER, "Transfer", recvPacket.product, 
+									recvPacket.from, recvPacket.to, buf, len, size, offset, recvPacket.fromRow, recvPacket.toRow));
+							offset += len;
+							Thread.sleep(500);
+							System.out.println(len + " " + offset);
+							int value = (int) (offset*100/size);
+			            	gui.changeProgresBar(value, recvPacket.fromRow, 5);
+						}
+						in.close();
+					}catch(Exception e){
+						System.err.println("Too little information!!");
+						e.printStackTrace();
+					}
+					//SwingUtilities.invokeLater(new GUIThread(this));
+				}
+				else if(gui.getUType() == UserType.BUYER) {
+						
+					//creare fisier
+					String filename = recvPacket.from + "." + recvPacket.product.toString()+"_recv";
+					try {
+						//append= true, ca sa adauge la sfarsit
+						FileOutputStream out = new FileOutputStream(new File(filename), true); 
+						out.write(recvPacket.buffer, 0, recvPacket.sizeBuffer);
+						
+						System.out.println("Am primit produs cumparat de la "+ recvPacket.from + " cu offset "
+								+ recvPacket.transferOffset + " din " + recvPacket.transferSize);
+						
+						int value = (int) ( (recvPacket.transferOffset + recvPacket.sizeBuffer)*100/recvPacket.transferSize);
+		            	gui.changeProgresBar(value, recvPacket.toRow, 5);
+		            	
+		            	out.close();
+		            	
+					} catch (Exception e) {
+						e.printStackTrace();
+					}														            		            	
+				}
+				
+				break;
 		}
 	}
 	
 	public void makeGUI()
 	{
-//		gui = new MainWindow(this);
 		SwingUtilities.invokeLater(new GUIThread(this));
 	}
 	
@@ -148,7 +220,9 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		Mediator mediator = new Mediator();
 		mediator.makeGUI();
 		while(!mediator.readyToConnect);
+//			System.out.println(mediator.readyToConnect);
 //			System.out.println("Waiting...");
+		
 		mediator.netClient.makeConnection();		
 
 	}

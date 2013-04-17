@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 import javax.swing.table.DefaultTableModel;
 
 import types.Packet;
+import types.PacketType;
 import types.UserPublicInfo;
 import control.*;
 
@@ -24,8 +25,6 @@ public class Server {
 	
 	private static Object[] headTable = { "Produs/Serviciu", "Status" ,"Furnizori", "StatusLicitatie", "Pret", "TranferProgress"};
 	public HashMap<SelectionKey, ClientInformation> clientsMap = new HashMap<SelectionKey, ClientInformation>(); 
-	Packet currentPacket; //pachet care urmeaza sa fie trimis unui client
-	public HashMap<SelectionKey, ArrayList<Packet> > packets = new HashMap<SelectionKey, ArrayList<Packet>>();
 	StatusManager statManager = new StatusManager();
 	
 	public void accept(SelectionKey key) throws IOException {
@@ -137,29 +136,6 @@ public class Server {
 				String msg = "";
 				Channels.newChannel(System.out).write(buf);
 				System.out.println();
-//				Command cmd = new LaunchRequest(this);
-//				
-//				if(msg.equals("Launch Offer request"))
-//					cmd = new LaunchRequest(this);
-//				else if(msg.equals("Drop Offer request"))
-//					cmd = new DropRequest(this);
-//				else if(msg.equals("Make offer"))
-//					cmd = new MakeOffer(this);
-//				else if(msg.equals("Drop auction"))
-//					cmd = new DropAuction(this);
-//				else if(msg.equals("Accept Offer"))
-//					cmd = new AcceptOffer(this);
-//				else if(msg.equals("Refuse Offer"))
-//					cmd = new RefuseOffer(this);
-//				else if(msg.equals("View Best Offer"))
-//					cmd = new ViewBestOffer(this);
-//				else // este un transfer
-//				{
-//					cmd = new TransferProgress(this);
-//					((TransferProgress)cmd).value = Integer.parseInt(msg);
-//				}
-//				
-//				statManager.processRequest(cmd, tableRow, tableCol, userPanel);
 
 				//intorc raspunsul
 				key.interestOps(SelectionKey.OP_WRITE);
@@ -188,34 +164,52 @@ public class Server {
 		
 	}
 	
-	public void processClientRequest(Packet packet, ClientInformation clInfo)
+	public void processClientRequest(Object obj, ClientInformation clInfo)
 	{
-		String msg = packet.msg;
-		Command cmd = new LaunchRequest(this);
-		
-		if(msg.equals("Launch Offer request"))
-			cmd = new LaunchRequest(this);
-		else if(msg.equals("Drop Offer request"))
-			cmd = new DropRequest(this);
-		else if(msg.equals("Make offer"))
-		{
-			clInfo.tableModel.setValueAt(packet.price, packet.tableRow, 4);
-			cmd = new MakeOffer(this);
+		if(obj instanceof Packet){
+			Packet packet = (Packet)obj; 
+			String msg = packet.msg;
+			System.out.println("[SRV] Am primit " + msg + " de la "+clInfo.getUsername());
+			
+			if(msg.equals("Transfer"))
+			{
+				//redirectionez pachetul mai departe
+				System.out.println("Redirectionez pachetul de transfer catre "+packet.to);
+				SelectionKey key = getUserKey(packet.to);
+				if(key != null)
+					writeObject(key, packet);
+				else{
+					System.out.println("Serverul nu a putut gasi clientul cerut");
+				}
+				return;
+			}
+			
+			
+			Command cmd = new LaunchRequest(this);
+			
+			if(msg.equals("Launch Offer request"))
+				cmd = new LaunchRequest(this);
+			else if(msg.equals("Drop Offer request"))
+				cmd = new DropRequest(this);
+			else if(msg.equals("Make offer"))
+			{
+				clInfo.tableModel.setValueAt(packet.price, packet.tableRow, 4);
+				cmd = new MakeOffer(this);
+			}
+			else if(msg.equals("Drop auction"))
+				cmd = new DropAuction(this);
+			else if(msg.equals("Accept Offer"))
+				cmd = new AcceptOffer(this);
+			else if(msg.equals("Refuse Offer"))
+				cmd = new RefuseOffer(this);
+			else if(msg.equals("View Best Offer"))
+				cmd = new ViewBestOffer(this);		
+			
+			statManager.processRequest(cmd, packet.tableRow, packet.tableCol, clInfo);
 		}
-		else if(msg.equals("Drop auction"))
-			cmd = new DropAuction(this);
-		else if(msg.equals("Accept Offer"))
-			cmd = new AcceptOffer(this);
-		else if(msg.equals("Refuse Offer"))
-			cmd = new RefuseOffer(this);
-		else if(msg.equals("View Best Offer"))
-			cmd = new ViewBestOffer(this);
-		else // este un transfer
-		{
-			cmd = new TransferProgress(this);
-			((TransferProgress)cmd).value = Integer.parseInt(msg);
+		else {
+			
 		}
-		statManager.processRequest(cmd, packet.tableRow, packet.tableCol, clInfo);
 
 	}
 	
@@ -258,15 +252,12 @@ public class Server {
 					        DefaultTableModel model = new DefaultTableModel(data, new Vector(Arrays.asList(headTable)));
 					        server.clientsMap.put(key, new ClientInformation(userInfo, model, key));
 					        System.out.println((ClientInformation)server.clientsMap.get(key));
-//					        server.writeObject(key, "hello1");
-//					        server.writeObject(key, "hello2");
-//					        server.writeObject(key, "hello3");
 
 						}
 						else {
 							Packet packet = (Packet)server.readObject(key);
 							ClientInformation clInfo = server.clientsMap.get(key);
-							System.out.println("[SRV] A primit de  la client  " + clInfo.getUsername());
+							System.out.println("[SRV] A primit msg de la clientul " + clInfo.getUsername());
 							server.processClientRequest(packet, clInfo);
 						}
 					}
@@ -306,26 +297,31 @@ public class Server {
 		}
 		return users;
 	}
-
-	public void addPacketToSend(SelectionKey key, Packet packet)
+	
+	public void sendFileRequest(String from, String to, Object product, int fromRow, int toRow) 
 	{
-		ArrayList<Packet> packetList;
-		if( this.packets.containsKey(key) )//mai exista si alte mesaje de trimis catre acest client
-			packetList = this.packets.get(key);
-		else
-			packetList = new ArrayList<Packet>();
 		
-		packetList.add(packet);//adaug la coada
-		this.packets.put(key, packetList);		
+		//cer size-ul fisierului
+		Packet toSend = new Packet(PacketType.TRANSFER, "Transfer", product, from, to, fromRow, toRow);
+		writeObject(getUserKey(from), toSend);
+		
 	}
 	
-	public Packet getCurrentPacket(SelectionKey key)
+	/**
+	 * Metoda ce cauta cheia asociata unui client dupa username
+	 * 
+	 * @param userName
+	 * @return
+	 */
+	SelectionKey getUserKey(String userName)
 	{
-		ArrayList<Packet> packetList;
-		packetList = this.packets.get(key);
-		Packet p = packetList.remove(0);//scot primul mesaj din list
-		this.packets.put(key, packetList);
-		
-		return p;
+		System.out.println("Caut " + userName);
+		for(int i = 0; i < getUsers().size(); i++) {			
+			ClientInformation user = getUsers().get(i);
+			if(user.getUsername().equals(userName)){
+				return user.key;
+			}
+		}
+		return null;
 	}
 }

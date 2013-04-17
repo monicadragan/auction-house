@@ -43,6 +43,7 @@ class ProgressBarRenderer extends DefaultTableCellRenderer implements Serializab
         super();
         setOpaque(true);
         b.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        b.setValue(50);
     }
 
     @Override

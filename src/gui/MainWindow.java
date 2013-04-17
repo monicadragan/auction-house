@@ -76,15 +76,6 @@ public class MainWindow extends JFrame implements IMainWindow {
 	    userView.setStateView(this);//seteaza tabela in panel
 		setVisible(true);
 	}	
-	
-	/**
-	 * Metoda ce modifica progressBar-ul
-	 */
-	public void changeProgresBar(Integer value, int row, int column)
-	{
-		DefaultTableModel model = this.tableView.getModel();
-		model.setValueAt(value, row, column);
-	}
 
 	public void setUsername(String username) {
 		this.username = username;
@@ -207,4 +198,20 @@ public class MainWindow extends JFrame implements IMainWindow {
 		rowData[5] = 0;//progress bar 
 		return rowData;
 	}
+	
+	
+	/**
+	 * Metoda ce modifica progressBar-ul
+	 */
+	public void changeProgresBar(final Integer value, final int row, final int column)
+	{
+		final DefaultTableModel model = this.tableView.getModel();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+		    public void run() {
+				model.setValueAt(value, row, column);
+			}
+		});
+	}
+
 }

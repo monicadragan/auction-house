@@ -1,19 +1,13 @@
 package types;
 
 import java.io.Serializable;
+import java.nio.channels.SelectionKey;
 
 import javax.swing.table.DefaultTableModel;
 
 import gui.TableView;
 
-class pair{
-	
-	String value;
-	String key;
-	
-}
-
-public class Packet implements Serializable{
+public class Packet implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	public PacketType pType;
@@ -22,21 +16,17 @@ public class Packet implements Serializable{
 	public int tableCol;
 	public Object[] rowData;
 	public Object value;
-	public pair additional_info;
 	public String price;//folosit la Make offer - cand furnizorul a schimbat pretul
 	
-//	public Packet(String msg, int tableRow, int tableCol,
-////			TableView userPanel, 
-//			String sourceIP, String destIP, String sourceUsername, String destUsername) {
-//		this.msg = msg;
-//		this.tableRow = tableRow;
-//		this.tableCol = tableCol;
-////		this.userPanel = userPanel;
-//		this.sourceIP = sourceIP;
-//		this.destIP = destIP;
-//		this.sourceUsername = sourceUsername;
-//		this.destUsername = destUsername;
-//	}
+	public long transferSize;
+	public int transferOffset;
+	public Object product;
+	public String from;
+	public String to;
+	public int fromRow;
+	public int toRow;
+	public byte buffer[];
+	public int sizeBuffer;
 	
 	public Packet(String msg)
 	{
@@ -76,6 +66,45 @@ public class Packet implements Serializable{
 		this.tableCol = col;
 	}
 	
+	public Packet(PacketType pType, String msg, Object product, String from, String to, long size, int offset, int fromRow, int toRow)
+	{
+		this.pType = pType;
+		this.msg = msg;
+		this.product = product;
+		this.from = from;
+		this.to = to;
+		this.transferSize = size;
+		this.transferOffset = offset;
+		this.fromRow = fromRow;
+		this.toRow = toRow;
+	}
+	
+	public Packet(PacketType pType, String msg, Object product, String from, String to, byte buf[], int sizeBuffer, long size, int offset, int fromRow, int toRow)
+	{
+		this.pType = pType;
+		this.msg = msg;
+		this.product = product;
+		this.from = from;
+		this.to = to;
+		this.buffer = buf;
+		this.sizeBuffer = sizeBuffer;
+		this.transferSize = size;
+		this.transferOffset = offset;
+		this.fromRow = fromRow;
+		this.toRow = toRow;
+	}
+	
+	public Packet(PacketType pType, String msg, Object product, String from, String to, int fromRow, int toRow)
+	{
+		this.pType = pType;
+		this.msg = msg;
+		this.product = product;
+		this.from = from;
+		this.to = to;
+		this.fromRow = fromRow;
+		this.toRow = toRow;
+	}
+	
 	public static Object[] getRowTable(DefaultTableModel model, int row)
 	{
 		Object[] rowData = new Object[model.getColumnCount()];
@@ -94,4 +123,5 @@ public class Packet implements Serializable{
 		}
 
 	}
+
 }
