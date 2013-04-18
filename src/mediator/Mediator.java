@@ -19,8 +19,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.SimpleLayout;
 
+import network.INetClient;
 import network.NetClient;
-import network.INetwork;
 import network.Server;
 
 import types.Packet;
@@ -43,9 +43,8 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	static Logger logger = Logger.getLogger(Mediator.class);
 	
 	StatusManager statManager;
-	INetwork networkManager;
 	IWebServiceClient wsClient;
-	NetClient netClient;
+	INetClient netClient;
 	IMainWindow gui;
 	boolean readyToConnect = false;
 	final int CHUNK_SIZE = 1024;	
@@ -58,13 +57,6 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		
 	}
 	
-	/**
-	 * Metoda ce trimite modulului de network informatii despre transferul unui produs
-	 */
-	public void sendFile(MainWindow source, MainWindow destination, int sourceRow, int destRow){
-		networkManager.transferFile(source, destination, sourceRow, destRow);
-	}
-
 	/**
 	 * TODO: Tema3 - wsc
 	 * Metoda ce verifica daca un user exista deja logat in sistem
@@ -86,13 +78,13 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		if(msg.equals("Make offer"))
 			p.price = userPanel.getModel().getValueAt(tableRow, 4).toString();	
 		
-		netClient.writeObject(netClient.key, p);
+		netClient.writeObject(netClient.getKey(), p);
 	}
 	
 	public void sendRequest(Packet p)
 	{
 		logger.info("Send packet of type " + p.pType + " to server");
-		netClient.writeObject(netClient.key, p);
+		netClient.writeObject(netClient.getKey(), p);
 	}
 	
 	public void processReplyFromServer(Packet recvPacket)
@@ -212,13 +204,14 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		Mediator mediator = new Mediator();
 		mediator.makeGUI();
 		logger.info("Hello ");
+		//astept sa se logheze si sa-i apara tabela
 		while(!mediator.readyToConnect);
 
 		try {
-			FileAppender fileAppender = new FileAppender(new SimpleLayout(), mediator.gui.getUsername());
+			FileAppender fileAppender = new FileAppender(new SimpleLayout(),
+							mediator.gui.getUsername() + ".log");
 			logger.addAppender(fileAppender);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -251,7 +244,10 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	
 	public void logout()
 	{
-		SelectionKey key = netClient.key;
+		Packet p = new Packet("Logout");
+		netClient.writeObject(netClient.getKey(), p);
+
+		SelectionKey key = netClient.getKey();
 		SocketChannel socketChannel = (SocketChannel) key.channel();
 
 		try {

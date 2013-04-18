@@ -135,6 +135,18 @@ public class Server {
 			}
 			return;
 		}
+		if(msg.equals("Logout"))
+		{
+			SelectionKey key = clInfo.key;
+			SocketChannel socketChannel = (SocketChannel) key.channel();
+
+			try {
+				socketChannel.close();
+			} catch (IOException e) {
+				System.out.println("[Server] Client " + clInfo.getUsername() + " logout");
+			}
+
+		}
 
 		Command cmd = new LaunchRequest(this);
 		
@@ -195,7 +207,7 @@ public class Server {
 							Vector data = (Vector)server.readObject(key);
 					        System.out.println(data.get(0));
 					        UserPublicInfo userInfo = (UserPublicInfo)server.readObject(key);
-					        System.out.println("A primit " + userInfo);
+					        System.out.println("[Server] S-a  conectat " + userInfo);
 					        DefaultTableModel model = new DefaultTableModel(data, new Vector(Arrays.asList(headTable)));
 					        server.clientsMap.put(key, new ClientInformation(userInfo, model, key));
 					        System.out.println((ClientInformation)server.clientsMap.get(key));

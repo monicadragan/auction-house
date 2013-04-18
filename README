@@ -1,0 +1,65 @@
+*******************************************************
+*************** Tema 2 IDP - Networking ***************
+*********** Autor 1: Silvia Marcu, 343 C3 *************
+********** Autor 2: Monica Dragan, 342 C3 *************
+*******************************************************
+
+1 Structura aplicatiei (vezi schema din imaginea atasata)
+Componentele aplicatiei sunt urmatoarele:
+
+1.1 Serverul: accepta conexiuni de la clienti si este mediatorul comunicatiei intre acestia.
+Serverul poate primi 9 tipuri de mesaje request: 			
+* Launch Offer request
+* Drop Offer request
+* Make offer
+* Drop auction
+* Accept Offer
+* Refuse Offer
+* View Best Offer
+* Transfer
+* Logout
+
+Clientul poate primi 4 tipuri de mesaje (definite in PacketType):
+* RemoveRow
+* AddRow
+* SetValueAt
+* Transfer
+
+Toate cererile se proceseaza pe thread-uri separate, astfel incat clientul si interfata grafica sa nu
+fie blocate.
+
+Transferul de fisiere se desfasoara conform urmatorului protocol: in urma mesajului de Accept request,
+serverul trimite un mesaj de init transfer catre furnizor. In urma acestui mesaj, incepe transferul 
+propriu zis, cate un pachet pentru fiecare portiune de fisier, pana la epuizarea fisierului. 
+Aceste pachete de transfer, odata ajunse la server, sunt redirectionate (fara alte modificari) catre client.
+
+Comunicatia intre server si client se face prin transferul de pachete (clasa Paket) in care se specifica 
+tipul mesajului, sursa, destinatia, produsul tranzactionat, pretul, si informatii aditionale care specifica 
+linia care trebuie adaugata/eliminata/modificata din tabela, respectiv structura de transfer fisier, dupa caz.
+
+Serverul pastreaza pentru fiecare conexiune acceptata o intrare in lista cu toti utilizatorii, care contine 
+cheia de comunicatie si o clona a tabelei (modelTable) din interfata grafica. La fiecare actualizare a interfetei 
+grafice se actualizeaza si clona ei din server. Astel se miscoreaza numarul de mesaje trimise inre client si server, 
+pentru o comunicare mai eficienta
+
+1.2 Mediatorul: este clasa care lanseaza Clientul
+Mediatorul "mediaza" intre toate functionalitatile clientului: interfata grafica (GUI), clientul de network 
+(prin intermediul caruia se face transferul de mesaje pentru comunicarea cu serverul), web service (pentru autentificare).
+
+1.3 NetClient: asigura comunicarea cu serverul. In urma raspunsurilor primite de la server, clientul de network anunta
+mediatorul pentru a actualiza interfata.
+
+2 Observatii:
+2.1 Aplicatie presupune logarea de useri cu username diferit (NU am tratat cazul in care un user incearca
+sa se logheze de 2 ori -> va fi implementat la tema 3)
+2.2 Am considerat ca mesajele de loggining cele mai semnificative sunt cele cu nivel de prioritate 
+mai mare decat ERROR.
+2.3 Fisierele care se vor transfera in urma aceptarii unei oferte sunt generate in prealabil si au denumirea
+"username.productname". 
+
+3.Mod de rulare:
+ant build - pentru compilare
+Pentru rularea aplicatiei:
+ant
+
+

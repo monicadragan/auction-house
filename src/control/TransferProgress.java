@@ -19,7 +19,6 @@ public class TransferProgress {
 
 	public void changeStatus(int tableRow, int tableCol, DefaultTableModel model )
 	{
-		System.out.println(value);
 		if (value == -1)//s-a oprit transferul din cauza buyer-ului care s-a delogat
 			model.setValueAt(
 					Status.TRANSFER_FAILED.getName(),

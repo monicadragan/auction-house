@@ -1,0 +1,76 @@
+DEBUG - Received message from server to add row for Mouse
+DEBUG - Received message from server to modify row 3
+DEBUG - Received message from server to modify row 3
+INFO - Received request from server to transfer Mouse
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 236 bytes out of 236
+DEBUG - Transfer completed
+DEBUG - Received message from server to add row for Tastatura
+DEBUG - Received message from server to add row for Mouse
+DEBUG - Received message from server to modify row 3
+DEBUG - Received message from server to modify row 3
+INFO - Received request from server to transfer Mouse
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 236 bytes out of 236
+DEBUG - Transfer completed
+DEBUG - Received message from server to add row for Tastatura
+DEBUG - Received message from server to modify row 3
+DEBUG - Received message from server to modify row 3
+INFO - Received request from server to transfer Tastatura
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 1024 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 2048 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 3072 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 4096 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 5120 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 6144 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 7168 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 8192 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 9216 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 10240 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 11264 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 12288 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 13312 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 14336 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 15360 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 16384 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 17408 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 18432 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 19456 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 20480 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 21504 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 22528 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 23552 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 24576 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 25600 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 26624 bytes out of 26656
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 26656 bytes out of 26656
+DEBUG - Transfer completed
+DEBUG - Received message from server to remove row 3
+DEBUG - Received message from server to add row for Aparat Foto

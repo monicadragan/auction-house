@@ -108,7 +108,6 @@ public class LoginPanel extends JPanel{
 				JOptionPane.showMessageDialog(null, "You must choose a type!");
 				return;
 			}
-			System.out.println("Login " + username + "::" + selectedType);
 			if(selectedType.equals(userTypeOptions[0]))
 				uType = UserType.SELLER;
 			else uType = UserType.BUYER;

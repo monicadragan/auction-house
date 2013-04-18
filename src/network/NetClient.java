@@ -13,23 +13,16 @@ import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
-
 import types.Packet;
 
 import mediator.INetMediator;
-import mediator.Mediator;
 
-public class NetClient {
-	
-	static Logger logger = Logger.getLogger(NetClient.class);
+public class NetClient implements INetClient{
 
 	INetMediator mediator;
 	String ip;
 	int port;
-	public SelectionKey key;
+	SelectionKey key;
 	
 	public NetClient(INetMediator med, String ip, int port) {
 		this.mediator = med;
@@ -38,6 +31,10 @@ public class NetClient {
 
 	}
 	
+	/**
+	 * Crearea conexiunii cu serverul si asteptarea mesajelor
+	 * 
+	 */
 	public void makeConnection(){
 		
 		Selector selector = null;
@@ -50,13 +47,6 @@ public class NetClient {
 			socketChannel.connect(new InetSocketAddress(ip, port));
 			socketChannel.register(selector, SelectionKey.OP_CONNECT);
 			
-			try {
-				FileAppender fileAppender = new FileAppender(new SimpleLayout(), mediator.getUsername());
-				logger.addAppender(fileAppender);
-			} catch (IOException e) {
-				System.err.println("addAppender error");
-			}
-
 			// main loop
 			while (true) {
 				// wait for something to happen
@@ -74,7 +64,6 @@ public class NetClient {
 					else if (key.isReadable())
 					{
 						Packet recvPacket = (Packet)readObject(key);
-						logger.debug("Received packet: "+ recvPacket.pType.toString());
 						mediator.processReplyFromServer(recvPacket);
 					}
 				}
@@ -102,10 +91,10 @@ public class NetClient {
 		SocketChannel socketChannel = (SocketChannel)key.channel();
 		socketChannel.finishConnect();
 		
-		logger.info("CONNECTION ESTABLISHED");
 		ByteBuffer buf = ByteBuffer.allocateDirect(Server.BUF_SIZE);
 		socketChannel.register(key.selector(), SelectionKey.OP_WRITE, buf);
 		
+		//trimit serverului tabela cu produse si informatiile publice: username si tip
 		writeObject(key, mediator.getTableModel().getDataVector());
 		writeObject(key, mediator.getClientPublicInfo());
 	}
@@ -136,7 +125,7 @@ public class NetClient {
 		        
 	    }
 	    catch(Exception e){
-	    	logger.error("Exception in readObject");
+	    	System.err.println("Exception in readObject");
 	    	try {
 				socketChannel.close();
 			} catch (IOException e1) {
@@ -165,7 +154,7 @@ public class NetClient {
 	    try {
 	        oos = new ObjectOutputStream(baos);
 	    } catch(Exception e) {
-	    	logger.error("Could not create object output stream. Aborting...");
+	    	System.err.println("Could not create object output stream. Aborting...");
 	        return;
 	    }
 		ByteBuffer buffer;	
@@ -177,7 +166,7 @@ public class NetClient {
             oos.flush();
             baos.flush();
         } catch(Exception e){
-        	logger.error("Could not parse object.");
+        	System.err.println("Could not parse object.");
 	    	try {
 				socketChannel.close();
 			} catch (IOException e1) {
@@ -187,5 +176,10 @@ public class NetClient {
         }
 		key.interestOps(SelectionKey.OP_READ);
 	
+	}
+	
+	public SelectionKey getKey()
+	{
+		return key;
 	}
 }
