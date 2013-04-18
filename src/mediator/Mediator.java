@@ -1,13 +1,10 @@
 package mediator;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.nio.channels.SelectionKey;
-import java.util.Scanner;
+import java.nio.channels.SocketChannel;
 
 import gui.IMainWindow;
 import gui.MainWindow;
@@ -16,17 +13,14 @@ import gui.TableView;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-import org.apache.log4j.Appender;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
-import org.apache.log4j.MDC;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.SimpleLayout;
 
-import network.Client;
+import network.NetClient;
 import network.INetwork;
-import network.Network;
 import network.Server;
 
 import types.Packet;
@@ -51,7 +45,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	StatusManager statManager;
 	INetwork networkManager;
 	IWebServiceClient wsClient;
-	Client netClient;
+	NetClient netClient;
 	IMainWindow gui;
 	boolean readyToConnect = false;
 	final int CHUNK_SIZE = 1024;	
@@ -59,9 +53,8 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	public Mediator(){
 	
 		statManager = new StatusManager();
-		networkManager = new Network(this);//???? NU mai tb folosit
 		wsClient = new WebServiceClient();
-		netClient = new Client(this, "127.0.0.1", Server.PORT);
+		netClient = new NetClient(this, "127.0.0.1", Server.PORT);
 		
 	}
 	
@@ -99,7 +92,6 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	public void sendRequest(Packet p)
 	{
 		logger.info("Send packet of type " + p.pType + " to server");
-		
 		netClient.writeObject(netClient.key, p);
 	}
 	
@@ -142,7 +134,7 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 									recvPacket.from, recvPacket.to, buf, len, size, offset, recvPacket.fromRow, recvPacket.toRow));
 							offset += len;
 							logger.debug("Transfering " + offset + " bytes out of " + size);
-							Thread.sleep(500);
+							Thread.sleep(100);
 							int value = (int) (offset*100/size);
 			            	gui.changeProgresBar(value, recvPacket.fromRow, 5);
 						}
@@ -217,24 +209,20 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 	{
 		BasicConfigurator.configure();
 		PropertyConfigurator.configure("log4j.properties");
-//		Appender appender = logger.getAppender("FA");
-//		appender.
 		Mediator mediator = new Mediator();
 		mediator.makeGUI();
 		logger.info("Hello ");
 		while(!mediator.readyToConnect);
-//			System.out.println(mediator.readyToConnect);
+
 		try {
 			FileAppender fileAppender = new FileAppender(new SimpleLayout(), mediator.gui.getUsername());
-			logger.removeAppender("FA");
 			logger.addAppender(fileAppender);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		mediator.netClient.makeConnection();		
-
+		mediator.netClient.makeConnection();
 	}
 
 	@Override
@@ -257,4 +245,21 @@ public class Mediator implements IGUIMediator, INetMediator, IWSCMediator{
 		return new UserPublicInfo(username, uType);
 	}
 	
+	public String getUsername(){
+		return gui.getUsername();
+	}
+	
+	public void logout()
+	{
+		SelectionKey key = netClient.key;
+		SocketChannel socketChannel = (SocketChannel) key.channel();
+
+		try {
+			socketChannel.close();
+		} catch (IOException e) {
+			logger.error("Logout");
+		}
+		System.exit(1);
+		
+	}
 }

@@ -116,3 +116,25 @@ DEBUG - Transfering 26624 bytes out of 26656
 INFO - Send packet of type TRANSFER to server
 DEBUG - Transfering 26656 bytes out of 26656
 DEBUG - Transfer completed
+INFO - CONNECTION ESTABLISHED
+DEBUG - Received packet: ADD_ROW
+DEBUG - Received message from server to add row for Mouse
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 3
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 3
+DEBUG - Received packet: TRANSFER
+INFO - Received request from server to transfer Mouse
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 236 bytes out of 236
+DEBUG - Transfer completed
+ERROR - Exception in readObject
+INFO - CONNECTION ESTABLISHED
+INFO - CONNECTION ESTABLISHED
+DEBUG - Received message from server to add row for Mouse
+DEBUG - Received message from server to modify row 3
+DEBUG - Received message from server to modify row 3
+INFO - Received request from server to transfer Mouse
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 236 bytes out of 236
+DEBUG - Transfer completed

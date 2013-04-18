@@ -58,3 +58,20 @@ DEBUG - Received the first 23552 bytes from 26656 for Tastatura
 DEBUG - Received the first 24576 bytes from 26656 for Tastatura
 DEBUG - Received the first 25600 bytes from 26656 for Tastatura
 DEBUG - Received the first 26624 bytes from 26656 for Tastatura
+INFO - CONNECTION ESTABLISHED
+DEBUG - Received packet: ADD_ROW
+DEBUG - Received message from server to add row for Mouse
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 1
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 1
+DEBUG - Received packet: TRANSFER
+INFO - Starting transfer for Mouse from user1
+DEBUG - Received the first 0 bytes from 236 for Mouse
+INFO - CONNECTION ESTABLISHED
+ERROR - Exception in readObject
+INFO - CONNECTION ESTABLISHED
+DEBUG - Received message from server to add row for Mouse
+DEBUG - Received message from server to modify row 1
+DEBUG - Received message from server to modify row 1
+ERROR - Exception in readObject

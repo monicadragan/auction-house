@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="AuctionHouseZanko">
+<project basedir="." default="run" name="AuctionHouseZanko">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../usr/lib/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -12,6 +12,7 @@
     <property name="source" value="1.6"/>
     <path id="AuctionHouseZanko.classpath">
         <pathelement location="bin"/>
+        <pathelement location="lib/log4j-1.2.17.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -49,18 +50,8 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="SimulateAuctionHouse">
-        <java classname="simulator.SimulateAuctionHouse" failonerror="true" fork="yes">
-            <classpath refid="AuctionHouseZanko.classpath"/>
-        </java>
-    </target>
     <target name="Mediator">
         <java classname="mediator.Mediator" failonerror="true" fork="yes">
-            <classpath refid="AuctionHouseZanko.classpath"/>
-        </java>
-    </target>
-    <target name="WorkerSimulator">
-        <java classname="simulator.WorkerSimulator" failonerror="true" fork="yes">
             <classpath refid="AuctionHouseZanko.classpath"/>
         </java>
     </target>
@@ -69,9 +60,12 @@
             <classpath refid="AuctionHouseZanko.classpath"/>
         </java>
     </target>
-    <target name="UserThread">
-        <java classname="mediator.UserThread" failonerror="true" fork="yes">
-            <classpath refid="AuctionHouseZanko.classpath"/>
-        </java>
+    <target name="run">
+        <parallel/>
+			<antcall target="Server"/> 
+			<antcall target="Mediator"/>
+			<antcall target="Mediator"/>
+			<antcall target="Mediator"/>
+        <parallel/> 
     </target>
 </project>

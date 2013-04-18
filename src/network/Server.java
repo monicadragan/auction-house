@@ -100,13 +100,13 @@ public class Server {
 	    }
 		ByteBuffer buffer;
 		
-        try{
+        try {
             oos.writeObject(obj);
             buffer = ByteBuffer.wrap(baos.toByteArray());
             socketChannel.write(buffer); 
             oos.flush();
             baos.flush();
-        }catch(Exception e){
+        } catch(Exception e){
             System.err.println("Could not parse object.");
 	    	try {
 				socketChannel.close();
@@ -118,102 +118,47 @@ public class Server {
 		key.interestOps(SelectionKey.OP_READ); //a scris => isi schimba interesul pt citit
 			
 	}
-
-	public void read(SelectionKey key) throws IOException {
-		
-		System.out.print("READ: ");
-		
-		int bytes;
-		ByteBuffer buf				= (ByteBuffer)key.attachment();		
-		SocketChannel socketChannel	= (SocketChannel)key.channel();
-		
-		buf.clear();
-
-		try{	
-			if((bytes = socketChannel.read(buf))>0){
-				
-				// check for EOF
-				if (bytes == -1)
-					throw new IOException("EOF");
-				
-				buf.flip();
-				String msg = "";
-				Channels.newChannel(System.out).write(buf);
-				System.out.println();
-
-				//intorc raspunsul
-				key.interestOps(SelectionKey.OP_WRITE);
-				
-			}
-		} catch (IOException e) {
-			System.out.println("Connection closed: " + e.getMessage());
-			socketChannel.close();
-			
-		}
-		
-	}
 	
-	public void write(SelectionKey key, String s) throws IOException {
-		
-		System.out.println("WRITE: ");
-		SocketChannel socketChannel	= (SocketChannel)key.channel();
-		ByteBuffer buf	= ByteBuffer.allocate(s.length());
-		buf.clear();
-		buf.put(s.getBytes());
-		
-		buf.flip();
-		while(socketChannel.write(buf) > 0);
-		
-		key.interestOps(SelectionKey.OP_READ);
-		
-	}
-	
-	public void processClientRequest(Object obj, ClientInformation clInfo)
+	public void processClientRequest(Packet packet, ClientInformation clInfo)
 	{
-		if(obj instanceof Packet){
-			Packet packet = (Packet)obj; 
-			String msg = packet.msg;
-			System.out.println("[SRV] Am primit " + msg + " de la "+clInfo.getUsername());
-			
-			if(msg.equals("Transfer"))
-			{
-				//redirectionez pachetul mai departe
-				System.out.println("Redirectionez pachetul de transfer catre "+packet.to);
-				SelectionKey key = getUserKey(packet.to);
-				if(key != null)
-					writeObject(key, packet);
-				else{
-					System.out.println("Serverul nu a putut gasi clientul cerut");
-				}
-				return;
+		String msg = packet.msg;
+		System.out.println("[SRV] Am primit " + msg + " de la "+clInfo.getUsername());
+		
+		if(msg.equals("Transfer"))
+		{
+			//redirectionez pachetul mai departe
+			System.out.println("Redirectionez pachetul de transfer catre " + packet.to);
+			SelectionKey key = getUserKey(packet.to);
+			if(key != null)
+				writeObject(key, packet);
+			else {
+				System.out.println("Serverul nu a putut gasi clientul cerut");
 			}
-			
-			
-			Command cmd = new LaunchRequest(this);
-			
-			if(msg.equals("Launch Offer request"))
-				cmd = new LaunchRequest(this);
-			else if(msg.equals("Drop Offer request"))
-				cmd = new DropRequest(this);
-			else if(msg.equals("Make offer"))
-			{
-				clInfo.tableModel.setValueAt(packet.price, packet.tableRow, 4);
-				cmd = new MakeOffer(this);
-			}
-			else if(msg.equals("Drop auction"))
-				cmd = new DropAuction(this);
-			else if(msg.equals("Accept Offer"))
-				cmd = new AcceptOffer(this);
-			else if(msg.equals("Refuse Offer"))
-				cmd = new RefuseOffer(this);
-			else if(msg.equals("View Best Offer"))
-				cmd = new ViewBestOffer(this);		
-			
-			statManager.processRequest(cmd, packet.tableRow, packet.tableCol, clInfo);
+			return;
 		}
-		else {
-			
+		
+		
+		Command cmd = new LaunchRequest(this);
+		
+		if(msg.equals("Launch Offer request"))
+			cmd = new LaunchRequest(this);
+		else if(msg.equals("Drop Offer request"))
+			cmd = new DropRequest(this);
+		else if(msg.equals("Make offer"))
+		{
+			clInfo.tableModel.setValueAt(packet.price, packet.tableRow, 4);
+			cmd = new MakeOffer(this);
 		}
+		else if(msg.equals("Drop auction"))
+			cmd = new DropAuction(this);
+		else if(msg.equals("Accept Offer"))
+			cmd = new AcceptOffer(this);
+		else if(msg.equals("Refuse Offer"))
+			cmd = new RefuseOffer(this);
+		else if(msg.equals("View Best Offer"))
+			cmd = new ViewBestOffer(this);		
+		
+		statManager.processRequest(cmd, packet.tableRow, packet.tableCol, clInfo);
 
 	}
 	
@@ -264,12 +209,7 @@ public class Server {
 							System.out.println("[SRV] A primit msg de la clientul " + clInfo.getUsername());
 							server.processClientRequest(packet, clInfo);
 						}
-					}
-//					else if (key.isWritable())
-//					{
-//						server.writeObject(key, server.getCurrentPacket(key));
-//					}
-						
+					}	
 				}
 			}
 			
@@ -305,7 +245,6 @@ public class Server {
 	public void sendFileRequest(String from, String to, Object product, int fromRow, int toRow) 
 	{
 		
-		//cer size-ul fisierului
 		Packet toSend = new Packet(PacketType.TRANSFER, "Transfer", product, from, to, fromRow, toRow);
 		writeObject(getUserKey(from), toSend);
 		
@@ -319,7 +258,6 @@ public class Server {
 	 */
 	SelectionKey getUserKey(String userName)
 	{
-		System.out.println("Caut " + userName);
 		for(int i = 0; i < getUsers().size(); i++) {			
 			ClientInformation user = getUsers().get(i);
 			if(user.getUsername().equals(userName)){

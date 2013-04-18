@@ -1,11 +1,8 @@
 package types;
 
 import java.io.Serializable;
-import java.nio.channels.SelectionKey;
 
 import javax.swing.table.DefaultTableModel;
-
-import gui.TableView;
 
 public class Packet implements Serializable {
 
@@ -18,6 +15,7 @@ public class Packet implements Serializable {
 	public Object value;
 	public String price;//folosit la Make offer - cand furnizorul a schimbat pretul
 	
+	//transfer file - fields
 	public long transferSize;
 	public int transferOffset;
 	public Object product;
@@ -66,7 +64,8 @@ public class Packet implements Serializable {
 		this.tableCol = col;
 	}
 	
-	public Packet(PacketType pType, String msg, Object product, String from, String to, long size, int offset, int fromRow, int toRow)
+	public Packet(PacketType pType, String msg, Object product, 
+			String from, String to, long size, int offset, int fromRow, int toRow)
 	{
 		this.pType = pType;
 		this.msg = msg;
@@ -79,7 +78,9 @@ public class Packet implements Serializable {
 		this.toRow = toRow;
 	}
 	
-	public Packet(PacketType pType, String msg, Object product, String from, String to, byte buf[], int sizeBuffer, long size, int offset, int fromRow, int toRow)
+	public Packet(PacketType pType, String msg, Object product,
+			String from, String to, byte buf[], int sizeBuffer,
+			long size, int offset, int fromRow, int toRow)
 	{
 		this.pType = pType;
 		this.msg = msg;
@@ -94,7 +95,8 @@ public class Packet implements Serializable {
 		this.toRow = toRow;
 	}
 	
-	public Packet(PacketType pType, String msg, Object product, String from, String to, int fromRow, int toRow)
+	public Packet(PacketType pType, String msg, Object product,
+			String from, String to, int fromRow, int toRow)
 	{
 		this.pType = pType;
 		this.msg = msg;

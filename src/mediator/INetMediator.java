@@ -17,4 +17,5 @@ public interface INetMediator {
 	public DefaultTableModel getTableModel();
 	public UserPublicInfo getClientPublicInfo();
 	public void processReplyFromServer(Packet recvPacket);
+	public String getUsername();
 }

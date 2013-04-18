@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import control.TransferProgress;
 
-import network.Client;
+import network.NetClient;
 
 import types.Packet;
 import types.Status;

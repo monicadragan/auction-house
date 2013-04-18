@@ -21,5 +21,6 @@ public interface IGUIMediator {
 
 	public boolean isReadyToConnect();
 	public void setReadyToConnect(boolean readyToConnect);
+	public void logout();
 
 }
