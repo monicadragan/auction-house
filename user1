@@ -138,3 +138,695 @@ INFO - Received request from server to transfer Mouse
 INFO - Send packet of type TRANSFER to server
 DEBUG - Transfering 236 bytes out of 236
 DEBUG - Transfer completed
+INFO - CONNECTION ESTABLISHED
+DEBUG - Received packet: ADD_ROW
+DEBUG - Received message from server to add row for Camera Foto
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 3
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 3
+DEBUG - Received packet: TRANSFER
+INFO - Received request from server to transfer Camera Foto
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 1024 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 2048 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 3072 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 4096 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 5120 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 6144 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 7168 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 8192 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 9216 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 10240 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 11264 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 12288 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 13312 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 14336 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 15360 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 16384 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 17408 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 18432 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 19456 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 20480 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 21504 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 22528 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 23552 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 24576 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 25600 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 26624 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 27648 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 28672 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 29696 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 30720 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 31744 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 32768 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 33792 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 34816 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 35840 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 36864 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 37888 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 38912 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 39936 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 40960 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 41984 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 43008 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 44032 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 45056 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 46080 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 47104 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 48128 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 49152 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 50176 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 51200 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 52224 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 53248 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 54272 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 55296 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 56320 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 57344 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 58368 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 59392 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 60416 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 61440 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 62464 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 63488 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 64512 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 65536 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 66560 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 67584 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 68608 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 69632 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 70656 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 71680 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 72704 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 73728 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 74752 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 75776 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 76800 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 77824 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 78848 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 79872 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 80896 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 81920 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 82944 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 83968 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 84992 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 86016 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 87040 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 88064 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 89088 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 90112 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 91136 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 92160 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 93184 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 94208 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 95232 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 96256 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 97280 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 98304 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 99328 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 100352 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 101376 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 102400 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 103424 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 104448 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 105472 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 106496 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 107520 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 108544 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 109568 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 110592 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 111616 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 112640 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 113664 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 114688 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 115712 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 116736 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 117760 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 118784 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 119808 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 120832 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 121856 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 122880 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 123904 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 124928 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 125952 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 126976 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 128000 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 129024 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 130048 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 131072 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 132096 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 133120 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 134144 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 135168 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 136192 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 137216 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 138240 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 139264 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 140288 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 141312 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 142336 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 143360 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 144384 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 145408 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 146432 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 147456 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 148480 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 149504 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 150528 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 151552 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 152576 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 153600 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 154624 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 155648 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 156672 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 157696 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 158720 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 159744 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 160768 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 161792 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 162816 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 163840 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 164864 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 165888 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 166912 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 167936 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 168960 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 169984 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 171008 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 172032 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 173056 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 174080 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 175104 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 176128 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 177152 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 178176 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 179200 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 180224 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 181248 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 182272 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 183296 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 184320 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 185344 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 186368 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 187392 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 188416 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 189440 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 190464 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 191488 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 192512 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 193536 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 194560 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 195584 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 196608 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 197632 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 198656 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 199680 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 200704 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 201728 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 202752 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 203776 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 204800 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 205824 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 206848 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 207872 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 208896 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 209920 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 210944 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 211968 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 212992 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 214016 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 215040 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 216064 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 217088 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 218112 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 219136 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 220160 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 221184 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 222208 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 223232 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 224256 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 225280 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 226304 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 227328 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 228352 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 229376 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 230400 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 231424 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 232448 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 233472 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 234496 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 235520 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 236544 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 237568 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 238592 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 239616 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 240640 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 241664 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 242688 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 243712 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 244736 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 245760 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 246784 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 247808 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 248832 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 249856 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 250880 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 251904 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 252928 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 253952 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 254976 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 256000 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 257024 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 258048 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 259072 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 260096 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 261120 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 262144 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 263168 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 264192 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 265216 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 266240 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 267264 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 268288 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 269312 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 270336 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 271360 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 272384 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 273408 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 274432 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 275456 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 276480 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 277504 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 278528 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 279552 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 280576 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 281600 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 282624 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 283648 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 284672 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 285696 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 286720 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 287744 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 288768 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 289792 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 290816 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 291840 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 292864 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 293888 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 294912 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 295936 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 296960 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 297984 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 299008 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 300032 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 301056 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 302080 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 303104 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 304128 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 305152 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 306176 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 307200 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 308224 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 309248 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 310272 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 311296 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 312320 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 313344 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 314368 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 315392 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 316416 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 317440 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 318464 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 319488 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 320512 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 321536 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 322560 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 323584 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 324608 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 325632 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 326656 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 327680 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 328704 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 329728 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 330752 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 331776 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 332800 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 333824 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 334848 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 335872 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 336896 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 337920 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 338944 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 339968 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 340992 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 342016 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 343040 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 344064 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 345088 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 346112 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 347136 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+DEBUG - Transfering 348160 bytes out of 708116
+INFO - Send packet of type TRANSFER to server
+ERROR - Could not parse object.
+ERROR - Too little information!!

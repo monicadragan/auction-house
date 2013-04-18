@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="run" name="AuctionHouseZanko">
+<project basedir="." default="run3" name="AuctionHouseZanko">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../usr/lib/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -60,12 +60,12 @@
             <classpath refid="AuctionHouseZanko.classpath"/>
         </java>
     </target>
-    <target name="run">
-        <parallel/>
-			<antcall target="Server"/> 
+    <target name="run3">
+		<parallel>
+			<antcall target="Server"/>
 			<antcall target="Mediator"/>
 			<antcall target="Mediator"/>
 			<antcall target="Mediator"/>
-        <parallel/> 
-    </target>
+		</parallel>
+	</target>
 </project>

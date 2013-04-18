@@ -75,3 +75,8 @@ DEBUG - Received message from server to add row for Mouse
 DEBUG - Received message from server to modify row 1
 DEBUG - Received message from server to modify row 1
 ERROR - Exception in readObject
+INFO - CONNECTION ESTABLISHED
+INFO - CONNECTION ESTABLISHED
+DEBUG - Received packet: ADD_ROW
+DEBUG - Received message from server to add row for Tastatura
+ERROR - Exception in readObject

@@ -1,0 +1,653 @@
+INFO - CONNECTION ESTABLISHED
+DEBUG - Received packet: ADD_ROW
+DEBUG - Received message from server to add row for Camera Foto
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 1
+DEBUG - Received packet: SET_VALUE_AT
+DEBUG - Received message from server to modify row 1
+DEBUG - Received packet: TRANSFER
+INFO - Starting transfer for Camera Foto from user1
+DEBUG - Received the first 0 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 1024 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 2048 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 3072 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 4096 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 5120 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 6144 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 7168 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 8192 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 9216 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 10240 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 11264 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 12288 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 13312 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 14336 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 15360 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 16384 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 17408 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 18432 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 19456 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 20480 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 21504 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 22528 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 23552 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 24576 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 25600 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 26624 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 27648 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 28672 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 29696 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 30720 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 31744 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 32768 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 33792 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 34816 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 35840 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 36864 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 37888 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 38912 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 39936 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 40960 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 41984 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 43008 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 44032 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 45056 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 46080 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 47104 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 48128 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 49152 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 50176 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 51200 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 52224 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 53248 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 54272 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 55296 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 56320 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 57344 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 58368 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 59392 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 60416 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 61440 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 62464 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 63488 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 64512 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 65536 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 66560 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 67584 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 68608 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 69632 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 70656 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 71680 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 72704 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 73728 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 74752 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 75776 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 76800 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 77824 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 78848 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 79872 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 80896 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 81920 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 82944 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 83968 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 84992 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 86016 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 87040 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 88064 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 89088 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 90112 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 91136 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 92160 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 93184 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 94208 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 95232 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 96256 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 97280 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 98304 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 99328 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 100352 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 101376 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 102400 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 103424 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 104448 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 105472 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 106496 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 107520 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 108544 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 109568 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 110592 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 111616 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 112640 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 113664 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 114688 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 115712 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 116736 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 117760 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 118784 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 119808 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 120832 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 121856 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 122880 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 123904 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 124928 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 125952 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 126976 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 128000 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 129024 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 130048 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 131072 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 132096 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 133120 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 134144 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 135168 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 136192 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 137216 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 138240 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 139264 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 140288 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 141312 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 142336 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 143360 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 144384 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 145408 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 146432 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 147456 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 148480 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 149504 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 150528 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 151552 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 152576 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 153600 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 154624 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 155648 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 156672 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 157696 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 158720 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 159744 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 160768 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 161792 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 162816 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 163840 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 164864 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 165888 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 166912 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 167936 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 168960 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 169984 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 171008 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 172032 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 173056 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 174080 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 175104 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 176128 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 177152 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 178176 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 179200 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 180224 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 181248 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 182272 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 183296 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 184320 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 185344 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 186368 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 187392 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 188416 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 189440 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 190464 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 191488 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 192512 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 193536 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 194560 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 195584 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 196608 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 197632 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 198656 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 199680 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 200704 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 201728 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 202752 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 203776 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 204800 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 205824 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 206848 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 207872 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 208896 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 209920 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 210944 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 211968 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 212992 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 214016 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 215040 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 216064 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 217088 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 218112 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 219136 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 220160 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 221184 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 222208 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 223232 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 224256 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 225280 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 226304 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 227328 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 228352 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 229376 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 230400 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 231424 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 232448 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 233472 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 234496 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 235520 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 236544 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 237568 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 238592 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 239616 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 240640 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 241664 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 242688 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 243712 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 244736 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 245760 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 246784 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 247808 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 248832 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 249856 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 250880 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 251904 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 252928 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 253952 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 254976 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 256000 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 257024 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 258048 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 259072 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 260096 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 261120 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 262144 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 263168 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 264192 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 265216 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 266240 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 267264 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 268288 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 269312 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 270336 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 271360 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 272384 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 273408 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 274432 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 275456 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 276480 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 277504 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 278528 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 279552 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 280576 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 281600 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 282624 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 283648 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 284672 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 285696 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 286720 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 287744 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 288768 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 289792 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 290816 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 291840 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 292864 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 293888 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 294912 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 295936 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 296960 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 297984 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 299008 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 300032 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 301056 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 302080 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 303104 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 304128 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 305152 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 306176 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 307200 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 308224 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 309248 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 310272 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 311296 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 312320 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 313344 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 314368 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 315392 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 316416 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 317440 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 318464 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 319488 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 320512 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 321536 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 322560 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 323584 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 324608 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 325632 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 326656 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 327680 bytes from 708116 for Camera Foto
+DEBUG - Received packet: TRANSFER
+DEBUG - Received the first 328704 bytes from 708116 for Camera Foto
+ERROR - Exception in readObject

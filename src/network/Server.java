@@ -87,7 +87,6 @@ public class Server {
 	 */
 	public void writeObject(SelectionKey key, Object obj)
 	{
-		System.out.println("[Server] WRITE- object: " + obj.toString());
 		SocketChannel socketChannel	= (SocketChannel)key.channel();
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -122,7 +121,7 @@ public class Server {
 	public void processClientRequest(Packet packet, ClientInformation clInfo)
 	{
 		String msg = packet.msg;
-		System.out.println("[SRV] Am primit " + msg + " de la "+clInfo.getUsername());
+		System.out.println("[Server] Am primit " + msg + " de la " + clInfo.getUsername());
 		
 		if(msg.equals("Transfer"))
 		{
@@ -136,8 +135,7 @@ public class Server {
 			}
 			return;
 		}
-		
-		
+
 		Command cmd = new LaunchRequest(this);
 		
 		if(msg.equals("Launch Offer request"))
@@ -206,7 +204,6 @@ public class Server {
 						else {
 							Packet packet = (Packet)server.readObject(key);
 							ClientInformation clInfo = server.clientsMap.get(key);
-							System.out.println("[SRV] A primit msg de la clientul " + clInfo.getUsername());
 							server.processClientRequest(packet, clInfo);
 						}
 					}	
